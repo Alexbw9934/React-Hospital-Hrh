@@ -1,0 +1,66 @@
+/* @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
+  @import url("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js");
+  @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"); */
+
+/* @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
+ @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
+html {
+  box-sizing: border-box;
+  font-weight: 300;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  position: relative;
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  min-height: 120px;
+}
+
+.input-group {
+  justify-content: flex-end;
+  margin-bottom: .5em !important;
+}
+
+.btn {
+  border-radius: 0;
+  margin-right: .5em;
+  color: #fff !important;
+  width: 100px;
+}
+
+.nav-tabs,
+.tab-content {
+  max-width: 50%;
+}
+
+.nav-tabs .nav-item a {
+  border-radius: 0;
+  background-color: #fff;
+  border: none;
+}
+
+.nav-tabs .nav-item .active {
+  border-radius: 0;
+  background-color: #eee;
+  border: none;
+}
+
+.tab-content .tab-pane {
+  padding: 1em;
+  background-color: #eee;
+} */
+.ant-form-item-label {
+  display: flex;
+  flex-grow: 0;
+  overflow: inherit; 
+   white-space: initial;
+  text-align: left;
+}

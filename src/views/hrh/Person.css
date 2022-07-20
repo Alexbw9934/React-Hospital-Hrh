@@ -1,0 +1,19 @@
+@media only screen and (max-width: 375px) {
+ #personal{
+  width: 100%;
+   /* background-color: brown; */
+ }
+ #registrationNo{
+   width: 100%;
+ }
+ .img{
+   width: 100%;
+   margin-top: -65%;
+   margin-left: 73%;
+ }
+ .img2{
+  width: 100%;
+  margin-top:-51% ;
+  margin-left: 73%;
+ }
+}

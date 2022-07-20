@@ -1,0 +1,7 @@
+.ant-form-item-label {
+    display: contents;
+    flex-grow: 0;
+    overflow: inherit; 
+     white-space: initial;
+    text-align: left;
+}
