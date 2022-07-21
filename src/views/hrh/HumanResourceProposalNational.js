@@ -207,7 +207,9 @@ class HumanResourceProposalNational extends Component {
   };
   getObject = () => {
     if (this.props.history.location.state) {
+      console.log("-----history-----", this.props.history.location.state);
       let paramId = this.props.history.location.state.data;
+      let stateId = this.props.history.location.state.stateId;
       this.setState({ paramId: paramId });
       axios({
         url: `${process.env.REACT_APP_API_URL}HumanResourceProposalNationals/${paramId}`,
@@ -220,9 +222,10 @@ class HumanResourceProposalNational extends Component {
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.stateId === stateId
         );
         this.setState({ numberTableRows: arr });
+        console.log("++++++++", arr);
       });
       axios({
         url: `${process.env.REACT_APP_API_URL}FinancialStatus`,

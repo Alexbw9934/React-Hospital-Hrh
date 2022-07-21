@@ -109,7 +109,7 @@ export class HumanResourceProposalDetails extends Component {
           render: (text, record) => (
             <CButton
               style={{ backgroundColor: "blue" }}
-              onClick={(e) => this.StoreCollector(e, record.id)}
+              onClick={(e) => this.StoreCollector(e, record.id, record.stateId)}
             >
               <b style={{ color: "#fff" }}>Open</b>
             </CButton>
@@ -148,15 +148,17 @@ export class HumanResourceProposalDetails extends Component {
           title: "State",
           dataIndex: "stateId",
           key: "stateId",
-          render: (text, obj) => (
-            <a>
-              {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
-                .map((id) => {
-                  return id.name;
-                })}
-            </a>
-          ),
+          render: (text, obj) => {
+            return (
+              <a>
+                {this.props.stateList
+                  .filter((data) => data.id === obj.stateId)
+                  .map((id) => {
+                    return id.name;
+                  })}
+              </a>
+            )
+          },
         },
         {
           title: "Status",
@@ -178,14 +180,15 @@ export class HumanResourceProposalDetails extends Component {
         {
           title: "Action",
           key: "action",
-          render: (text, record) => (
+          render: (text, record) => {
+            return (
             <CButton
               style={{ backgroundColor: "blue" }}
-              onClick={(e) => this.StoreCollector(e, record.id)}
+              onClick={(e) => this.StoreCollector(e, record.id, record.stateId)}
             >
               <b style={{ color: "#fff" }}>Open</b>
             </CButton>
-          ),
+          )},
         },
       ],
       columnDistrict: [
@@ -250,14 +253,15 @@ export class HumanResourceProposalDetails extends Component {
         {
           title: "Action",
           key: "action",
-          render: (text, record) => (
+          render: (text, record) => {
+            return (
             <CButton
               style={{ backgroundColor: "blue" }}
-              onClick={(e) => this.StoreCollector(e, record.id)}
+              onClick={(e) => this.StoreCollector(e, record.id, record.stateId)}
             >
               <b style={{ color: "#fff" }}>Open</b>
             </CButton>
-          ),
+          )},
         },
       ],
     };
@@ -286,13 +290,15 @@ export class HumanResourceProposalDetails extends Component {
       this.setState({ states: response.data });
     });
   }
-  StoreCollector = (e, id) => {
+  StoreCollector = (e, id, stateId) => {
+    console.log("qwrwqerpuwpoeruweur", stateId)
     if (this.state.role === "admin_role") {
     this.props.history.push({
       pathname:
         "/hrh/HumanResourceProposalDetails/HumanResourceProposalNational",
       state: {
         data: id,
+        stateId: stateId,
       },
     });
   } else if (this.state.role === "state_role") {
@@ -301,6 +307,7 @@ export class HumanResourceProposalDetails extends Component {
         "/hrh/HumanResourceProposalDetails/HumanResourceProposalState",
         state: {
           data: id,
+          stateId: stateId 
         },
     });
   } else if (this.state.role === "district_role") {
@@ -308,6 +315,7 @@ export class HumanResourceProposalDetails extends Component {
       pathname: "/hrh/HumanResourceProposalDetails/HRProposalDistrict",
       state: {
         data: id,
+        stateId: stateId 
       },
     });
   }

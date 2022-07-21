@@ -37,7 +37,8 @@ function ReportingPeriod(props) {
     id: 0,
     finacialYearId: "",
     lastFY:'',
-    firstFY:''
+    firstFY:'',
+    finacial: [],
   });
   const [checkingMsg, setCheckingMsg] = useState(false);
   const [postMsg, setPostMsg] = useState(false);
@@ -128,28 +129,34 @@ function ReportingPeriod(props) {
       setErrors(errors);
     }
   }
-  function editForm(id) {
-    console.log(id);
+  function editForm(id, e) {
+    e.preventDefault();
+    console.log("!!!!!!");
     setEdit(true);
     setCheckingMsg(false);
     setErrors({});
     axios
       .get(`${process.env.REACT_APP_API_URL}ReportingPeriods/${id}`)
       .then((res) => {
-        console.log("!!!", id);
         console.log(res.data, "edit value");
+        let obj = {};
         let data = res.data;
+        data.finacial=[];
         let arr = data.finacialYearId.split(",");
-        data.finacial = props.financialYearList.map((d, i) => {
-          if (arr[i] === d.id) {
-            obj = {
-              ...obj,
-              value: d.id,
-              label: d.name,
-            };
-            return obj;
-          }
+        props.financialYearList.map((d, i) => {
+          arr.map((s, i) => {
+            if (s == d.id) {
+              obj = {
+                ...obj,
+                value: d.id,
+                label: d.name,
+              };
+              data.finacial.push(obj);
+            }
+          });
         });
+        data.firstFY = data.finacial[0].value;
+        data.lastFY = data.finacial[data.finacial.length - 1].value;
         console.log(data, "editvalue");
         setEditValue(data);
       });
@@ -162,6 +169,7 @@ function ReportingPeriod(props) {
     });
   }
   function updateChange(selected) {
+    console.log("@@@@@", selected);
     let value = Array.from(selected, (option) => option.value);
     let arr = props.financialYearList.filter((d) => value.includes(d.id));
     let latest = {};
@@ -427,6 +435,7 @@ function ReportingPeriod(props) {
                     <CCol xs="12" sm="12">
                       <CSelect
                         name="firstFY"
+                        disabled
                         value={editValue.firstFY || ""}
                       >
                         <option value="0">-Select-</option>
@@ -449,10 +458,12 @@ function ReportingPeriod(props) {
                     <CCol xs="12" sm="12">
                       <CSelect
                         name="firstFY"
+                        disabled
                         value={editValue.lastFY || ""}
                       >
                         <option value="0">-Select-</option>
                         {props.financialYearList.map((data) => {
+                          console.log("*&^%", editValue.lastFY)
                           return (
                             <option value={data.id} key={data.id}>
                               {data.name}
@@ -490,7 +501,7 @@ function ReportingPeriod(props) {
                   </CFormGroup>
                 </CForm>
               ) : (
-                <CForm onSubmit={submitData}>
+                <CForm onSubmit={(e) => submitData(e)}>
                   <CFormGroup row>
                     <CCol md="4">
                       <CLabel htmlFor="text-input">Name</CLabel>
@@ -535,7 +546,6 @@ function ReportingPeriod(props) {
                     <CCol xs="12" sm="12">
                       <CSelect
                         name="firstFY"
-                        disabled
                         value={data.firstFY || ""}
                       >
                         <option value="0">-Select-</option>
@@ -555,7 +565,7 @@ function ReportingPeriod(props) {
                       <CLabel htmlFor="text-input">Last Financial Year</CLabel>
                     </CCol>
                     <CCol xs="12" sm="12">
-                      <CSelect name="lastFY" disabled value={data.lastFY || ""}>
+                      <CSelect name="lastFY" value={data.lastFY || ""}>
                         <option value="0">-Select-</option>
                         {props.financialYearList.map((data) => {
                           return (
