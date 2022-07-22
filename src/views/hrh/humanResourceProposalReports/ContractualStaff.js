@@ -92,10 +92,10 @@ class ContractualStaff extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -185,60 +185,60 @@ class ContractualStaff extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.submissionDate === "")
+    if (obj.submissionDate == "")
       errors.submissionDate = "Please pick date of submission.";
-    if (obj.financialYearId === 0)
+    if (obj.financialYearId == 0)
       errors.financialYearId = "Please enter the financial year.";
-    if (obj.reporting === "")
+    if (obj.reporting == "")
       errors.reporting = "Please enter reporting priod.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.programTypeId === 0)
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.programTypeId == 0)
       errors.programTypeId = "Please enter program type.";
-    if (obj.typeofPostId === 0) errors.typeofPostId = "Please select type of post.";
-    if (obj.placeOfPostId === 0)
+    if (obj.typeofPostId == 0) errors.typeofPostId = "Please select type of post.";
+    if (obj.placeOfPostId == 0)
       errors.placeOfPostId = "Please select place of Post.";
-    if (obj.typeOfFacilityOfficeId === 0) errors.typeOfFacilityOfficeId = "Please select type of Facility Office.";
-    if (obj.categoryofPostionId === 0)
+    if (obj.typeOfFacilityOfficeId == 0) errors.typeOfFacilityOfficeId = "Please select type of Facility Office.";
+    if (obj.categoryofPostionId == 0)
       errors.categoryofPostionId = "Please select category of postion.";
-    if (obj.fmr === 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
-    if (obj.numberofPersonPlace === 0)
+    if (obj.fmr == 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
+    if (obj.numberofPersonPlace == 0)
       errors.numberofPersonPlace = "Please enter number of person in place.";
     if (obj.numberofPersonPlace < 0)
       errors.numberofPersonPlace = "Please enter a valid number.";
-    if (obj.numberofNewRecrt === 0 || obj.numberofNewRecrt < 0)
+    if (obj.numberofNewRecrt == 0 || obj.numberofNewRecrt < 0)
       errors.numberofNewRecrt = "Please enter number of new recruitment.";
-    if (obj.totalNoPositionPlace === 0 || obj.totalNoPositionPlace < 0)
+    if (obj.totalNoPositionPlace == 0 || obj.totalNoPositionPlace < 0)
       errors.totalNoPositionPlace = "Please enter total number of position in place.";
-    if (obj.totalNumberofVactPos === 0 || obj.totalNumberofVactPos < 0)
+    if (obj.totalNumberofVactPos == 0 || obj.totalNumberofVactPos < 0)
       errors.totalNumberofVactPos =
         "Please enter total number of vacant position.";
-    if (obj.numberofPostVaccant === 0 || obj.numberofPostVaccant < 0)
+    if (obj.numberofPostVaccant == 0 || obj.numberofPostVaccant < 0)
       errors.numberofPostVaccant = "Please enter number of post vacant.";
-    if (obj.nameofPost === "") errors.nameofPost = "Please enter name of post.";
+    if (obj.nameofPost == "") errors.nameofPost = "Please enter name of post.";
     if (
-      obj.totalNoPositionApprov === 0 ||
+      obj.totalNoPositionApprov == 0 ||
       obj.totalNoPositionApprov < 0
     )
       errors.totalNoPositionApprov = "Please enter total position approved INR.";
       if (
-        obj.totalAmountAprovINR === 0 ||
+        obj.totalAmountAprovINR == 0 ||
         obj.totalAmountAprovINR < 0 ||
         obj.totalAmountAprovINR.length > 10
       )
         errors.totalAmountAprovINR = "Please enter total amount approved INR.";
-    if (obj.breakupVacantPosition === 0 || obj.breakupVacantPosition < 0)
+    if (obj.breakupVacantPosition == 0 || obj.breakupVacantPosition < 0)
       errors.breakupVacantPosition = "Please enter break up vacant position.";
-      if (obj.numberofPosRecutUnder === 0 || obj.numberofPosRecutUnder < 0)
+      if (obj.numberofPosRecutUnder == 0 || obj.numberofPosRecutUnder < 0)
       errors.numberofPosRecutUnder = "Please enter number of post recruitment is under process.";
-      if (obj.totalUnspentAmt === 0 || obj.totalUnspentAmt < 0 || obj.totalUnspentAmt.length > 10)
+      if (obj.totalUnspentAmt == 0 || obj.totalUnspentAmt < 0 || obj.totalUnspentAmt.length > 10)
       errors.totalUnspentAmt = "Please enter total unspent amount.";
-      if (obj.totalAmountRecevINR === 0 || obj.totalAmountRecevINR < 0 || obj.totalAmountRecevINR.length > 10)
+      if (obj.totalAmountRecevINR == 0 || obj.totalAmountRecevINR < 0 || obj.totalAmountRecevINR.length > 10)
       errors.totalAmountRecevINR = "Please enter total amount received in INR.";
-      if (obj.totalAmtAllotINR === 0 || obj.totalAmtAllotINR < 0 || obj.totalAmtAllotINR.length > 10)
+      if (obj.totalAmtAllotINR == 0 || obj.totalAmtAllotINR < 0 || obj.totalAmtAllotINR.length > 10)
       errors.totalAmtAllotINR = "Please enter total amount alot in INR.";
-      if (obj.totalExpenINR === 0 || obj.totalExpenINR < 0 || obj.totalExpenINR.length >10 )
+      if (obj.totalExpenINR == 0 || obj.totalExpenINR < 0 || obj.totalExpenINR.length >10 )
       errors.totalExpenINR = "Please enter total expenditure done in INR.";
-      if (obj.totalBalAmtINR === 0 || obj.totalBalAmtINR < 0 ||obj.totalBalAmtINR.length > 10)
+      if (obj.totalBalAmtINR == 0 || obj.totalBalAmtINR < 0 ||obj.totalBalAmtINR.length > 10)
       errors.totalBalAmtINR = "Please enter total balance amount in INR.";
     return errors;
   };
@@ -246,7 +246,7 @@ class ContractualStaff extends Component {
     e.preventDefault();
     const errors = this.validateNational();
     console.log(errors, "errors");
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -396,7 +396,7 @@ class ContractualStaff extends Component {
                               placeholder="Date"
                               onChange={this.handleChange}
                               value={
-                                obj.submissionDate === ""
+                                obj.submissionDate == ""
                                   ? obj.submissionDate || ""
                                   : obj.submissionDate.split("T")[0] || ""
                               }
@@ -501,7 +501,7 @@ class ContractualStaff extends Component {
                           </Col>
                           <Col>
                             <Radio.Group
-                              value={obj.programTypeId===0?obj.programTypeId:obj.programTypeId.toString() || ''}
+                              value={obj.programTypeId==0?obj.programTypeId:obj.programTypeId.toString() || ''}
                               onChange={this.handleRadio2}
                               name="programTypeId"
                             >
@@ -512,7 +512,7 @@ class ContractualStaff extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.programTypeId === "" ? "none" : "block",
+                                  errors.programTypeId == "" ? "none" : "block",
                               }}
                             >
                               {errors.programTypeId}
@@ -529,7 +529,7 @@ class ContractualStaff extends Component {
                           </Col>
                           <Col>
                             <Radio.Group
-                              value={obj.typeofPostId===0?obj.typeofPostId:obj.typeofPostId.toString() || ""}
+                              value={obj.typeofPostId==0?obj.typeofPostId:obj.typeofPostId.toString() || ""}
                               onChange={this.handleRadio3 }
                               name="typeofPostId"
                             >
@@ -540,7 +540,7 @@ class ContractualStaff extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofPostId === "" ? "none" : "block",
+                                  errors.typeofPostId == "" ? "none" : "block",
                               }}
                             >
                               {errors.typeofPostId}
@@ -769,7 +769,7 @@ class ContractualStaff extends Component {
                               type="number"
                               value={obj.totalNoPositionPlace || ""}
                               name="totalNoPositionPlace"
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               onChange={this.handleChange}
                               invalid={
                                 errors.totalNoPositionPlace ? true : false
@@ -851,7 +851,7 @@ class ContractualStaff extends Component {
                               value={obj.numberofPosRecutUnder || ""}
                               name="numberofPosRecutUnder"
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={
                                 errors.numberofPosRecutUnder ? true : false
                               }

@@ -71,7 +71,7 @@ class BlockCategories extends React.Component {
   };
   validate = () => {
     let errors = {};
-    if (this.state.value.name === "") errors.name = "Please enter the name.";
+    if (this.state.value.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   submitData = (e) => {
@@ -79,9 +79,9 @@ class BlockCategories extends React.Component {
     const value = this.state;
     const errors = this.validate();
     let check = this.props.blockCategoryList.map((data) => {
-      if (this.state.value.name === data.name) return false;
+      if (this.state.value.name == data.name) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {
           name: "",
@@ -130,7 +130,7 @@ class BlockCategories extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "") errors.name = "Please enter the name.";
+    if (this.state.editValue.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   updateData = (e, id) => {
@@ -138,9 +138,9 @@ class BlockCategories extends React.Component {
     console.log(this.state.editValue);
     const errors = this.updateValidate();
     let check = this.props.blockCategoryList.map((data) => {
-      if (this.state.editValue.name === data.name) return false;
+      if (this.state.editValue.name == data.name) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {
           name: "",
@@ -198,7 +198,7 @@ class BlockCategories extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -215,7 +215,7 @@ class BlockCategories extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/BlocksCategories/${id}`, {
@@ -435,7 +435,7 @@ class BlockCategories extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -450,7 +450,7 @@ class BlockCategories extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

@@ -92,8 +92,8 @@ function ReportingPeriod(props) {
   }
   const validate = () => {
     let errors = {};
-    if (data.name === "") errors.name = "This field is required.";
-    if (data.finacial === "") errors.finacial = "This field is required.";
+    if (data.name == "") errors.name = "This field is required.";
+    if (data.finacial == "") errors.finacial = "This field is required.";
     return errors;
   };
   function handleStatus(evt) {
@@ -107,7 +107,7 @@ function ReportingPeriod(props) {
     e.preventDefault();
     const errors = validate();
     console.log(errors, "errors");
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       fetch(`${process.env.REACT_APP_API_URL}ReportingPeriods`, {
         method: "POST",
@@ -192,8 +192,8 @@ function ReportingPeriod(props) {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.fromDate === "") errors.fromDate = "Please pick date.";
-    if (editValue.toDate === "") errors.toDate = "Please pick date.";
+    if (editValue.fromDate == "") errors.fromDate = "Please pick date.";
+    if (editValue.toDate == "") errors.toDate = "Please pick date.";
     if (Date.parse(editValue.toDate) <= Date.parse(editValue.fromDate)) {
       errors.fromDate = "To date should be greater than From date.";
       errors.toDate = "To date should be greater than From date.";
@@ -203,7 +203,7 @@ function ReportingPeriod(props) {
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       fetch(`${process.env.REACT_APP_API_URL}ReportingPeriods/${id}`, {
         method: "PUT",
@@ -236,7 +236,7 @@ function ReportingPeriod(props) {
   function showConfirm(value, status, e) {
     confirm({
       title:
-        status === 0
+        status == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -254,7 +254,7 @@ function ReportingPeriod(props) {
       {
         op: "replace",
         path: "/masterStatus",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`${process.env.REACT_APP_API_URL}ReportingPeriods/${id}`, {
@@ -302,7 +302,7 @@ function ReportingPeriod(props) {
                 user.finacialYearId.split(",").includes(obj.id.toString())
               )
               .map((data, i, row) => {
-                return i + 1 === row.length ? data.name : `${data.name}, `;
+                return i + 1 == row.length ? data.name : `${data.name}, `;
               })}
         </>
       ),
@@ -312,7 +312,7 @@ function ReportingPeriod(props) {
       key: "masterStatus",
       render: (text, record) => (
         <Space size="middle">
-          {record.masterStatus.toString() === 0 ? "Inactive" : "Active"}
+          {record.masterStatus.toString() == 0 ? "Inactive" : "Active"}
         </Space>
       ),
     },
@@ -322,7 +322,7 @@ function ReportingPeriod(props) {
       render: (text, record) => (
         <Space size="middle">
           <CButton onClick={(e) => editForm(record.id, e)}>Edit</CButton>
-          {record.masterStatus.toString() === 1 ? (
+          {record.masterStatus.toString() == 1 ? (
             <CButton
               color="danger"
               style={{ backgroundColor: "red" }}

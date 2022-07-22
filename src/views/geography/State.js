@@ -77,20 +77,20 @@ class State extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.name === "") errors.name = "Please enter the name.";
-    if (value.stateCategoryId === 0)
+    if (value.name == "") errors.name = "Please enter the name.";
+    if (value.stateCategoryId == 0)
       errors.stateCategoryId = "Select the State Category.";
     return errors;
   };
   submitData = (e) => {
     e.preventDefault();
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.stateList.map((data) => {
-        if (this.state.value.name === data.name) return false;
+        if (this.state.value.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -142,15 +142,15 @@ class State extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "") errors.name = "Please enter the name.";
-    if (this.state.editValue.stateCategoryId === 0)
+    if (this.state.editValue.name == "") errors.name = "Please enter the name.";
+    if (this.state.editValue.stateCategoryId == 0)
       errors.stateCategoryId = "Select the State Category.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -205,7 +205,7 @@ class State extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -222,7 +222,7 @@ class State extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/States/${id}`, {
@@ -502,7 +502,7 @@ class State extends React.Component {
                         <>
                           {" "}
                           {this.props.stateCategoryList
-                            .filter((data) => data.id === user.stateCategoryId)
+                            .filter((data) => data.id == user.stateCategoryId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -514,7 +514,7 @@ class State extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -529,7 +529,7 @@ class State extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

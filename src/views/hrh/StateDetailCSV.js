@@ -63,7 +63,7 @@ function StateDetailCSV() {
         method: "GET",
       }).then((response) => {
         console.log(response, "res");
-        let arr=response.data.filter(d=>d.financialStatusId===location.state.data)
+        let arr=response.data.filter(d=>d.financialStatusId==location.state.data)
         setDetail(arr)
       });
     }
@@ -72,7 +72,7 @@ function StateDetailCSV() {
           url: `${process.env.REACT_APP_API_URL}StatePysicalDistributions`,
           method: "GET",
         }).then((response) => {
-            let arr=response.data.filter(d=>d.physicalStatusId===location.state.pData)
+            let arr=response.data.filter(d=>d.physicalStatusId==location.state.pData)
             setDetail(arr)
         });
       }
@@ -120,7 +120,7 @@ function StateDetailCSV() {
                             <td>
                               {" "}
                               {stateList
-                                .filter((obj) => obj.id === data.stateId)
+                                .filter((obj) => obj.id == data.stateId)
                                 .map((id) => {
                                   return id.name;
                                 })}
@@ -128,7 +128,7 @@ function StateDetailCSV() {
                             <td>
                               {" "}
                               {districtList
-                                .filter((obj) => obj.id === data.districtId)
+                                .filter((obj) => obj.id == data.districtId)
                                 .map((id) => {
                                   return id.name;
                                 })}
@@ -136,7 +136,7 @@ function StateDetailCSV() {
                             <td>
                               {" "}
                               {divsionList
-                                .filter((obj) => obj.id === data.divisionId)
+                                .filter((obj) => obj.id == data.divisionId)
                                 .map((id) => {
                                   return id.name;
                                 })}
@@ -168,7 +168,7 @@ function StateDetailCSV() {
                           <td>
                             {" "}
                             {stateList
-                              .filter((ob) => ob.id === data.stateId)
+                              .filter((ob) => ob.id == data.stateId)
                               .map((id) => {
                                 return id.name;
                               })}
@@ -176,7 +176,7 @@ function StateDetailCSV() {
                           <td>
                             {" "}
                             {districtList
-                              .filter((ob) =>ob.id === data.districtId)
+                              .filter((ob) =>ob.id == data.districtId)
                               .map((id) => {
                                 return id.name;
                               })}
@@ -184,7 +184,7 @@ function StateDetailCSV() {
                           <td>
                             {" "}
                             {divsionList
-                              .filter((ob) => ob.id === data.divisionId)
+                              .filter((ob) => ob.id == data.divisionId)
                               .map((id) => {
                                 return id.name;
                               })}

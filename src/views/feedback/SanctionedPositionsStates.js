@@ -41,7 +41,7 @@ class SanctionedPositionsStates extends Component {
   }
   suppCount = async (e) => {
     let val = e.target.value;
-    if (val === 2) {
+    if (val == 2) {
       await this.setState({ isDisableSupp: true });
     } else {
       await this.setState({ isDisableSupp: false });
@@ -50,10 +50,10 @@ class SanctionedPositionsStates extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ?window.print():console.log("ok");
+        value == "print" ?window.print():console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -88,7 +88,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -106,7 +106,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -119,7 +119,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             onChange={this.suppCount}
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option value="1">Annual RoP</option>
@@ -147,7 +147,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -155,7 +155,7 @@ class SanctionedPositionsStates extends Component {
                     </CFormGroup>
                     <CFormGroup
                       style={{
-                        display: this.state.role === "admin_role" ? "none" : "",
+                        display: this.state.role == "admin_role" ? "none" : "",
                       }}
                       row
                     >
@@ -167,7 +167,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Name of Division"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option></option>
@@ -182,7 +182,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Name of District"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option></option>
@@ -197,7 +197,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Type of District"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option></option>
@@ -214,7 +214,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="State"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option></option>
@@ -229,7 +229,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Program Type"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option value="1">NHM</option>
@@ -245,7 +245,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Type of Post"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             <option value="1">Service Delivery (SD)</option>
@@ -260,7 +260,7 @@ class SanctionedPositionsStates extends Component {
                           <CLabel
                             htmlFor="text-input"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             Category of Post
@@ -270,7 +270,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Category of Post"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           ></CSelect>
                         </CCol>
@@ -280,7 +280,7 @@ class SanctionedPositionsStates extends Component {
                           <CLabel
                             htmlFor="text-input"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           >
                             Name of the Post
@@ -290,7 +290,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Name of the Post"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           ></CSelect>
                         </CCol>
@@ -311,7 +311,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -334,7 +334,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -355,7 +355,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -376,7 +376,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -399,7 +399,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -420,7 +420,7 @@ class SanctionedPositionsStates extends Component {
                             onChange={this.handleChange}
                             required
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           />
                         </CCol>
@@ -433,7 +433,7 @@ class SanctionedPositionsStates extends Component {
                           <CSelect
                             placeholder="Select Status"
                             disabled={
-                              this.state.role === "admin_role" ? false : true
+                              this.state.role == "admin_role" ? false : true
                             }
                           ></CSelect>
                         </CCol>

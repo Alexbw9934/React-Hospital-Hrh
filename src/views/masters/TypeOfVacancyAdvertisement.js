@@ -74,7 +74,7 @@ class TypeOfVacancyAdvertisement extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.name === "") errors.name = "Please enter the name.";
+    if (value.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   submitData = (e) => {
@@ -82,12 +82,12 @@ class TypeOfVacancyAdvertisement extends React.Component {
     const value = this.state;
     const errors = this.validate();
     console.log("########", value.value);
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.typeofVacancyAdverstisementList.map((data) => {
-        if (value.value.name === data.name) return false;
+        if (value.value.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -140,18 +140,18 @@ class TypeOfVacancyAdvertisement extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === 0) errors.name = "Please enter the name.";
+    if (this.state.editValue.name == 0) errors.name = "Please enter the name.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.typeofVacancyAdverstisementList.map((data) => {
-        if (this.state.editValue.name === data.name) return false;
+        if (this.state.editValue.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -221,7 +221,7 @@ class TypeOfVacancyAdvertisement extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -238,7 +238,7 @@ class TypeOfVacancyAdvertisement extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/TypeofVacancyAdvertisements/${id}`, {
@@ -249,7 +249,7 @@ class TypeOfVacancyAdvertisement extends React.Component {
       },
       body: JSON.stringify(operation),
     }).then((resp) => {
-      if (resp.status === 200) {
+      if (resp.status == 200) {
         this.setState({
           checkingMsg: false,
         });
@@ -468,7 +468,7 @@ class TypeOfVacancyAdvertisement extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -483,7 +483,7 @@ class TypeOfVacancyAdvertisement extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

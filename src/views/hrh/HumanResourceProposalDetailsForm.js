@@ -123,9 +123,9 @@ export class HumanResourceProposalDetailsForm extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Proposal - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Proposal - State</h4>
                   ) : (
                     <h4>Human Resource Proposal - District</h4>
@@ -152,7 +152,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               onChange={this.handleChange}
                               value={
                                 obj.submission }
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.submission ? true : false}
                             />
                             <FormFeedback>{errors.submission}</FormFeedback>
@@ -172,7 +172,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               onChange={this.handleChange}
                               name="financialYear"
                               value={obj.financialYear}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.financialYear ? true : false}
                             >
                               <option value="0">-Select-</option>
@@ -216,7 +216,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                 })
                               }
                               value={obj.typeofApproval}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.typeofApproval ? true : false}
                             >
                               <Radio value="1">Annual RoP</Radio>
@@ -227,7 +227,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         </CFormGroup>
                       </Col>
                     </Row>
-                    {role === "district_role" ? (
+                    {role == "district_role" ? (
                       <Row gutter={20}>
                         <Col span={12}>
                           <CFormGroup>
@@ -240,7 +240,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               <Radio.Group
                                 value={obj.programType}
                                 onChange={this.handleRadio2}
-                                disabled={role === "admin_role" ? false : true}
+                                disabled={role == "admin_role" ? false : true}
                               >
                                 <Radio value="1">NHM</Radio>
                                 <Radio value="2">NUHM</Radio>
@@ -259,7 +259,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               <Radio.Group
                                 value={obj.typeofPost}
                                 onChange={this.handleRadio3}
-                                disabled={role === "admin_role" ? false : true}
+                                disabled={role == "admin_role" ? false : true}
                               >
                                 <Radio value="1">SD</Radio>
                                 <Radio value="2">PM</Radio>
@@ -269,7 +269,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         </Col>
                       </Row>
                     ) : null}
-                    {role === "district_role" ? (
+                    {role == "district_role" ? (
                       <Row gutter={20}>
                         <Col span={12}>
                           <CFormGroup>
@@ -281,7 +281,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                 value={obj.nameofPost}
                                 name="nameofPost"
                                 onChange={this.handleChange}
-                                disabled={role === "admin_role" ? false : true}
+                                disabled={role == "admin_role" ? false : true}
                               />
                             </Col>
                           </CFormGroup>
@@ -299,7 +299,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                 placeholder="Select"
                                 onChange={() => this.handleChange()}
                                 value={obj.placeofPostId}
-                                disabled={role === "state_role" ? false : true}
+                                disabled={role == "state_role" ? false : true}
                                 invalid={errors.placeofPostId ? true : false}
                               >
                                 <option value="0">-Select-</option>
@@ -321,7 +321,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                       </Row>
                     ) : null}
                     <Row gutter={20}>
-                      {obj.typeofApproval === 2 ? (
+                      {obj.typeofApproval == 2 ? (
                         <Col span={12}>
                           <CFormGroup>
                             <Col md="12">
@@ -335,7 +335,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                 onChange={this.handleChange}
                                 name="number"
                                 value={obj.number}
-                                disabled={role === "admin_role" ? false : true}
+                                disabled={role == "admin_role" ? false : true}
                               >
                                 <option value="0">-Select-</option>
                                 <option value="1">1</option>
@@ -358,7 +358,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               name="stateId"
                               value={obj.stateId}
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ?  false:true}
+                              disabled={role == "admin_role" ?  false:true}
                               invalid={errors.stateId?true:false}
                             >
                               <option value="0">-Select-</option>
@@ -374,7 +374,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                           </Col>
                         </CFormGroup>
                       </Col>
-                      {role === "district_role" ? (
+                      {role == "district_role" ? (
                         <Col span={12}>
                           <CFormGroup>
                             <Col>
@@ -386,7 +386,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               <CSelect
                                 placeholder="Select District"
                                 onChange={this.handleSelect4}
-                                disabled={role === "admin_role" ? false:true}
+                                disabled={role == "admin_role" ? false:true}
                               >
                                 {this.state.districtCategory.length > 0 &&
                                   this.state.districtCategory.map(
@@ -407,7 +407,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         </Col>
                       ) : null}
                     </Row>
-                    {role === "district_role" ? (
+                    {role == "district_role" ? (
                       <Row gutter={20}>
                         <Col span={12}>
                           <CFormGroup>
@@ -468,7 +468,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         </Col>
                       </Row>
                     ) : null}
-                    {role === "district_role" ? (
+                    {role == "district_role" ? (
                       <Row gutter={20}>
                         <Col span={12}>
                           <CFormGroup>
@@ -504,7 +504,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         </Col>
                       </Row>
                     ) : null}
-                    {role === "district_role" ? (
+                    {role == "district_role" ? (
                       <Row gutter={20}>
                         <Col span={12}>
                         <CFormGroup>
@@ -530,7 +530,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                             name="numberOfDivisions"
                             rules={[
                               {
-                                required: role === "state_role" ? false : true,
+                                required: role == "state_role" ? false : true,
                                 message: "Please select!",
                               },
                             ]}
@@ -538,12 +538,12 @@ export class HumanResourceProposalDetailsForm extends Component {
                             <Input
                               value={this.state.numberOfDivDist}
                               onChange={this.handleChange}
-                              disabled={role === "state_role" ? true : false}
+                              disabled={role == "state_role" ? true : false}
                             />
                           </Form.Item>
                         </Col>
                       </Row> */}
-                    {role === "district_role" ? null : (
+                    {role == "district_role" ? null : (
                       <Row gutter={20}>
                         <Col span={12}>
                           <CFormGroup>
@@ -554,7 +554,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               <Radio.Group
                                 value={obj.programType}
                                 onChange={this.handleRadio2}
-                                disabled={role === "admin_role" ? false : true}
+                                disabled={role == "admin_role" ? false : true}
                               >
                                 <Radio value="1">NHM</Radio>
                                 <Radio value="2">NUHM</Radio>
@@ -571,7 +571,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               <Radio.Group
                                 value={obj.typeofPost}
                                 onChange={this.handleRadio3}
-                                disabled={role === "admin_role" ? false : true}
+                                disabled={role == "admin_role" ? false : true}
                               >
                                 <Radio value="1">SD</Radio>
                                 <Radio value="2">PM</Radio>
@@ -581,7 +581,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         </Col>
                       </Row>
                     )}
-                    {/* {role === "state_role" ? (
+                    {/* {role == "state_role" ? (
                       <Row gutter={20}>
                         <Col span={12}>
                           <CFormGroup>
@@ -594,7 +594,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               name="placePost"
                               value={obj.placeofPost}
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                             >
                               <option value="0">-Select-</option>
                               {this.state.states.map((item, index) => {
@@ -617,7 +617,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               placeholder="Select Division"
                               name="division"
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                             >
                               <option value="0">-Select-</option>
                               {this.state.divisionArray.length > 0 &&
@@ -646,7 +646,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               onChange={this.handleChange}
                               name="categoryofPostion"
                               value={obj.categoryofPostion}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.categoryofPostion?true:false}
                             >
                               <option value="0">-Select-</option>
@@ -674,7 +674,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               value={obj.fmr}
                               name="fmr"
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.fmr?true:false}
                             />
                             <FormFeedback>{errors.fmr}</FormFeedback>
@@ -698,7 +698,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               value={obj.numberofPostSanc}
                               name="numberofPostSanc"
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.numberofPostSanc?true:false}
                             />
                             <FormFeedback>{errors.numberofPostSanc}</FormFeedback>
@@ -716,7 +716,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               name="numberofNewPostion"
                               value={obj.numberofNewPostion}
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.numberofNewPostion?true:false}
                             />
                             <FormFeedback>{errors.numberofNewPostion}</FormFeedback>
@@ -739,7 +739,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               type="number"
                               value={obj.totalNoPostionApprov}
                               name="totalNoPostionApprov"
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               onChange={this.handleChange}
                               invalid={errors.totalNoPostionApprov?true:false}
                             />
@@ -757,7 +757,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               type="number"
                               value={obj.numberofNewPost}
                               name="numberofNewPost"
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               onChange={this.handleChange}
                               invalid={errors.numberofNewPost?true:false}
                             />
@@ -779,7 +779,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               type="number"
                               value={obj.numberofOldSanc}
                               name="numberofOldSanc"
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               onChange={this.handleChange}
                               invalid={errors.numberofOldSanc?true:false}
                             />
@@ -800,7 +800,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               type="number"
                               value={obj.numberofPostVaccant}
                               name="numberofPostVaccant"
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               onChange={this.handleChange}
                               invalid={errors.numberofPostVaccant?true:false}
                             />
@@ -820,7 +820,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               value={obj.nameofPost}
                               name="nameofPost"
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.nameofPost?true:false}
                             />
                             <FormFeedback>{errors.nameofPost}</FormFeedback>
@@ -838,7 +838,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                               value={obj.totalBudgetAprrINR}
                               name="totalBudgetAprrINR"
                               onChange={this.handleChange}
-                              disabled={role === "admin_role" ? false : true}
+                              disabled={role == "admin_role" ? false : true}
                               invalid={errors.totalBudgetAprrINR?true:false}
                             />
                             <FormFeedback>{errors.totalBudgetAprrINR}</FormFeedback>
@@ -903,7 +903,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                         <div>Data save Successfully</div>
                       </CAlert>
                     ) : null}
-                    {role === "district_role" ? null : (
+                    {role == "district_role" ? null : (
                       <Tabs>
                         <TabPane tab="State Details" key="1">
                           <table
@@ -957,7 +957,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                         }
                                         value={data.placeofPostId}
                                         disabled={
-                                          role === "state_role" ? false : true
+                                          role == "state_role" ? false : true
                                         }
                                         invalid={
                                           errors.placeofPostId ? true : false
@@ -1018,7 +1018,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                           errors.divisionId ? true : false
                                         }
                                         disabled={
-                                          role === "state_role" ? false : true
+                                          role == "state_role" ? false : true
                                         }
                                       >
                                         <option value="0">-Select-</option>
@@ -1052,7 +1052,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                           errors.districtId ? true : false
                                         }
                                         disabled={
-                                          role === "state_role" ? false : true
+                                          role == "state_role" ? false : true
                                         }
                                       >
                                         <option value="0">-Select-</option>
@@ -1088,7 +1088,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                             : false
                                         }
                                         disabled={
-                                          role === "state_role" ? false : true
+                                          role == "state_role" ? false : true
                                         }
                                       >
                                         <option value="0">-Select-</option>
@@ -1119,7 +1119,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                           this.handleTablePlace(e, i)
                                         }
                                         disabled={
-                                          role === "state_role" ? false : true
+                                          role == "state_role" ? false : true
                                         }
                                         invalid={
                                           errors.sacnctionPost ? true : false
@@ -1131,7 +1131,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                     </CFormGroup>
                                   </td>
                                   <td>
-                                    {i === 0 ? null : (
+                                    {i == 0 ? null : (
                                       <CIcon
                                         name="cilXCircle"
                                         className="flex-shrink-0 me-2"
@@ -1144,7 +1144,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                 </tr>
                               );
                             })}
-                            {role === "state_role" ? (
+                            {role == "state_role" ? (
                               <Button
                                 color="primary"
                                 onClick={() =>
@@ -1225,7 +1225,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                       <Select
                                         placeholder="Select"
                                         disabled={
-                                          role === "district_role"
+                                          role == "district_role"
                                             ? false
                                             : true
                                         }
@@ -1293,7 +1293,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                       <Select
                                         placeholder="Select"
                                         disabled={
-                                          role === "district_role"
+                                          role == "district_role"
                                             ? false
                                             : true
                                         }
@@ -1325,7 +1325,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                       <Input
                                         type="number"
                                         disabled={
-                                          role === "district_role"
+                                          role == "district_role"
                                             ? false
                                             : true
                                         }
@@ -1335,7 +1335,7 @@ export class HumanResourceProposalDetailsForm extends Component {
                                 </tr>
                               );
                             })}
-                            {role === "district_role" ? (
+                            {role == "district_role" ? (
                               <Button
                                 color="primary"
                                 onClick={() =>
@@ -1387,14 +1387,14 @@ export class HumanResourceProposalDetailsForm extends Component {
                           <Button>Download</Button>
                         </Form.Item>
                       </Col>
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Col>
                           <Form.Item>
                             <Button
                               color="primary"
                               style={{
                                 display:
-                                  obj.statuss === 1 || obj.statuss === 3
+                                  obj.statuss == 1 || obj.statuss == 3
                                     ? "block"
                                     : "none",
                               }}
@@ -1404,13 +1404,13 @@ export class HumanResourceProposalDetailsForm extends Component {
                           </Form.Item>
                         </Col>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Col>
                           <Form.Item>
                             <Button
                               color="primary"
                               // style={{
-                              //   display: obj.statuss === 2 ? "block" : "none",
+                              //   display: obj.statuss == 2 ? "block" : "none",
                               // }}
                             >
                               Approved
@@ -1418,13 +1418,13 @@ export class HumanResourceProposalDetailsForm extends Component {
                           </Form.Item>
                         </Col>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Col>
                           <Form.Item>
                             <Button
                               color="primary"
                               style={{
-                                display: obj.statuss === 2 ? "block" : "none",
+                                display: obj.statuss == 2 ? "block" : "none",
                               }}
                             >
                               Reject
@@ -1432,13 +1432,13 @@ export class HumanResourceProposalDetailsForm extends Component {
                           </Form.Item>
                         </Col>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Col>
                           <Form.Item>
                             <Button
                               color="primary"
                               style={{
-                                display: obj.statuss === 2 ? "block" : "none",
+                                display: obj.statuss == 2 ? "block" : "none",
                               }}
                             >
                               Need Clarification

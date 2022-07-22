@@ -121,7 +121,7 @@ class AddPositions extends React.Component {
       });
   };
   handleCategory = async (value) => {
-    if (value === 1) this.setState({ isDisplayHiring: true });
+    if (value == 1) this.setState({ isDisplayHiring: true });
     else this.setState({ isDisplayHiring: false });
   };
   handleCheck = (e) =>{

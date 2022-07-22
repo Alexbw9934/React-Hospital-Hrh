@@ -166,13 +166,13 @@ class StatusHr extends React.Component {
                           this.state.StatusHrs.map((item) => {
                             let catPosName =
                               this.state.categoryofPostArray.filter(
-                                (c) => c.id === item.categoryPositionId
+                                (c) => c.id == item.categoryPositionId
                               )[0];
                             let PositionName = this.state.positionArray.filter(
-                              (c) => c.id === item.positionId
+                              (c) => c.id == item.positionId
                             )[0];
                             let casteName = this.state.castes.filter(
-                              (c) => c.id === item.casteId
+                              (c) => c.id == item.casteId
                             )[0];
                             return (
                               <tr className="d-flex">

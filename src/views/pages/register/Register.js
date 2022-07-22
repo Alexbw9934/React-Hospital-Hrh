@@ -54,11 +54,11 @@ class Register extends React.Component {
     const { data } = this.state;
     let errors = {};
 
-    //    if (data.firstName === '') errors.firstName = 'First Name can not be blank.';
-    if (data.userName === "") errors.userName = "User Name can not be blank.";
+    //    if (data.firstName == '') errors.firstName = 'First Name can not be blank.';
+    if (data.userName == "") errors.userName = "User Name can not be blank.";
     if (!isEmail(data.email)) errors.email = "Email must be valid.";
-    if (data.email === "") errors.email = "Email can not be blank.";
-    if (data.password === "") errors.password = "Password must be valid.";
+    if (data.email == "") errors.email = "Email can not be blank.";
+    if (data.password == "") errors.password = "Password must be valid.";
     if (data.confirmPassword != data.password)
       errors.confirmPassword = "Passwords must match.";
     // if (
@@ -84,7 +84,7 @@ class Register extends React.Component {
     console.log("DATA ", data);
     console.log("ERRORS ", errors, Object.keys(errors).length);
 
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       console.log(data);
       //Call an api here
       fetch("http://5.9.111.198:13880/api/users/register", {

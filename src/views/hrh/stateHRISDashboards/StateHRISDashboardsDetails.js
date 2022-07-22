@@ -58,7 +58,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, object) => (
             <a>
               {this.state.placeOfPosition
-                .filter((data) => data.id === object.placeofPostId)
+                .filter((data) => data.id == object.placeofPostId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -72,7 +72,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -86,7 +86,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -100,7 +100,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -114,7 +114,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.typeFacilityList
-                .filter((data) => data.id === obj.typeofFacilityOfficeId)
+                .filter((data) => data.id == obj.typeofFacilityOfficeId)
                 .map((id) => {
                   return id.facilityType;
                 })}
@@ -155,7 +155,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return moment(ob.fromDate).format("MMM D, YYYY");
                 })}
@@ -169,7 +169,7 @@ class StateHRISDashboardsDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -253,9 +253,9 @@ class StateHRISDashboardsDetails extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>State HRIS Dashboards-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>State HRIS Dashboards- State Details</h4>
                   ) : (
                     <h4>PState HRIS Dashboards - District</h4>
@@ -276,7 +276,7 @@ class StateHRISDashboardsDetails extends Component {
                     Add New
                   </CButton>
                 <CCardBody>
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <Table
                       dataSource={this.state.users.sort((a, b) =>
                         a.id < b.id ? 1 : -1
@@ -284,7 +284,7 @@ class StateHRISDashboardsDetails extends Component {
                       rowKey={"id"}
                       columns={this.state.columnsNational}
                     />
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <Table
                       dataSource={this.state.userState.sort((a, b) =>
                         a.id < b.id ? 1 : -1

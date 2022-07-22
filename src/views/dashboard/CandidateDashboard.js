@@ -128,7 +128,7 @@ const CandidateDashboard = () => {
       pane = $(".tab-pane");
     // next
     for (i = 0; i < items.length; i++) {
-      if ($(items[i]).hasClass("active") === true) {
+      if ($(items[i]).hasClass("active") == true) {
         break;
       }
     }
@@ -150,7 +150,7 @@ const CandidateDashboard = () => {
       items = $(".nav-link"),
       pane = $(".tab-pane");
     for (i = 0; i < items.length; i++) {
-      if ($(items[i]).hasClass("active") === true) {
+      if ($(items[i]).hasClass("active") == true) {
         break;
       }
     }
@@ -286,17 +286,17 @@ const CandidateDashboard = () => {
   }
   const handleCategory = (e) => {
     setcategory(categories[e]);
-    if (categories[e].id === "1") {
+    if (categories[e].id == "1") {
       setIsSpecial(true);
     } else setIsSpecial(false);
   };
   function showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "submit" ? submitApplication() : window.print();
+        value == "submit" ? submitApplication() : window.print();
       },
       onCancel() {
         console.log("Cancel");
@@ -336,7 +336,7 @@ const CandidateDashboard = () => {
               {/* Location Preferences */}
             </TabPane>
           </Tabs>
-          {tabName === "1" && (
+          {tabName == "1" && (
             <>
               <Form
                 style={{
@@ -502,7 +502,7 @@ const CandidateDashboard = () => {
                   </Upload>
                 </Form.Item> */}
                 <Form.Item>
-                {(tabName === "0" || tabName === "1") && (
+                {(tabName == "0" || tabName == "1") && (
                   <button
                     className="nexttab btn btn-success"
                     id="nexttab"
@@ -528,7 +528,7 @@ const CandidateDashboard = () => {
               </Form>
             </>
           )}
-          {tabName === "2" && (
+          {tabName == "2" && (
             <>
               <Form
                 style={{
@@ -916,7 +916,7 @@ const CandidateDashboard = () => {
             </>
           )}
 
-          {tabName === "3" && (
+          {tabName == "3" && (
             <>
               <Form
                 style={{
@@ -1118,7 +1118,7 @@ const CandidateDashboard = () => {
               </Form>
             </>
           )}
-          {tabName === "4" && (
+          {tabName == "4" && (
             <>
               <Form
                 style={{
@@ -1221,7 +1221,7 @@ const CandidateDashboard = () => {
               </Form>
             </>
           )}
-          {tabName === "5" && (
+          {tabName == "5" && (
             <>
               <Form
                 style={{
@@ -1357,7 +1357,7 @@ const CandidateDashboard = () => {
             </>
           )}
 
-          {tabName === "6" && (
+          {tabName == "6" && (
             <>
               <Form
                 style={{

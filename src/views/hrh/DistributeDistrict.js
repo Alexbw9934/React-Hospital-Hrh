@@ -108,10 +108,10 @@ class DistributeDistrict extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -120,8 +120,8 @@ class DistributeDistrict extends Component {
   }
   checkingparse = (data) => {
     if (!data) return {};
-    if (typeof data === "object") return data;
-    if (typeof data === "string") return JSON.parse(data);
+    if (typeof data == "object") return data;
+    if (typeof data == "string") return JSON.parse(data);
 
     return {};
   };
@@ -134,7 +134,7 @@ class DistributeDistrict extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.physicalStatusId === paramId
+          (data) => data.physicalStatusId == paramId
         );
         this.setState({ tableRows: arr });
       });
@@ -272,7 +272,7 @@ class DistributeDistrict extends Component {
         },
         body: JSON.stringify(data),
       }).then((resp) => {
-        if (resp.status === 404) {
+        if (resp.status == 404) {
           this.setState({
             errorMsg: true,
           });
@@ -739,7 +739,7 @@ class DistributeDistrict extends Component {
                       </CFormGroup>
                     </CForm>
                   ) : null}
-                  {csvOrmanually === 2 ? (
+                  {csvOrmanually == 2 ? (
                     <PhysicalCSVDistrict
                       hId={propVal.objId}
                       pId={propVal.data}
@@ -883,9 +883,9 @@ class DistributeDistrict extends Component {
                                     }
                                     value={data.blockId || ""}
                                     disabled={
-                                      data.selectedValue === 1
+                                      data.selectedValue == 1
                                         ? true
-                                        : data.selectedValue === 2
+                                        : data.selectedValue == 2
                                         ? true
                                         : propVal.pId
                                         ? true
@@ -919,9 +919,9 @@ class DistributeDistrict extends Component {
                                     value={data.cityId || ""}
                                     invalid={errors.districtId ? true : false}
                                     disabled={
-                                      data.selectedValue === 1
+                                      data.selectedValue == 1
                                         ? true
-                                        : data.selectedValue === 3
+                                        : data.selectedValue == 3
                                         ? true
                                         : propVal.pId
                                         ? true

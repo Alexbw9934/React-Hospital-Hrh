@@ -68,17 +68,17 @@ function KeyDeliverable(props) {
   }
   const validate = () => {
     let errors = {};
-    if (data.name === "") errors.name = "Please enter the name.";
+    if (data.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   function submitData(e) {
     e.preventDefault();
     console.log("Castes", data);
     let check = list.map((index) => {
-      if (data.name === index.name) return false;
+      if (data.name == index.name) return false;
     });
     const errors = validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       if (check.includes(false)) {
         setCheckingMsg(true);
@@ -120,16 +120,16 @@ function KeyDeliverable(props) {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.name === "") errors.name = "Please enter the name.";
+    if (editValue.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
     let check = list.map((data) => {
-      if (editValue.name === data.name) return false;
+      if (editValue.name == data.name) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       if (check.includes(false)) {
         setCheckingMsg(true);
@@ -176,7 +176,7 @@ function KeyDeliverable(props) {
   function showConfirm(value, status) {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -193,7 +193,7 @@ function KeyDeliverable(props) {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`${process.env.REACT_APP_API_URL}KeyDeliverablesParameters/${id}`, {

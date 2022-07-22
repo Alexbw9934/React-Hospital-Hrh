@@ -67,17 +67,17 @@ function ProgramType() {
   }
   const validate = () => {
     let errors = {};
-    if (data.name === "") errors.name = "This field is required.";
+    if (data.name == "") errors.name = "This field is required.";
     return errors;
   };
   function submitData(e) {
     e.preventDefault();
     console.log("ProgramTypes", data);
     let check = list.map((index) => {
-      if (data.name === index.name) return false;
+      if (data.name == index.name) return false;
     });
     const errors = validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       if (check.includes(false)) {
         setCheckingMsg(true);
@@ -120,13 +120,13 @@ function ProgramType() {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.name === "") errors.name = "This field is required.";
+    if (editValue.name == "") errors.name = "This field is required.";
     return errors;
   };
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       setCheckingMsg(false);
       fetch(`${process.env.REACT_APP_API_URL}ProgramTypes/${id}`, {
@@ -171,7 +171,7 @@ function ProgramType() {
   function showConfirm(value, status) {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -189,7 +189,7 @@ function ProgramType() {
       {
         op: "replace",
         path: "/masterStatus",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`${process.env.REACT_APP_API_URL}ProgramTypes/${id}`, {
@@ -381,7 +381,7 @@ function ProgramType() {
                     dataIndex="masterStatus"
                     key="masterStatus"
                     render={(status) => (
-                      <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                      <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                     )}
                   ></Table.Column>
                   <Table.Column
@@ -396,7 +396,7 @@ function ProgramType() {
                         >
                           Edit
                         </CButton>
-                        {user.masterStatus.toString() === 1 ? (
+                        {user.masterStatus.toString() == 1 ? (
                           <CButton
                             color="danger"
                             style={{ backgroundColor: "red" }}

@@ -158,10 +158,10 @@ class RegularCadre extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -170,8 +170,8 @@ class RegularCadre extends Component {
   }
   checkingparse = (data) => {
     if (!data) return {};
-    if (typeof data === "object") return data;
-    if (typeof data === "string") return JSON.parse(data);
+    if (typeof data == "object") return data;
+    if (typeof data == "string") return JSON.parse(data);
 
     return {};
   };
@@ -252,7 +252,7 @@ class RegularCadre extends Component {
           },
           body: JSON.stringify(data),
         }).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });

@@ -249,20 +249,20 @@ class RecruitmentStatus extends Component {
                         this.state.RecruitmentStatusData.map((item) => {
                           let catPostName =
                             this.state6.categoryofPostArray.filter(
-                              (c) => c.id === item.categoryofPostId
+                              (c) => c.id == item.categoryofPostId
                             )[0];
                           let officeName = this.state5.typeofOfficeArray.filter(
-                            (t) => t.id === item.typesofofficeId
+                            (t) => t.id == item.typesofofficeId
                           )[0];
                           let stateName = this.state1.stateArray.filter(
-                            (s) => s.id === item.stateId
+                            (s) => s.id == item.stateId
                           )[0];
                           let districtName =
                             this.state2.categoDistrictArray.filter(
-                              (s) => s.id === item.districtId
+                              (s) => s.id == item.districtId
                             )[0];
                           let programType = this.state3.programTypeArray.filter(
-                            (p) => p.id === item.programTypeId
+                            (p) => p.id == item.programTypeId
                           )[0];
                           return (
                             <tr className="ml-5">

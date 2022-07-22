@@ -53,24 +53,24 @@ handleChange=(e)=>{
     axios.post(`${process.env.REACT_APP_API_URL}Users/login`,this.state.data)
     .then((resp) => {
       console.log(resp)
-      if(resp.status===200){
-      if (resp.data.user.roleId===1) {
+      if(resp.status==200){
+      if (resp.data.user.roleId==1) {
       localStorage.setItem("access_role", "admin_role");
       this.props.history.push("/Dashboard");
     } else if (
-      resp.data.user.roleId===2
+      resp.data.user.roleId==2
     ) {
       localStorage.setItem("access_role", "state_role");
       this.props.history.push("/StateDashboard");
     } else if (
-      resp.data.user.roleId===3
+      resp.data.user.roleId==3
     ) {
       localStorage.setItem("access_role", "district_role");
       this.props.history.push("DistrictDashboard");
     } 
     // else if (
-    //   this.state.email === "candidate@hrh.com" &&
-    //   this.state.password === "candidate123"
+    //   this.state.email == "candidate@hrh.com" &&
+    //   this.state.password == "candidate123"
     // ) {
     //   localStorage.setItem("access_role", "candidate_role");
     //   this.props.history.push("CandidateDashboard");

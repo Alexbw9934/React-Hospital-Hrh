@@ -105,15 +105,15 @@ class PlaceOfFacility extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.programTypeId === 0)
+    if (value.programTypeId == 0)
       errors.programTypeId = "Select the Program Type.";
-    if (value.stateId === 0) errors.stateId = "Select the State.";
-    if (value.districtId === 0) errors.districtId = "Select the District.";
-    if (value.blockId === 0) errors.blockId = "Select the Block.";
-    if (value.cityId === 0) errors.cityId = "Select the City.";
-    if (value.divisionId === 0) errors.divisionId = "Select the Division.";
-    if (value.name === "") errors.name = "Please enter Name.";
-    if (value.specialist === "") errors.specialist = "Please enter Specialist.";
+    if (value.stateId == 0) errors.stateId = "Select the State.";
+    if (value.districtId == 0) errors.districtId = "Select the District.";
+    if (value.blockId == 0) errors.blockId = "Select the Block.";
+    if (value.cityId == 0) errors.cityId = "Select the City.";
+    if (value.divisionId == 0) errors.divisionId = "Select the Division.";
+    if (value.name == "") errors.name = "Please enter Name.";
+    if (value.specialist == "") errors.specialist = "Please enter Specialist.";
     return errors;
   };
   submitData = (e) => {
@@ -121,12 +121,12 @@ class PlaceOfFacility extends React.Component {
     const value = this.state;
     const errors = this.validate();
     console.log("########", value.value);
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.placeOfFacilityList.map((data) => {
-        if (value.value.name === data.name) return false;
+        if (value.value.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -186,24 +186,24 @@ class PlaceOfFacility extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "") errors.name = "Please enter the name.";
-    if (this.state.editValue.specialist === "")
+    if (this.state.editValue.name == "") errors.name = "Please enter the name.";
+    if (this.state.editValue.specialist == "")
       errors.specialist = "Please enter the Specialist.";
-    if (this.state.editValue.programTypeId === 0)
+    if (this.state.editValue.programTypeId == 0)
       errors.programTypeId = "Select the Program Type.";
-    if (this.state.editValue.cityId === 0) errors.cityId = "Select the City.";
-    if (this.state.editValue.divisionId === 0)
+    if (this.state.editValue.cityId == 0) errors.cityId = "Select the City.";
+    if (this.state.editValue.divisionId == 0)
       errors.divisionId = "Select the Division.";
-    if (this.state.editValue.districtId === 0)
+    if (this.state.editValue.districtId == 0)
       errors.districtId = "Select the District.";
-    if (this.state.editValue.stateId === 0) errors.stateId = "Select the State.";
-    if (this.state.editValue.blockId === 0) errors.blockId = "Select the Block.";
+    if (this.state.editValue.stateId == 0) errors.stateId = "Select the State.";
+    if (this.state.editValue.blockId == 0) errors.blockId = "Select the Block.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -270,7 +270,7 @@ class PlaceOfFacility extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -287,7 +287,7 @@ class PlaceOfFacility extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/PlaceofFacilities/${id}`, {
@@ -879,7 +879,7 @@ class PlaceOfFacility extends React.Component {
                         <>
                           {" "}
                           {this.props.programTypeList
-                            .filter((data) => data.id === user.programTypeId)
+                            .filter((data) => data.id == user.programTypeId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -893,7 +893,7 @@ class PlaceOfFacility extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.stateList
-                            .filter((data) => data.id === user.stateId)
+                            .filter((data) => data.id == user.stateId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -907,7 +907,7 @@ class PlaceOfFacility extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.districtsList
-                            .filter((data) => data.id === user.districtId)
+                            .filter((data) => data.id == user.districtId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -921,7 +921,7 @@ class PlaceOfFacility extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.cityList
-                            .filter((data) => data.id === user.cityId)
+                            .filter((data) => data.id == user.cityId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -935,7 +935,7 @@ class PlaceOfFacility extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.blockList
-                            .filter((data) => data.id === user.blockId)
+                            .filter((data) => data.id == user.blockId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -949,7 +949,7 @@ class PlaceOfFacility extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.divisionList
-                            .filter((data) => data.id === user.divisionId)
+                            .filter((data) => data.id == user.divisionId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -961,7 +961,7 @@ class PlaceOfFacility extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -976,7 +976,7 @@ class PlaceOfFacility extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

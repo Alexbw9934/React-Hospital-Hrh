@@ -99,9 +99,9 @@ class Specialist extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.specialities === "")
+    if (value.specialities == "")
       errors.specialities = "Please enter the Specialist.";
-    if (value.typeofFacility.length === 0)
+    if (value.typeofFacility.length == 0)
       errors.typeofFacilitiesId = "Select the Type of Facilities.";
     return errors;
   };
@@ -109,12 +109,12 @@ class Specialist extends React.Component {
     e.preventDefault();
     const {value} = this.state;
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.SpecialistList.map((data) => {
-        if (value.specialities === data.specialities) return false;
+        if (value.specialities == data.specialities) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -133,7 +133,7 @@ class Specialist extends React.Component {
           },
           body: JSON.stringify(value),
         }).then((resp) => {
-          if (resp.status === 201) {
+          if (resp.status == 201) {
             this.setState({
               postMsg: true,
             });
@@ -183,16 +183,16 @@ class Specialist extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.defaultValue === 0)
+    if (this.state.defaultValue == 0)
       errors.typeofFacilitiesId = "Select the Type of Facilities.";
-    if (this.state.editValue.specialities === "")
+    if (this.state.editValue.specialities == "")
       errors.specialities = "Please enter Specialist.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -204,7 +204,7 @@ class Specialist extends React.Component {
         },
         body: JSON.stringify(this.state.editValue),
       }).then((resp) => {
-        if (resp.status === 204) {
+        if (resp.status == 204) {
           this.setState({
             updateMsg: true,
           });
@@ -272,7 +272,7 @@ class Specialist extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -289,7 +289,7 @@ class Specialist extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/Specialities/${id}`, {
@@ -300,7 +300,7 @@ class Specialist extends React.Component {
       },
       body: JSON.stringify(operation),
     }).then((resp) => {
-      if (resp.status === 200) {
+      if (resp.status == 200) {
         this.props.retrieveSpecialist();
         this.setState({
           checkingMsg: false,
@@ -570,7 +570,7 @@ class Specialist extends React.Component {
                                   .includes(obj.id.toString())
                               )
                               .map((data, i, row) => {
-                                return i + 1 === row.length
+                                return i + 1 == row.length
                                   ? `${data.facilityType} `
                                   : `${data.facilityType} ,`;
                               })}
@@ -582,7 +582,7 @@ class Specialist extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -597,7 +597,7 @@ class Specialist extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

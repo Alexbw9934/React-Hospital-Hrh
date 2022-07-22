@@ -67,9 +67,9 @@ function FinancialYear() {
   }
   const validate = () => {
     let errors = {};
-    if (data.name === "") errors.name = "Please enter name.";
-    if (data.fromDate === "") errors.fromDate = "Please pick date.";
-    if (data.toDate === "") errors.toDate = "Please pick date.";
+    if (data.name == "") errors.name = "Please enter name.";
+    if (data.fromDate == "") errors.fromDate = "Please pick date.";
+    if (data.toDate == "") errors.toDate = "Please pick date.";
     if (Date.parse(data.toDate) <= Date.parse(data.fromDate)) {
       errors.fromDate = "To date should be greater than From date.";
       errors.toDate = "To date should be greater than From date.";
@@ -86,7 +86,7 @@ function FinancialYear() {
   function submitData(e) {
     e.preventDefault();
     const errors = validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       fetch("http://5.9.111.198:13880/api/FinancialYears", {
         method: "POST",
@@ -137,9 +137,9 @@ function FinancialYear() {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.name === "") errors.name = "Please enter name.";
-    if (editValue.fromDate === "") errors.fromDate = "Please pick date.";
-    if (editValue.toDate === "") errors.toDate = "Please pick date.";
+    if (editValue.name == "") errors.name = "Please enter name.";
+    if (editValue.fromDate == "") errors.fromDate = "Please pick date.";
+    if (editValue.toDate == "") errors.toDate = "Please pick date.";
     if (Date.parse(editValue.toDate) <= Date.parse(editValue.fromDate)) {
       errors.fromDate = "To date should be greater than From date.";
       errors.toDate = "To date should be greater than From date.";
@@ -149,7 +149,7 @@ function FinancialYear() {
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       fetch(`http://5.9.111.198:13880/api/FinancialYears/${id}`, {
         method: "PUT",
@@ -183,7 +183,7 @@ function FinancialYear() {
   function showConfirm(value, status,e) {
     confirm({
       title:
-        status === 0
+        status == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -202,7 +202,7 @@ function FinancialYear() {
       {
         op: "replace",
         path: "/masterStatus",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/FinancialYears/${id}`, {
@@ -247,7 +247,7 @@ function FinancialYear() {
       key: "masterStatus",
       render: (text, record) => (
         <Space size="middle">
-          {record.masterStatus.toString() === 0 ? "Inactive" : "Active"}
+          {record.masterStatus.toString() == 0 ? "Inactive" : "Active"}
         </Space>
       ),
     },
@@ -257,7 +257,7 @@ function FinancialYear() {
       render: (text, record) => (
         <Space size="middle">
           <CButton onClick={(e) => editForm(record.id, e)}>Edit</CButton>
-          {record.masterStatus.toString() === 1 ? (
+          {record.masterStatus.toString() == 1 ? (
             <CButton
               color="danger"
               style={{ backgroundColor: "red" }}

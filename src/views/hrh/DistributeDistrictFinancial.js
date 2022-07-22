@@ -108,7 +108,7 @@ class DistributeDistrictFinancial extends Component {
         url: `${process.env.REACT_APP_API_URL}DistrictFianancialDistributions`,
         method: "GET",
       }).then((response) => {
-        let arr=response.data.filter(data=>data.financialStatusId===paramId)
+        let arr=response.data.filter(data=>data.financialStatusId==paramId)
         this.setState({ tableRows:arr });
       });
       axios({
@@ -225,7 +225,7 @@ class DistributeDistrictFinancial extends Component {
             body: JSON.stringify(data),
           }
         ).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -386,7 +386,7 @@ class DistributeDistrictFinancial extends Component {
                       </Row>
                     </CFormGroup>
                   </CForm>}
-                  {csvOrmanually === 2 ? (
+                  {csvOrmanually == 2 ? (
                     <FinanceCSV
                       objId={propVal.objId}
                       fId={propVal.fId}
@@ -490,9 +490,9 @@ class DistributeDistrictFinancial extends Component {
                                     }
                                     value={data.blockId || ""}
                                     disabled={
-                                      data.selectedValue === 1
+                                      data.selectedValue == 1
                                         ? true
-                                        : data.selectedValue === 2
+                                        : data.selectedValue == 2
                                         ? true
                                         : propVal.fId
                                         ? true
@@ -526,9 +526,9 @@ class DistributeDistrictFinancial extends Component {
                                     value={data.cityId || ""}
                                     invalid={errors.districtId ? true : false}
                                     disabled={
-                                      data.selectedValue === 1
+                                      data.selectedValue == 1
                                         ? true
-                                        : data.selectedValue === 3
+                                        : data.selectedValue == 3
                                         ? true
                                         : propVal.fId
                                         ? true

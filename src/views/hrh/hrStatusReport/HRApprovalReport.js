@@ -175,7 +175,7 @@ class HRApprovalReport extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         this.setState({ amendList: arr });
       });
@@ -237,7 +237,7 @@ class HRApprovalReport extends Component {
     let latest = {};
     let oldest = {};
     let val=[];
-    let arr=this.props.reportingPeriodList.filter(data=>data.id===e.target.value);
+    let arr=this.props.reportingPeriodList.filter(data=>data.id==e.target.value);
     if(arr.length>0){
     let strArray = arr[0].finacialYearId.split(",");  
      val=this.props.financialYearList.filter((d) => !strArray.includes(d.id))
@@ -254,7 +254,7 @@ class HRApprovalReport extends Component {
           method: "GET",
         }).then((response) => {
            arr2 = response.data.filter(
-            (data) => !strArray.includes(data.financialYearId) && data.stateId===obj.stateId
+            (data) => !strArray.includes(data.financialYearId) && data.stateId==obj.stateId
           );
           console.log(arr2,'kkkkkkkkkkkkkkk')
         });
@@ -276,7 +276,7 @@ class HRApprovalReport extends Component {
           method: "GET",
         }).then((response) => {
           const arr = response.data.filter(
-            (data) => data.finacialYearId===oldest.id
+            (data) => data.finacialYearId==oldest.id
           );
           this.setState({ tableRows: arr });
         });
@@ -330,7 +330,7 @@ class HRApprovalReport extends Component {
           },
           body: JSON.stringify(data),
         }).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -877,7 +877,7 @@ class HRApprovalReport extends Component {
                                       <CInput
                                        style={{ width: "150px" }}
                                         type={
-                                          data.approvalTypeId === 1
+                                          data.approvalTypeId == 1
                                             ? "number"
                                             : "text"
                                         }
@@ -1269,7 +1269,7 @@ class HRApprovalReport extends Component {
                                         {this.state.nameOfPostList
                                           .filter(
                                             (d) =>
-                                              d.categoryofPostionId ===
+                                              d.categoryofPostionId ==
                                               data.categoryofPostId
                                           )
                                           .map((item, index) => {
@@ -1458,12 +1458,12 @@ class HRApprovalReport extends Component {
                       </Button>
                       <Button type="secondary">Edit</Button>
                       <Button>Download</Button>
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
                             display:
-                              obj.statuss === 1 || obj.statuss === 3
+                              obj.statuss == 1 || obj.statuss == 3
                                 ? "block"
                                 : "none",
                           }}
@@ -1471,24 +1471,24 @@ class HRApprovalReport extends Component {
                           Send for Approval
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button color="primary">Approved</Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
-                            display: obj.statuss === 2 ? "block" : "none",
+                            display: obj.statuss == 2 ? "block" : "none",
                           }}
                         >
                           Reject
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
-                            display: obj.statuss === 2 ? "block" : "none",
+                            display: obj.statuss == 2 ? "block" : "none",
                           }}
                         >
                           Need Clarification

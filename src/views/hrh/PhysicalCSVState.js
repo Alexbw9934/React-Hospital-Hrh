@@ -105,22 +105,22 @@ function PhysicalCSVState({objId,pId,sId,rowsData,setTable}) {
       let obj={}
       let arr=array.map((val) => {
         let district = districtList
-          .filter((data) => data.name === val["District"])
+          .filter((data) => data.name == val["District"])
           .map((data) => {
             return data.id;
           });
         let division = divsionList
-          .filter((data) => data.name === val["Division"])
+          .filter((data) => data.name == val["Division"])
           .map((data) => {
             return data.id;
           });
         let select = placeOfPositionArray
-          .filter((data) => data.name === val["Select State/Division/Distt"])
+          .filter((data) => data.name == val["Select State/Division/Distt"])
           .map((data) => {
             return data.id;
           });
         let facility = facilityTypeList
-          .filter((data) => data.facilityType === val["Facility Type"])
+          .filter((data) => data.facilityType == val["Facility Type"])
           .map((data) => {
             return data.id;
           });

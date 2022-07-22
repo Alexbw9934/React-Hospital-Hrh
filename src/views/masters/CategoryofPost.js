@@ -99,11 +99,11 @@ function CategoryofPost(props) {
   }
   const validate = () => {
     let errors = {};
-    if (data.fmr === 0) errors.name = "This field is required.";
-    if (data.typeofPostId === 0) errors.typeofPostId = "This field is required.";
-    if (data.programTypeId === 0)
+    if (data.fmr == 0) errors.name = "This field is required.";
+    if (data.typeofPostId == 0) errors.typeofPostId = "This field is required.";
+    if (data.programTypeId == 0)
       errors.programTypeId = "This field is required.";
-    if (data.subTypeofPost === 0)
+    if (data.subTypeofPost == 0)
       errors.subTypeofPost = "This field is required.";
 
     return errors;
@@ -111,10 +111,10 @@ function CategoryofPost(props) {
   function submitData(e) {
     e.preventDefault();
     let check = list.map((index) => {
-      if (data.categoryName === index.categoryName) return false;
+      if (data.categoryName == index.categoryName) return false;
     });
     const errors = validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       if (check.includes(false)) {
         setCheckingMsg(true);
@@ -156,13 +156,13 @@ function CategoryofPost(props) {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.name === "") errors.name = "Please enter the name.";
+    if (editValue.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       fetch(`${process.env.REACT_APP_API_URL}CatgoryofPositions/${id}`, {
         method: "PUT",
@@ -204,7 +204,7 @@ function CategoryofPost(props) {
   function showConfirm(value, status) {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -221,7 +221,7 @@ function CategoryofPost(props) {
       {
         op: "replace",
         path: "/masterStatus",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`${process.env.REACT_APP_API_URL}CatgoryofPositions/${id}`, {
@@ -689,7 +689,7 @@ function CategoryofPost(props) {
                     render={(text, user) => (
                       <>
                         {props.programTypeList
-                          .filter((data) => data.id === user.programTypeId)
+                          .filter((data) => data.id == user.programTypeId)
                           .map((id) => {
                             return id.name;
                           })}
@@ -703,7 +703,7 @@ function CategoryofPost(props) {
                     render={(text, user) => (
                       <>
                         {props.postList
-                          .filter((data) => data.id === user.typeofPostId)
+                          .filter((data) => data.id == user.typeofPostId)
                           .map((id) => {
                             return id.name;
                           })}
@@ -717,7 +717,7 @@ function CategoryofPost(props) {
                     render={(text, user) => (
                       <>
                         {props.subTypeofPostList
-                          .filter((data) => data.id === user.subTypeofPost)
+                          .filter((data) => data.id == user.subTypeofPost)
                           .map((id) => {
                             return id.name;
                           })}
@@ -731,7 +731,7 @@ function CategoryofPost(props) {
                     render={(text, user) => (
                       <>
                         {props.fmrList
-                          .filter((data) => data.id === user.fmrId)
+                          .filter((data) => data.id == user.fmrId)
                           .map((id) => {
                             return id.fmr;
                           })}
@@ -743,7 +743,7 @@ function CategoryofPost(props) {
                     dataIndex="masterStatus"
                     key="masterStatus"
                     render={(status) => (
-                      <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                      <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                     )}
                   ></Table.Column>
                   <Table.Column
@@ -758,7 +758,7 @@ function CategoryofPost(props) {
                         >
                           Edit
                         </CButton>
-                        {user.masterStatus.toString() === 1 ? (
+                        {user.masterStatus.toString() == 1 ? (
                           <CButton
                             color="danger"
                             style={{ backgroundColor: "red" }}

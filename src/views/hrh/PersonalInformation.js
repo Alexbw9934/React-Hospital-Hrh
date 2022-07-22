@@ -94,7 +94,7 @@ class PersonalInformation extends React.Component {
   };
   handleSelect = async (e) => {
     let val = e.target.value;
-    if (val === 1) {
+    if (val == 1) {
       //  document.getElementById('national-status').show();
       await this.setState({ levelDisplay: true });
     } else {
@@ -108,7 +108,7 @@ class PersonalInformation extends React.Component {
   };
   handleSelect = async (e) => {
     let val = e.target.value;
-    if (val === 1) {
+    if (val == 1) {
       await this.setState({ isDisable: true });
     } else {
       await this.setState({ isDisable: false });
@@ -117,7 +117,7 @@ class PersonalInformation extends React.Component {
   handleLevel = async (e) => {
     console.log(e.target.value)
     let val = e.target.value;
-    if (val === 1) {
+    if (val == 1) {
       await this.setState({ levelStateDisplay: true });
     } else {
       await this.setState({ levelStateDisplay: false});
@@ -126,7 +126,7 @@ class PersonalInformation extends React.Component {
   handleHR = async (e) => {
     console.log(e.target.value)
     let val = e.target.value;
-    if (val === 2) {
+    if (val == 2) {
       await this.setState({ levelHRDisplay: true });
     } else {
       await this.setState({ levelHRDisplay: false});
@@ -134,21 +134,21 @@ class PersonalInformation extends React.Component {
   };
   handleStatus = async (e) => {
     let val = e.target.value;
-    if (val === 5) {
+    if (val == 5) {
       await this.setState({
         joiningDisplay: true,
         rejectDisplay: false,
         acceptDisplay: false,
         appointmentDisplay: false,
       });
-    } else if (val === 2) {
+    } else if (val == 2) {
       await this.setState({
         joiningDisplay: false,
         rejectDisplay: true,
         acceptDisplay: false,
         appointmentDisplay: false,
       });
-    } else if (val === 1) {
+    } else if (val == 1) {
       await this.setState({
         joiningDisplay: false,
         rejectDisplay: false,
@@ -166,10 +166,10 @@ class PersonalInformation extends React.Component {
    showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ?window.print():console.log("ok");
+        value == "print" ?window.print():console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -664,7 +664,7 @@ class PersonalInformation extends React.Component {
                                 value={this.state.conStates}
                                 required
                                 readOnly={
-                                  this.state.role === "state_role"
+                                  this.state.role == "state_role"
                                     ? false
                                     : true
                                 }
@@ -685,7 +685,7 @@ class PersonalInformation extends React.Component {
                                 value={this.state.conDistrict}
                                 onChange={this.handleChange}
                                 readOnly={
-                                  this.state.role === "district_role"
+                                  this.state.role == "district_role"
                                     ? false
                                     : true
                                 }
@@ -707,7 +707,7 @@ class PersonalInformation extends React.Component {
                                 onChange={this.handleSelect}
                                 id="select"
                                 readOnly={
-                                  this.state.role === "admin_role"
+                                  this.state.role == "admin_role"
                                     ? false
                                     : true
                                 }

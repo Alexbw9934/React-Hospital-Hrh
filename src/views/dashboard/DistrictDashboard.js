@@ -75,7 +75,7 @@ const DistrictDashboard = () => {
                             color="outline-secondary"
                             key={value}
                             className="mx-0"
-                            active={value === "Month"}
+                            active={value == "Month"}
                           >
                             {value}
                           </CButton>

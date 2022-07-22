@@ -76,10 +76,10 @@ class AgencyRegistration extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -123,37 +123,37 @@ class AgencyRegistration extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.nameHrAgency === "")
+    if (obj.nameHrAgency == "")
       errors.nameHrAgency = "Please enter the of HR agency.";
-    if (obj.contactNumber === 0 || obj.contactNumber < 0)
+    if (obj.contactNumber == 0 || obj.contactNumber < 0)
       errors.contactNumber = "Please enter the contact number.";
-    if (obj.landLineNumber === 0 || obj.landLineNumber < 0)
+    if (obj.landLineNumber == 0 || obj.landLineNumber < 0)
       errors.landLineNumber = "Please enter the landline number.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.faxNumber === 0 || obj.faxNumber < 0)
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.faxNumber == 0 || obj.faxNumber < 0)
       errors.faxNumber = "Please enter fax number.";
-    if (obj.emailIdContactPerson === "")
+    if (obj.emailIdContactPerson == "")
       errors.emailIdContactPerson = "Please enter email id.";
-    if (obj.empanelmentStatusId === 0)
+    if (obj.empanelmentStatusId == 0)
       errors.empanelmentStatusId = "Please select empanelment contract renew.";
-    if (obj.emailIdAgency === "")
+    if (obj.emailIdAgency == "")
       errors.emailIdAgency = "Please enter email id.";
-    if (obj.newDateEndContract === "")
+    if (obj.newDateEndContract == "")
       errors.newDateEndContract = "Please pick date.";
-    if (obj.url === "") errors.url = "Please enter URL.";
-    if (obj.nameContactPersonAgency === "")
+    if (obj.url == "") errors.url = "Please enter URL.";
+    if (obj.nameContactPersonAgency == "")
       errors.nameContactPersonAgency =
         "Please enter name of contact person agency.";
-    if (obj.headOfficeAddress === "")
+    if (obj.headOfficeAddress == "")
       errors.headOfficeAddress = "Please enter head office address.";
-    if (obj.designation === "") errors.designation = "Please enter designation.";
+    if (obj.designation == "") errors.designation = "Please enter designation.";
     return errors;
   };
   handleSubmit = (e) => {
     e.preventDefault();
     const errors = this.validateNational();
     console.log(errors, "errors");
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -198,9 +198,9 @@ class AgencyRegistration extends Component {
   validationState = () => {
     let errors = {};
     this.state.tableRows.map((obj) => {
-      if (obj.fromDate === "") errors.fromDate = "Please pick date.";
-      if (obj.toDate === "") errors.toDate = "Please pick date.";
-      if (obj.address === "") errors.address = "Please enter date.";
+      if (obj.fromDate == "") errors.fromDate = "Please pick date.";
+      if (obj.toDate == "") errors.toDate = "Please pick date.";
+      if (obj.address == "") errors.address = "Please enter date.";
     });
     return errors;
   };
@@ -226,7 +226,7 @@ class AgencyRegistration extends Component {
     e.preventDefault();
     const errors = this.validationState();
     console.log(errors, "errors");
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -533,7 +533,7 @@ class AgencyRegistration extends Component {
                           type="primary"
                           htmlType="submit"
                           className="center"
-                          disabled={this.state.value === 0 ? false : true}
+                          disabled={this.state.value == 0 ? false : true}
                         >
                           {this.state.paramId ? "Update" : "Submit"}
                         </Button>
@@ -541,7 +541,7 @@ class AgencyRegistration extends Component {
                       <Col>
                         <Button
                           htmlType="submit"
-                          disabled={this.state.value === 1 ? false : true}
+                          disabled={this.state.value == 1 ? false : true}
                         >
                           Save
                         </Button>
@@ -698,7 +698,7 @@ class AgencyRegistration extends Component {
                                   </FormFeedback>
                                 </CFormGroup>
                               </td>
-                              {i === 0 ? null : (
+                              {i == 0 ? null : (
                                 <td>
                                   <CIcon
                                     name="cilXCircle"
@@ -743,7 +743,7 @@ class AgencyRegistration extends Component {
                           type="primary"
                           htmlType="submit"
                           className="center"
-                          disabled={this.state.value === 1 ? false : true}
+                          disabled={this.state.value == 1 ? false : true}
                         >
                           submit
                         </Button>
@@ -751,7 +751,7 @@ class AgencyRegistration extends Component {
                       <Col>
                         <Button
                           htmlType="submit"
-                          disabled={this.state.value === 1 ? false : true}
+                          disabled={this.state.value == 1 ? false : true}
                         >
                           Save
                         </Button>

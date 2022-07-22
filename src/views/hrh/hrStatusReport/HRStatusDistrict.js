@@ -157,13 +157,13 @@ class HRStatusDistrict extends Component {
       // title:"",
       content: "Are you Sure?",
       onOk: () => {
-        return status === 1
+        return status == 1
           ? this.changeStatus(value)
-          : status === 4
+          : status == 4
           ? this.approv(value)
-          : status === 6
+          : status == 6
           ? this.cancel(value)
-          : status === 5
+          : status == 5
           ? this.need(value)
           : console.log("none");
       },
@@ -230,7 +230,7 @@ class HRStatusDistrict extends Component {
     if (this.props.history.location.state) {
       let paramId = this.props.history.location.state.data;
       this.setState({ paramId: paramId });
-      if (this.state.role === "district_role") {
+      if (this.state.role == "district_role") {
         axios({
           url: `${process.env.REACT_APP_API_URL}HRStatusReportDistricts/${paramId}`,
           method: "GET",
@@ -243,7 +243,7 @@ class HRStatusDistrict extends Component {
           method: "GET",
         }).then((response) => {
           let arr = response.data.filter(
-            (data) => data.hrStatusReportDistrictId === paramId
+            (data) => data.hrStatusReportDistrictId == paramId
           );
           this.setState({ numberTableRows: arr });
         });
@@ -253,7 +253,7 @@ class HRStatusDistrict extends Component {
         }).then((response) => {
           console.log(response.data,'console.log(response.data);');
           let arr = response.data.filter(
-            (data) => data.hrStatusReportDistrictId === paramId
+            (data) => data.hrStatusReportDistrictId == paramId
           );
           this.setState({ tableRows: arr });
         });
@@ -262,13 +262,13 @@ class HRStatusDistrict extends Component {
           method: "GET",
         }).then((response) => {
           const arr = response.data.filter(
-            (data) => data.hrStatusReportDistrictId === paramId
+            (data) => data.hrStatusReportDistrictId == paramId
           );
           console.log(arr, "checking array");
           let obj = {};
           const r = arr.map((data) => {
             let val = this.props.financialStatusList
-              .filter((y) => y.id === data.budget)
+              .filter((y) => y.id == data.budget)
               .map((x) => x.name);
             obj = {
               ...obj,
@@ -308,13 +308,13 @@ class HRStatusDistrict extends Component {
       ...numberTableRows[i],
       [name]: value,
     };
-    if(name==="namePost"){
+    if(name=="namePost"){
      await axios({
         url: `${process.env.REACT_APP_API_URL}StatePysicalDistributions`,
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.postId ===value && data.districtId ===this.state.obj.districtId
+          (data) => data.postId ==value && data.districtId ==this.state.obj.districtId
         );
         if(arr.length>0){
         console.log(arr[0].numofPostApprov,'handleChange')
@@ -367,10 +367,10 @@ class HRStatusDistrict extends Component {
       },
       body: JSON.stringify(this.state.obj),
     }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       }).then((resp) => {
@@ -394,7 +394,7 @@ class HRStatusDistrict extends Component {
                 body: JSON.stringify(data),
               }
             ).then((resp) => {
-              if (resp.status === 404) {
+              if (resp.status == 404) {
                 this.setState({
                   errorMsg: true,
                 });
@@ -478,7 +478,7 @@ class HRStatusDistrict extends Component {
                 body: JSON.stringify(data),
               }
             ).then((resp) => {
-              if (resp.status === 404) {
+              if (resp.status == 404) {
                 this.setState({
                   errorMsg: true,
                 });
@@ -541,7 +541,7 @@ class HRStatusDistrict extends Component {
                 },
                 body: JSON.stringify(item),
               }).then((resp) => {
-                if (resp.status === 404) {
+                if (resp.status == 404) {
                   this.setState({
                     errorMsg: true,
                   });
@@ -610,7 +610,7 @@ class HRStatusDistrict extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -618,7 +618,7 @@ class HRStatusDistrict extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -642,7 +642,7 @@ class HRStatusDistrict extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -650,7 +650,7 @@ class HRStatusDistrict extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -674,7 +674,7 @@ class HRStatusDistrict extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           message.success("Canceled Successfully!");
           console.log("SUCCESSS");
           this.setState({ statusMsg: true });
@@ -682,7 +682,7 @@ class HRStatusDistrict extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -706,7 +706,7 @@ class HRStatusDistrict extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Approved Successfully!");
           this.setState({ statusMsg: true });
@@ -714,7 +714,7 @@ class HRStatusDistrict extends Component {
             this.setState({ statusMsg: false });
           }, 10000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -744,7 +744,7 @@ class HRStatusDistrict extends Component {
           body: JSON.stringify(obj),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           let operation = [
             {
@@ -765,14 +765,14 @@ class HRStatusDistrict extends Component {
               body: JSON.stringify(operation),
             }
           ).then((response) => {
-            if (response.status === 201) {
+            if (response.status == 201) {
               console.log("SUCCESSS");
               this.setState({ statusMsg: true });
               setTimeout(() => {
                 this.setState({ statusMsg: false });
               }, 5000);
               return response.json();
-            } else if (response.status === 404) {
+            } else if (response.status == 404) {
               throw new Error(`Error! status: ${response.status}`);
             }
           });
@@ -785,7 +785,7 @@ class HRStatusDistrict extends Component {
 
           this.getObject();
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -800,7 +800,7 @@ class HRStatusDistrict extends Component {
       },
     });
     console.log(this.props.financialStatusList, "arra");
-    if (e.target.checked === true) {
+    if (e.target.checked == true) {
       let ob = {};
       let arr = this.props.programTypeList.map((val, i) => {
         return this.props.financialStatusList.map((item) => {
@@ -817,10 +817,10 @@ class HRStatusDistrict extends Component {
         programList: arr,
       });
     }
-    if (e.target.name === "programType") {
+    if (e.target.name == "programType") {
       let ob = {};
       let arr = this.props.programTypeList
-        .filter((data) => data.id === e.target.value)
+        .filter((data) => data.id == e.target.value)
         .map((val, i) => {
           return this.props.financialStatusList.map((item) => {
             ob = {
@@ -860,9 +860,9 @@ class HRStatusDistrict extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Status Report - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Status Report - State</h4>
                   ) : (
                     <h4>Human Resource Status Report - District</h4>
@@ -1097,7 +1097,7 @@ class HRStatusDistrict extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofApproval === ""
+                                  errors.typeofApproval == ""
                                     ? "none"
                                     : "block",
                               }}
@@ -1121,7 +1121,7 @@ class HRStatusDistrict extends Component {
                               name="selectNumber"
                               value={obj.selectNumber || ""}
                               disabled={
-                                obj.typeofApprovalId === 2 ? false : true
+                                obj.typeofApprovalId == 2 ? false : true
                               }
                             >
                               <option value="0">-Select-</option>
@@ -2037,10 +2037,10 @@ class HRStatusDistrict extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 ||
-                                  obj.formStatus === 4 ||
-                                  obj.districtStatus === 6 ||
-                                  obj.districtStatus === 7 ? null : (
+                                  {i == 0 ||
+                                  obj.formStatus == 4 ||
+                                  obj.districtStatus == 6 ||
+                                  obj.districtStatus == 7 ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"
@@ -2056,7 +2056,7 @@ class HRStatusDistrict extends Component {
                             })}
                           </tbody>
                         </table>
-                       {obj.districtStatus===4 || obj.districtStatus===5 ||obj.districtStatus===6?null: 
+                       {obj.districtStatus==4 || obj.districtStatus==5 ||obj.districtStatus==6?null: 
                        <CButton
                           color="primary"
                           className="mb-3"
@@ -2702,10 +2702,10 @@ class HRStatusDistrict extends Component {
                                       </FormFeedback>
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 ||
-                                  obj.formStatus === 4 ||
-                                  obj.districtStatus === 6 ||
-                                  obj.districtStatus === 7 ? null : (
+                                  {i == 0 ||
+                                  obj.formStatus == 4 ||
+                                  obj.districtStatus == 6 ||
+                                  obj.districtStatus == 7 ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"
@@ -2721,7 +2721,7 @@ class HRStatusDistrict extends Component {
                             })}
                           </tbody>
                         </table>
-                        {obj.districtStatus===4 || obj.districtStatus===5 ||obj.districtStatus===6?null:
+                        {obj.districtStatus==4 || obj.districtStatus==5 ||obj.districtStatus==6?null:
                          <CButton
                           color="primary"
                           className="mb-3"
@@ -2773,7 +2773,7 @@ class HRStatusDistrict extends Component {
                               <Col>
                                 <Checkbox
                                   checked={
-                                    obj.programCheck === true ? true : false
+                                    obj.programCheck == true ? true : false
                                   }
                                   onChange={(e) => this.handleFinance(e)}
                                 />
@@ -2799,7 +2799,7 @@ class HRStatusDistrict extends Component {
                                   value={obj.programType || ""}
                                   invalid={errors.programType ? true : false}
                                   disabled={
-                                    obj.programCheck === true ? true : false
+                                    obj.programCheck == true ? true : false
                                   }
                                 >
                                   <option value="0">-Select-</option>
@@ -3049,9 +3049,9 @@ class HRStatusDistrict extends Component {
                       </TabPane>
                     </Tabs>
                     <Space size="middle" style={{ paddingTop: "5px" }}>
-                      {obj.districtStatus === 4 ||
-                      obj.districtStatus === 6 ||
-                      obj.districtStatus === 7 ? null : (
+                      {obj.districtStatus == 4 ||
+                      obj.districtStatus == 6 ||
+                      obj.districtStatus == 7 ? null : (
                         <CButton
                           disabled={this.state.disableSub}
                           color="primary"
@@ -3066,7 +3066,7 @@ class HRStatusDistrict extends Component {
                       >
                         Download
                       </CButton>
-                      {obj.districtStatus === 0 || obj.districtStatus === 5 ? (
+                      {obj.districtStatus == 0 || obj.districtStatus == 5 ? (
                         <CButton
                           color="info"
                           onClick={() => {
@@ -3076,7 +3076,7 @@ class HRStatusDistrict extends Component {
                           Submit for Approval
                         </CButton>
                       ) : null}
-                      {obj.districtStatus === 1 ? (
+                      {obj.districtStatus == 1 ? (
                         <CButton
                           color="secondary"
                           onClick={() => this.handleAmend()}
@@ -3084,7 +3084,7 @@ class HRStatusDistrict extends Component {
                           Send for Amendment
                         </CButton>
                       ) : null}
-                      {obj.districtStatus === 1 ? (
+                      {obj.districtStatus == 1 ? (
                         <CButton
                           color="success"
                           onClick={() => this.showConfirm(obj.id, 4)}
@@ -3092,7 +3092,7 @@ class HRStatusDistrict extends Component {
                           Approve
                         </CButton>
                       ) : null}
-                      {obj.districtStatus === 1 ? (
+                      {obj.districtStatus == 1 ? (
                         <CButton
                           color="warning"
                           onClick={() => this.showConfirm(obj.id, 7)}
@@ -3100,7 +3100,7 @@ class HRStatusDistrict extends Component {
                           Reject
                         </CButton>
                       ) : null}
-                      {obj.districtStatus === 0 || obj.districtStatus === 1 ? (
+                      {obj.districtStatus == 0 || obj.districtStatus == 1 ? (
                         <CButton
                           color="danger"
                           onClick={() => this.showConfirm(obj.id, 6)}

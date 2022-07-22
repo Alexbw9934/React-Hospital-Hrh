@@ -63,7 +63,7 @@ export class DistrictDraft extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(
                     ob.fromDate
@@ -80,7 +80,7 @@ export class DistrictDraft extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -94,7 +94,7 @@ export class DistrictDraft extends Component {
             render: (text, obj) => (
               <a>
                 {this.props.districtsList
-                  .filter((data) => data.id === obj.districtId)
+                  .filter((data) => data.id == obj.districtId)
                   .map((id) => {
                     return id.name;
                   })}
@@ -137,7 +137,7 @@ export class DistrictDraft extends Component {
       method: "GET",
     }).then((response) => {
       console.log(response.data,'response');
-      let arr=response.data.filter(data=>data.formStatus === 4 && data.stateStatus===4 && data.districtStatus===0)
+      let arr=response.data.filter(data=>data.formStatus == 4 && data.stateStatus==4 && data.districtStatus==0)
       this.setState({ users: arr });
     });
    

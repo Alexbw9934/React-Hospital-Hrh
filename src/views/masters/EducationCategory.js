@@ -88,18 +88,18 @@ const EducationCategory = (props) => {
   }
   const validate = () => {
     let errors = {};
-    if (data.name === "") errors.name = "Please enter the name.";
-    if (data.positionId === 0) errors.name = "Please select the category.";
+    if (data.name == "") errors.name = "Please enter the name.";
+    if (data.positionId == 0) errors.name = "Please select the category.";
     return errors;
   };
   function submitData(e) {
     e.preventDefault();
     console.log("EducationCategory", data);
     let check = list.map((index) => {
-      if (data.name === index.name) return false;
+      if (data.name == index.name) return false;
     });
     const errors = validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       if (check.includes(false)) {
         setCheckingMsg(true);
@@ -143,14 +143,14 @@ const EducationCategory = (props) => {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.name === "") errors.name = "Please enter the name.";
-    if (editValue.positionId === 0) errors.name = "Please select the category.";
+    if (editValue.name == "") errors.name = "Please enter the name.";
+    if (editValue.positionId == 0) errors.name = "Please select the category.";
     return errors;
   };
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       setCheckingMsg(false);
       fetch(`http://5.9.111.198:13880/api/EducationCategories/${id}`, {
@@ -195,7 +195,7 @@ const EducationCategory = (props) => {
   function showConfirm(value, status) {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -212,7 +212,7 @@ const EducationCategory = (props) => {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/EducationCategories/${id}`, {
@@ -469,7 +469,7 @@ const EducationCategory = (props) => {
                     render={(text, user) => (
                       <>
                         {props.positionList
-                          .filter((data) => data.id === user.positionId)
+                          .filter((data) => data.id == user.positionId)
                           .map((id) => {
                             return id.name;
                           })}
@@ -481,7 +481,7 @@ const EducationCategory = (props) => {
                     dataIndex="status"
                     key="status"
                     render={(status) => (
-                      <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                      <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                     )}
                   ></Table.Column>
                   <Table.Column
@@ -496,7 +496,7 @@ const EducationCategory = (props) => {
                         >
                           Edit
                         </CButton>
-                        {user.status.toString() === 1 ? (
+                        {user.status.toString() == 1 ? (
                           <CButton
                             color="danger"
                             style={{ backgroundColor: "red" }}

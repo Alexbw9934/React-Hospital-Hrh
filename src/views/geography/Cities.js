@@ -107,18 +107,18 @@ class Cities extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.name === "") errors.name = "Please enter the name.";
-    if (value.blockId === 0) errors.blockId = "Select the Block.";
-    if (value.urbanAreaId === 0) errors.urbanAreaId = "Select the Urban Area.";
-    if (value.divisionId === 0) errors.divisionId = "Select the Division.";
-    // if (value.blockCategoryId === 0)
+    if (value.name == "") errors.name = "Please enter the name.";
+    if (value.blockId == 0) errors.blockId = "Select the Block.";
+    if (value.urbanAreaId == 0) errors.urbanAreaId = "Select the Urban Area.";
+    if (value.divisionId == 0) errors.divisionId = "Select the Division.";
+    // if (value.blockCategoryId == 0)
     //   errors.blockCategoryId = "Select the Block Category.";
-    // if (value.stateCategoryId === 0)
+    // if (value.stateCategoryId == 0)
     //   errors.stateCategoryId = "Select the State Category.";
-    if (value.stateId === 0) errors.stateId = "Select the State.";
-    // if (value.districtCategoryId === 0)
+    if (value.stateId == 0) errors.stateId = "Select the State.";
+    // if (value.districtCategoryId == 0)
     //   errors.districtCategoryId = "Select the District Category.";
-    if (value.districtId === 0) errors.districtId = "Select the District.";
+    if (value.districtId == 0) errors.districtId = "Select the District.";
     return errors;
   };
   submitData = (e) => {
@@ -126,9 +126,9 @@ class Cities extends React.Component {
     const value = this.state;
     const errors = this.validate();
     let check = this.props.cityList.map((data) => {
-      if( value.value.name === data.name ) return false;
+      if( value.value.name == data.name ) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -190,30 +190,30 @@ class Cities extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "")
+    if (this.state.editValue.name == "")
       errors.name = "Please enter the name.";
-    // if (this.state.editValue.blockCategoryId === 0)
+    // if (this.state.editValue.blockCategoryId == 0)
     //   errors.blockCategoryId = "Select the Block Category.";
-    // if (this.state.editValue.stateCategoryId === 0)
+    // if (this.state.editValue.stateCategoryId == 0)
     //   errors.stateCategoryId = "Select the State Category.";
-    // if (this.state.editValue.districtCategoryId === 0)
+    // if (this.state.editValue.districtCategoryId == 0)
     //   errors.districtCategoryId = "Select the District Category.";
-    if (this.state.editValue.stateId === 0)
+    if (this.state.editValue.stateId == 0)
       errors.stateId = "Select the State.";
-      if (this.state.editValue.blockId === 0)
+      if (this.state.editValue.blockId == 0)
       errors.blockId = "Select the Block.";
-      if (this.state.editValue.divisionId === 0)
+      if (this.state.editValue.divisionId == 0)
       errors.divisionId = "Select the Division.";
-      if (this.state.editValue.urbanAreaId === 0)
+      if (this.state.editValue.urbanAreaId == 0)
       errors.urbanAreaId = "Select the Urban Area.";
-      if (this.state.editValue.districtId === 0)
+      if (this.state.editValue.districtId == 0)
       errors.districtId = "Select the District.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -279,7 +279,7 @@ class Cities extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -296,7 +296,7 @@ class Cities extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status=== 0 ? "1" : "0",
+        value: status== 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/Cities/${id}`, {
@@ -929,7 +929,7 @@ class Cities extends React.Component {
                       <>
                         {" "}
                         {this.props.urbanList
-                          .filter((data) => data.id === user.urbanAreaId)
+                          .filter((data) => data.id == user.urbanAreaId)
                           .map((id) => {
                             return id.name;
                           })}
@@ -943,7 +943,7 @@ class Cities extends React.Component {
                         <>
                           {" "}
                           {this.props.stateCategoryList
-                            .filter((data) => data.id === user.stateCategoryId)
+                            .filter((data) => data.id == user.stateCategoryId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -958,7 +958,7 @@ class Cities extends React.Component {
                         <>
                           {" "}
                           {this.props.stateList
-                            .filter((data) => data.id === user.stateId)
+                            .filter((data) => data.id == user.stateId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -974,7 +974,7 @@ class Cities extends React.Component {
                           {" "}
                           {this.props.districtCategoryList
                             .filter(
-                              (data) => data.id === user.districtCategoryId
+                              (data) => data.id == user.districtCategoryId
                             )
                             .map((id) => {
                               return id.name;
@@ -990,7 +990,7 @@ class Cities extends React.Component {
                         <>
                           {" "}
                           {this.props.districtsList
-                            .filter((data) => data.id === user.districtId)
+                            .filter((data) => data.id == user.districtId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -1004,7 +1004,7 @@ class Cities extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.blockCategoryList
-                            .filter((data) => data.id === user.blockCategoryId)
+                            .filter((data) => data.id == user.blockCategoryId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -1018,7 +1018,7 @@ class Cities extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.blockList
-                                  .filter((data) => data.id === user.blockId)
+                                  .filter((data) => data.id == user.blockId)
                                   .map((id) => {
                                     return id.name;
                                   })}
@@ -1030,7 +1030,7 @@ class Cities extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -1045,7 +1045,7 @@ class Cities extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

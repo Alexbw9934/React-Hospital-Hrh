@@ -62,7 +62,7 @@ export class VacancyAdvertisementDetail extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -161,9 +161,9 @@ export class VacancyAdvertisementDetail extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Vacancy Advertisement-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Vacancy Advertisement- State Details</h4>
                   ) : (
                     <h4>Vacancy Advertisement - District</h4>

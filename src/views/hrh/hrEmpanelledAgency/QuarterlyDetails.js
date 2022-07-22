@@ -57,7 +57,7 @@ class QuarterlyDetails extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return moment(ob.fromDate).format("MMM D, YYYY");
                 })}
@@ -71,7 +71,7 @@ class QuarterlyDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -160,9 +160,9 @@ class QuarterlyDetails extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Recruitment Status Report (Quarterly)-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Recruitment Status Report (Quarterly)- State Details</h4>
                   ) : (
                     <h4>Recruitment Status Report (Quarterly) - District</h4>
@@ -170,7 +170,7 @@ class QuarterlyDetails extends Component {
                 </div>
               </CCardHeader>
               <CCard>
-                {role === "admin_role" ? (
+                {role == "admin_role" ? (
                   <CButton
                     color="primary"
                     onClick={() => this.newCollector()}

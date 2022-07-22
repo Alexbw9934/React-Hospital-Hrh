@@ -162,10 +162,10 @@ class HRStatusReportForm extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -174,8 +174,8 @@ class HRStatusReportForm extends Component {
   }
   checkingparse = (data) => {
     if (!data) return {};
-    if (typeof data === "object") return data;
-    if (typeof data === "string") return JSON.parse(data);
+    if (typeof data == "object") return data;
+    if (typeof data == "string") return JSON.parse(data);
 
     return {};
   };
@@ -240,7 +240,7 @@ class HRStatusReportForm extends Component {
           method: "GET",
         }).then((response) => {
           let arr = response.data.filter(
-            (data) => data.stateId===obj.stateId && data.reportingPeriodId===obj.reportingPeriodId
+            (data) => data.stateId==obj.stateId && data.reportingPeriodId==obj.reportingPeriodId
           );
           this.setState({ numberTableRows: arr });
         });
@@ -249,7 +249,7 @@ class HRStatusReportForm extends Component {
           method: "GET",
         }).then((response) => {
           let arr = response.data.filter(
-            (data) => (data) => data.stateId===obj.stateId && data.reportingPeriodId===obj.reportingPeriodId
+            (data) => (data) => data.stateId==obj.stateId && data.reportingPeriodId==obj.reportingPeriodId
           );
           this.setState({ tableRows: arr });
         });
@@ -258,13 +258,13 @@ class HRStatusReportForm extends Component {
           method: "GET",
         }).then((response) => {
           const arr = response.data.filter(
-            (data) => (data) => data.stateId===obj.stateId && data.reportingPeriodId===obj.reportingPeriodId
+            (data) => (data) => data.stateId==obj.stateId && data.reportingPeriodId==obj.reportingPeriodId
           );
           console.log(arr, "checking array");
           let obj = {};
           const r = arr.map((data) => {
             let val = this.props.financialStatusList
-              .filter((y) => y.id === data.budget)
+              .filter((y) => y.id == data.budget)
               .map((x) => x.name);
             obj = {
               ...obj,
@@ -338,7 +338,7 @@ class HRStatusReportForm extends Component {
           },
           body: JSON.stringify(data),
         }).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -399,9 +399,9 @@ class HRStatusReportForm extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Status Report - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Status Report - State</h4>
                   ) : (
                     <h4>Human Resource Status Report - District</h4>
@@ -510,7 +510,7 @@ class HRStatusReportForm extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofApproval === ""
+                                  errors.typeofApproval == ""
                                     ? "none"
                                     : "block",
                               }}
@@ -536,7 +536,7 @@ class HRStatusReportForm extends Component {
                               value={obj.number || ""}
                               disabled
                               //   ={
-                              //     role === "district_role" || obj.typeofApproval === 1
+                              //     role == "district_role" || obj.typeofApproval == 1
                               //       ? true
                               //       : false
                               //   }
@@ -550,7 +550,7 @@ class HRStatusReportForm extends Component {
                       </Col>
                     </Row>
                     <Row gutter={20}>
-                      {role === "district_role" ? (
+                      {role == "district_role" ? (
                         <Col span={12}>
                           <CFormGroup>
                             <Col>
@@ -2586,12 +2586,12 @@ class HRStatusReportForm extends Component {
                       </Button>
                       <Button type="secondary">Edit</Button>
                       <Button>Download</Button>
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
                             display:
-                              obj.statuss === 1 || obj.statuss === 3
+                              obj.statuss == 1 || obj.statuss == 3
                                 ? "block"
                                 : "none",
                           }}
@@ -2599,24 +2599,24 @@ class HRStatusReportForm extends Component {
                           Send for Approval
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button color="primary">Approved</Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
-                            display: obj.statuss === 2 ? "block" : "none",
+                            display: obj.statuss == 2 ? "block" : "none",
                           }}
                         >
                           Reject
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
-                            display: obj.statuss === 2 ? "block" : "none",
+                            display: obj.statuss == 2 ? "block" : "none",
                           }}
                         >
                           Need Clarification

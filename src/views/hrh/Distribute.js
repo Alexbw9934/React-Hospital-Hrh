@@ -125,10 +125,10 @@ class Distribute extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -193,7 +193,7 @@ class Distribute extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.physicalStatusId === paramId
+          (data) => data.physicalStatusId == paramId
         );
         this.setState({ tableRows: arr });
       });
@@ -291,7 +291,7 @@ class Distribute extends Component {
           },
           body: JSON.stringify(data),
         }).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -389,9 +389,9 @@ class Distribute extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Proposal - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Proposal - State</h4>
                   ) : (
                     <h4>Human Resource Proposal - District</h4>
@@ -767,7 +767,7 @@ class Distribute extends Component {
                       </Row>
                     </CFormGroup>
                   </CForm>}
-                  {csvOrmanually === 2 ? (
+                  {csvOrmanually == 2 ? (
                     <PhysicalCSVState
                       objId={propState.objId}
                       pId={propState.pId}
@@ -795,7 +795,7 @@ class Distribute extends Component {
                             <th span={12} style={{ width: "7.1%" }}>
                               <b>District</b>
                             </th>
-                            {propState.pTy === 2 || propState.pTy === 3 ? (
+                            {propState.pTy == 2 || propState.pTy == 3 ? (
                               <th span={12} style={{ width: "7.1%" }}>
                                 <b>City</b>
                               </th>
@@ -921,9 +921,9 @@ class Distribute extends Component {
                                       }
                                       value={data.divisionId || ""}
                                       disabled={
-                                        data.selectedValue === 1
+                                        data.selectedValue == 1
                                           ? true
-                                          : data.selectedValue === 2
+                                          : data.selectedValue == 2
                                           ? true
                                           : propState.ppId
                                           ? true
@@ -957,9 +957,9 @@ class Distribute extends Component {
                                       value={data.districtId || ""}
                                       invalid={errors.districtId ? true : false}
                                       disabled={
-                                        data.selectedValue === 1
+                                        data.selectedValue == 1
                                           ? true
-                                          : data.selectedValue === 3
+                                          : data.selectedValue == 3
                                           ? true
                                           : propState.ppId
                                           ? true
@@ -984,7 +984,7 @@ class Distribute extends Component {
                                     </FormFeedback>
                                   </CFormGroup>
                                 </td>
-                                {propState.pTy === 2 || propState.pTy === 3 ? (
+                                {propState.pTy == 2 || propState.pTy == 3 ? (
                                   <td span={12}>
                                     <CFormGroup>
                                       <CSelect
@@ -1200,7 +1200,7 @@ class Distribute extends Component {
                                     </FormFeedback>
                                   </CFormGroup>
                                 </td>
-                                {i === 0 || propState.ppId ? null : (
+                                {i == 0 || propState.ppId ? null : (
                                   <td>
                                     {" "}
                                     <CIcon

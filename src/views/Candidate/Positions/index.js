@@ -69,7 +69,7 @@ class AvailablePosition extends Component {
     let programType = this.state.programTypes;
     let finalType = "";
     programType.map((item) => {
-      if (item.id === id) {
+      if (item.id == id) {
         finalType = item.name;
       }
     });
@@ -80,7 +80,7 @@ class AvailablePosition extends Component {
     let postCategory = this.state.postCategory;
     let finalType = "";
     postCategory.map((item) => {
-      if (item.id === id) {
+      if (item.id == id) {
         finalType = item.name;
       }
     });
@@ -91,7 +91,7 @@ class AvailablePosition extends Component {
     let facilityTypes = this.state.facilityTypes;
     let finalType = "";
     facilityTypes.map((item) => {
-      if (item.id === id) {
+      if (item.id == id) {
         finalType = item.name;
       }
     });
@@ -102,7 +102,7 @@ class AvailablePosition extends Component {
     let state = this.state.state;
     let finalType = "";
     state.map((item) => {
-      if (item.id === id) {
+      if (item.id == id) {
         finalType = item.name;
       }
     });
@@ -113,7 +113,7 @@ class AvailablePosition extends Component {
     let district = this.state.district;
     let finalType = "";
     district.map((item) => {
-      if (item.id === id) {
+      if (item.id == id) {
         finalType = item.name;
       }
     });

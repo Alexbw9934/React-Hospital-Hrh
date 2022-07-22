@@ -97,22 +97,22 @@ function FinanceCSV({objId,fId,setTable}) {
       let obj={}
       let arr=array.map((val) => {
         let block = blockList
-          .filter((data) => data.name === val["Block"])
+          .filter((data) => data.name == val["Block"])
           .map((data) => {
             return data.id;
           });
         let city = cityList
-          .filter((data) => data.name === val["City"])
+          .filter((data) => data.name == val["City"])
           .map((data) => {
             return data.id;
           });
         let select = placeOfPositionArray
-          .filter((data) => data.name === val["Select District/Block/City"])
+          .filter((data) => data.name == val["Select District/Block/City"])
           .map((data) => {
             return data.id;
           });
         let facility = facilityTypeList
-          .filter((data) => data.facilityType === val["Facility Type"])
+          .filter((data) => data.facilityType == val["Facility Type"])
           .map((data) => {
             return data.id;
           });

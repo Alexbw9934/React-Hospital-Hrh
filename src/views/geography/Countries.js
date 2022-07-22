@@ -69,17 +69,17 @@ function Countries() {
   }
   const validate = () => {
     let errors = {};
-    if (data.name === "") errors.name = "Please enter the name.";
-    if (data.countryCode === "") errors.countryCode = "Please enter the Country code.";
+    if (data.name == "") errors.name = "Please enter the name.";
+    if (data.countryCode == "") errors.countryCode = "Please enter the Country code.";
     return errors;
   };
   function submitData(e) {
     e.preventDefault();
     let check = users.map((index) => {
-      if (data.name === index.name) return false;
+      if (data.name == index.name) return false;
     });
     const errors = validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
       if (check.includes(false)) {
         setCheckingMsg(true);
@@ -123,14 +123,14 @@ function Countries() {
   }
   const updateValidate = () => {
     let errors = {};
-    if (editValue.name === "") errors.name = "Please enter the name.";
-    if (editValue.countryCode === "") errors.countryCode = "Please enter the Country code.";
+    if (editValue.name == "") errors.name = "Please enter the name.";
+    if (editValue.countryCode == "") errors.countryCode = "Please enter the Country code.";
     return errors;
   };
   function updateData(e, id) {
     e.preventDefault();
     const errors = updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       setErrors({});
     fetch(`http://5.9.111.198:13880/api/countries/${id}`, {
       method: "PUT",

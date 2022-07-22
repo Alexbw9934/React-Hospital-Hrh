@@ -128,10 +128,10 @@ class StatePerformanceMonitoring extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -202,45 +202,45 @@ class StatePerformanceMonitoring extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.submission === "")
+    if (obj.submission == "")
       errors.submission = "Please pick date of submission.";
-    if (obj.financialYear === 0)
+    if (obj.financialYear == 0)
       errors.financialYear = "Please enter the financial year.";
-    if (obj.typeofApproval === "")
+    if (obj.typeofApproval == "")
       errors.typeofApproval = "Please select Type of Approval.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.numberOfDivDist === "")
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.numberOfDivDist == "")
       errors.numberOfDivDist = "Please enter Division.";
-    // if (obj.districtCategoryId === 0)
+    // if (obj.districtCategoryId == 0)
     //   errors.districtCategoryId = "Please select District.";
-    if (obj.divsionId === "") errors.divsionId = "Please select Division.";
-    if (obj.programType === 0)
+    if (obj.divsionId == "") errors.divsionId = "Please select Division.";
+    if (obj.programType == 0)
       errors.programType = "Please select programe type.";
-    if (obj.typeofPost === 0) errors.typeofPost = "Please select type of post.";
-    if (obj.categoryofPostion === 0)
+    if (obj.typeofPost == 0) errors.typeofPost = "Please select type of post.";
+    if (obj.categoryofPostion == 0)
       errors.categoryofPostion = "Please select category of post.";
-    if (obj.fmr === 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
-    if (obj.numberofPostSanc === 0)
+    if (obj.fmr == 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
+    if (obj.numberofPostSanc == 0)
       errors.numberofPostSanc = "Please enter number of post sanction.";
     if (obj.numberofPostSanc < 0)
       errors.numberofPostSanc = "Please enter a valid number.";
-    if (obj.numberofNewPost === 0 || obj.numberofNewPost < 0)
+    if (obj.numberofNewPost == 0 || obj.numberofNewPost < 0)
       errors.numberofNewPost = "Please enter number of new post.";
-    if (obj.numberofOldSanc === 0 || obj.numberofOldSanc < 0)
+    if (obj.numberofOldSanc == 0 || obj.numberofOldSanc < 0)
       errors.numberofOldSanc = "Please enter number of old sanction.";
-    if (obj.totalNoPostionApprov === 0 || obj.totalNoPostionApprov < 0)
+    if (obj.totalNoPostionApprov == 0 || obj.totalNoPostionApprov < 0)
       errors.totalNoPostionApprov =
         "Please enter total number of old position approve.";
-    if (obj.numberofPostVaccant === 0 || obj.numberofPostVaccant < 0)
+    if (obj.numberofPostVaccant == 0 || obj.numberofPostVaccant < 0)
       errors.numberofPostVaccant = "Please enter number of post vacant.";
-    if (obj.nameofPost === "") errors.nameofPost = "Please enter name of post.";
+    if (obj.nameofPost == "") errors.nameofPost = "Please enter name of post.";
     if (
-      obj.totalBudgetAprrINR === 0 ||
+      obj.totalBudgetAprrINR == 0 ||
       obj.totalBudgetAprrINR < 0 ||
       obj.totalBudgetAprrINR.length > 10
     )
       errors.totalBudgetAprrINR = "Please enter total budget INR.";
-    if (obj.numberofNewPostion === 0 || obj.numberofNewPostion < 0)
+    if (obj.numberofNewPostion == 0 || obj.numberofNewPostion < 0)
       errors.numberofNewPostion = "Please enter number of new position.";
     return errors;
   };
@@ -308,9 +308,9 @@ class StatePerformanceMonitoring extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Performance Monitoring - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Performance Monitoring - State</h4>
                   ) : (
                     <h4>Performance Monitoring - District</h4>
@@ -351,7 +351,7 @@ class StatePerformanceMonitoring extends Component {
                               placeholder="Date"
                               onChange={this.handleChange}
                               value={
-                                obj.submission === ""
+                                obj.submission == ""
                                   ? obj.submission || ""
                                   : obj.submission.split("T")[0] || ""
                               }
@@ -428,7 +428,7 @@ class StatePerformanceMonitoring extends Component {
                           <Col>
                             <Radio.Group
                               value={obj.appraisal || ""}
-                              disabled={obj.programType === 1 ? false : true}
+                              disabled={obj.programType == 1 ? false : true}
                               onChange={this.handleRadio2}
                             >
                               <Radio value="1">Conducted</Radio>
@@ -478,7 +478,7 @@ class StatePerformanceMonitoring extends Component {
                             <CInput
                               value={obj.remark || ""}
                               name="remark"
-                              disabled={obj.appraisal === 2 ? false : true}
+                              disabled={obj.appraisal == 2 ? false : true}
                               onChange={this.handleChange}
                               invalid={errors.totalBudgetAprrINR ? true : false}
                             />

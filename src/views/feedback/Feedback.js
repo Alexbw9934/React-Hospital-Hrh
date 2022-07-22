@@ -53,9 +53,9 @@ class Feedback extends Component {
     this.props.retrieveDistricts();
   }
   handleChange = async (value) => {
-    if (value === 1) {
+    if (value == 1) {
       this.setState({ isDisableForm: true, isDisableProcess: false });
-    } else if (value === 2) {
+    } else if (value == 2) {
       this.setState({ isDisableForm: false, isDisableProcess: true });
     } else {
       this.setState({ isDisableForm: false, isDisableProcess: false });
@@ -64,10 +64,10 @@ class Feedback extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -101,7 +101,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -120,7 +120,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -142,7 +142,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -162,7 +162,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -185,7 +185,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             value={user.dateOfFeedback}
                             disabled={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -197,7 +197,7 @@ class Feedback extends Component {
                               value={user.dateOfFeedback}
                               onChange={this.handleChange}
                               required
-                              disabled={this.state.role === "candidate_role" ? false:true}
+                              disabled={this.state.role == "candidate_role" ? false:true}
                             /> */}
                         </CCol>
                       </CCol>
@@ -259,7 +259,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -284,7 +284,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -316,7 +316,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -341,7 +341,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -373,7 +373,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -398,7 +398,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -429,7 +429,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -458,7 +458,7 @@ class Feedback extends Component {
                             onChange={this.handleChange}
                             required
                             readOnly={
-                              this.state.role === "candidate_role"
+                              this.state.role == "candidate_role"
                                 ? false
                                 : true
                             }
@@ -608,8 +608,8 @@ class Feedback extends Component {
                           <CSelect
                             onChange={this.actionNation}
                             disabled={
-                              this.state.role === "admin_role"
-                                ? this.state.role === "candidate_role"
+                              this.state.role == "admin_role"
+                                ? this.state.role == "candidate_role"
                                   ? false
                                   : false
                                 : true
@@ -633,8 +633,8 @@ class Feedback extends Component {
                           <CSelect
                             onChange={this.actionNation}
                             disabled={
-                              this.state.role === "state_role"
-                                ? this.state.role === "candidate_role"
+                              this.state.role == "state_role"
+                                ? this.state.role == "candidate_role"
                                   ? false
                                   : false
                                 : true
@@ -658,8 +658,8 @@ class Feedback extends Component {
                           <CSelect
                             onChange={this.actionNation}
                             disabled={
-                              this.state.role === "district_role"
-                                ? this.state.role === "candidate_role"
+                              this.state.role == "district_role"
+                                ? this.state.role == "candidate_role"
                                   ? false
                                   : false
                                 : true

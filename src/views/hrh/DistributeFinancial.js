@@ -112,7 +112,7 @@ class DistributeFinancial extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (val) => val.financialStatusId === paramId
+          (val) => val.financialStatusId == paramId
         );
         this.setState({ tableRows: arr });
       });
@@ -230,7 +230,7 @@ class DistributeFinancial extends Component {
           },
           body: JSON.stringify(data),
         }).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -404,7 +404,7 @@ class DistributeFinancial extends Component {
                       </CFormGroup>
                     </CForm>
                   )}
-                  {csvOrmanually === 2 ? (
+                  {csvOrmanually == 2 ? (
                     <StateCSvFinance
                       objId={propVal.objId}
                       fId={propVal.fId}
@@ -519,9 +519,9 @@ class DistributeFinancial extends Component {
                                         }
                                         value={data.divisionId || ""}
                                         disabled={
-                                          data.selectedValue === 1
+                                          data.selectedValue == 1
                                             ? true
-                                            : data.selectedValue === 2
+                                            : data.selectedValue == 2
                                             ? true
                                             : propVal.data
                                             ? true
@@ -562,9 +562,9 @@ class DistributeFinancial extends Component {
                                           errors.districtId ? true : false
                                         }
                                         disabled={
-                                          data.selectedValue === 1
+                                          data.selectedValue == 1
                                             ? true
-                                            : data.selectedValue === 3
+                                            : data.selectedValue == 3
                                             ? true
                                             : propVal.data
                                             ? true
@@ -638,7 +638,7 @@ class DistributeFinancial extends Component {
                                       </FormFeedback>
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 || propVal.data ? null : (
+                                  {i == 0 || propVal.data ? null : (
                                     <td>
                                       {" "}
                                       <CIcon

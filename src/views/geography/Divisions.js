@@ -86,21 +86,21 @@ class Divisions extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.name === "") errors.name = "Please enter the name.";
-    // if (value.stateCategoryId === 0)
+    if (value.name == "") errors.name = "Please enter the name.";
+    // if (value.stateCategoryId == 0)
     //   errors.stateCategoryId = "Select the State Category.";
-    if (value.stateId === 0) errors.stateId = "Select the State.";
+    if (value.stateId == 0) errors.stateId = "Select the State.";
     return errors;
   };
   submitData = (e) => {
     e.preventDefault();
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.divisionList.map((data) => {
-        if (this.state.value.name === data.name) return false;
+        if (this.state.value.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -153,16 +153,16 @@ class Divisions extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "") errors.name = "Please enter the name.";
-    // if (this.state.editValue.stateCategoryId === 0)
+    if (this.state.editValue.name == "") errors.name = "Please enter the name.";
+    // if (this.state.editValue.stateCategoryId == 0)
     //   errors.stateCategoryId = "Select the State Category.";
-    if (this.state.editValue.stateId === 0) errors.stateId = "Select the State.";
+    if (this.state.editValue.stateId == 0) errors.stateId = "Select the State.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -218,7 +218,7 @@ class Divisions extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -235,7 +235,7 @@ class Divisions extends React.Component {
       {
         op: "replace",
         path: "/masterStatus",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/Divisions/${id}`, {
@@ -543,7 +543,7 @@ class Divisions extends React.Component {
                         <>
                           {" "}
                           {this.props.stateCategoryList
-                            .filter((data) => data.id === user.stateCategoryId)
+                            .filter((data) => data.id == user.stateCategoryId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -557,7 +557,7 @@ class Divisions extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.stateList
-                            .filter((data) => data.id === user.stateId)
+                            .filter((data) => data.id == user.stateId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -569,7 +569,7 @@ class Divisions extends React.Component {
                       dataIndex="masterStatus"
                       key="masterStatus"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -584,7 +584,7 @@ class Divisions extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.masterStatus.toString() === 1 ? (
+                          {user.masterStatus.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

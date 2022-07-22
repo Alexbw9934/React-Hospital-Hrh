@@ -36,7 +36,7 @@ function JoinWithus() {
       pane = $(".tab-pane");
     // next
     for (i = 0; i < items.length; i++) {
-      if ($(items[i]).hasClass("active") === true) {
+      if ($(items[i]).hasClass("active") == true) {
         break;
       }
     }
@@ -57,7 +57,7 @@ function JoinWithus() {
       items = $(".nav-link"),
       pane = $(".tab-pane");
     for (i = 0; i < items.length; i++) {
-      if ($(items[i]).hasClass("active") === true) {
+      if ($(items[i]).hasClass("active") == true) {
         break;
       }
     }

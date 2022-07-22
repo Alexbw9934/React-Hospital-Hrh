@@ -53,7 +53,7 @@ export class ApprovedReport extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -69,7 +69,7 @@ export class ApprovedReport extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -114,7 +114,7 @@ export class ApprovedReport extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -161,7 +161,7 @@ export class ApprovedReport extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -177,7 +177,7 @@ export class ApprovedReport extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -191,7 +191,7 @@ export class ApprovedReport extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -225,30 +225,30 @@ export class ApprovedReport extends Component {
     this.props.retrieveDivision();
     this.props.retrieveTypeOfFacility();
     this.props.retrieveFinancialYear();
-    if (this.state.role === "district_role") {
+    if (this.state.role == "district_role") {
       axios({
         url: `${process.env.REACT_APP_API_URL}HRStatusReportDistricts`,
         method: "GET",
       }).then((response) => {
-        let arr=response.data.filter(data=>data.districtStatus===4)
+        let arr=response.data.filter(data=>data.districtStatus==4)
         this.setState({ userDistrict: arr });
       });
     }
-    if (this.state.role === "state_role") {
+    if (this.state.role == "state_role") {
         axios({
           url: `${process.env.REACT_APP_API_URL}HRStatusReportStates`,
           method: "GET",
         }).then((response) => {
-          let arr=response.data.filter(data=>data.stateStatus===4)
+          let arr=response.data.filter(data=>data.stateStatus==4)
           this.setState({ userState: arr });
         });
       }
-      if (this.state.role === "admin_role") {
+      if (this.state.role == "admin_role") {
         axios({
           url: `${process.env.REACT_APP_API_URL}HRStatusReportStates`,
           method: "GET",
         }).then((response) => {
-          let arr=response.data.filter(data=>data.stateStatus===4)
+          let arr=response.data.filter(data=>data.stateStatus==4)
           this.setState({ users: arr });
         });
       }
@@ -260,14 +260,14 @@ export class ApprovedReport extends Component {
     });
   }
   StoreCollector = (e,id) => {
-    if (this.state.role === "admin_role") {
+    if (this.state.role == "admin_role") {
         this.props.history.push({
           pathname: "/hrh/HRStatusReportDetails/HRStatusReport",
           state:{
             data:id
           }
         });
-      } else if (this.state.role === "state_role") {
+      } else if (this.state.role == "state_role") {
         this.props.history.push({
           pathname: "/hrh/HRStatusReportDetails/state",
           state:{
@@ -284,11 +284,11 @@ export class ApprovedReport extends Component {
       }
   };
   newCollector = () => {
-    if (this.state.role === "admin_role") {
+    if (this.state.role == "admin_role") {
       this.props.history.push({
         pathname: "/hrh/HRStatusReportDetails/HRStatusReport",
       });
-    } else if (this.state.role === "state_role") {
+    } else if (this.state.role == "state_role") {
       this.props.history.push({
         pathname: "/hrh/HRStatusReportDetails/state",
       });
@@ -313,9 +313,9 @@ export class ApprovedReport extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Status Report - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Status Report - State Details</h4>
                   ) : (
                     <h4>Human Resource Status Report - District</h4>
@@ -324,7 +324,7 @@ export class ApprovedReport extends Component {
               </CCardHeader>
               <CCard>
                 <CCardBody>
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <Table
                       dataSource={this.state.users.sort((a, b) =>
                         a.id < b.id ? 1 : -1
@@ -332,7 +332,7 @@ export class ApprovedReport extends Component {
                       rowKey={"id"}
                       columns={this.state.columnsNational}
                     />
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <Table
                       dataSource={this.state.userState.sort((a, b) =>
                         a.id < b.id ? 1 : -1

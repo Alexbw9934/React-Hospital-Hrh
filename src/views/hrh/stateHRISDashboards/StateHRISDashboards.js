@@ -130,10 +130,10 @@ class StateHRISDashboards extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -203,41 +203,41 @@ class StateHRISDashboards extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.submission === "")
+    if (obj.submission == "")
       errors.submission = "Please pick date of submission.";
-    if (obj.financialYear === 0)
+    if (obj.financialYear == 0)
       errors.financialYear = "Please enter the financial year.";
-    if (obj.typeofApproval === "")
+    if (obj.typeofApproval == "")
       errors.typeofApproval = "Please select Type of Approval.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.numberOfDivDist === "")
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.numberOfDivDist == "")
       errors.numberOfDivDist = "Please enter Division.";
-    // if (obj.districtCategoryId === 0)
+    // if (obj.districtCategoryId == 0)
     //   errors.districtCategoryId = "Please select District.";
-    if (obj.divsionId === "") errors.divsionId = "Please select Division.";
-    if (obj.programType === 0)
+    if (obj.divsionId == "") errors.divsionId = "Please select Division.";
+    if (obj.programType == 0)
       errors.programType = "Please select programe type.";
-    if (obj.typeofPost === 0) errors.typeofPost = "Please select type of post.";
-    if (obj.categoryofPostion === 0)
+    if (obj.typeofPost == 0) errors.typeofPost = "Please select type of post.";
+    if (obj.categoryofPostion == 0)
       errors.categoryofPostion = "Please select category of post.";
-    if (obj.fmr === 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
-    if (obj.numberofPostSanc === 0)
+    if (obj.fmr == 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
+    if (obj.numberofPostSanc == 0)
       errors.numberofPostSanc = "Please enter number of post sanction.";
     if (obj.numberofPostSanc < 0)
       errors.numberofPostSanc = "Please enter a valid number.";
-    if (obj.numberofNewPost === 0 || obj.numberofNewPost < 0)
+    if (obj.numberofNewPost == 0 || obj.numberofNewPost < 0)
       errors.numberofNewPost = "Please enter number of new post.";
-    if (obj.numberofOldSanc === 0 || obj.numberofOldSanc < 0)
+    if (obj.numberofOldSanc == 0 || obj.numberofOldSanc < 0)
       errors.numberofOldSanc = "Please enter number of old sanction.";
-    if (obj.totalNoPostionApprov === 0 || obj.totalNoPostionApprov < 0)
+    if (obj.totalNoPostionApprov == 0 || obj.totalNoPostionApprov < 0)
       errors.totalNoPostionApprov =
         "Please enter total number of old position approve.";
-    if (obj.numberofPostVaccant === 0 || obj.numberofPostVaccant < 0)
+    if (obj.numberofPostVaccant == 0 || obj.numberofPostVaccant < 0)
       errors.numberofPostVaccant = "Please enter number of post vacant.";
-    if (obj.nameofPost === "") errors.nameofPost = "Please enter name of post.";
-    if (obj.totalBudgetAprrINR === 0 || obj.totalBudgetAprrINR < 0 || obj.totalBudgetAprrINR.length > 10)
+    if (obj.nameofPost == "") errors.nameofPost = "Please enter name of post.";
+    if (obj.totalBudgetAprrINR == 0 || obj.totalBudgetAprrINR < 0 || obj.totalBudgetAprrINR.length > 10)
       errors.totalBudgetAprrINR = "Please enter total budget INR.";
-    if (obj.numberofNewPostion === 0 || obj.numberofNewPostion < 0)
+    if (obj.numberofNewPostion == 0 || obj.numberofNewPostion < 0)
       errors.numberofNewPostion = "Please enter number of new position.";
     return errors;
   };
@@ -308,9 +308,9 @@ class StateHRISDashboards extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>State HRIS Dashboards - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>State HRIS Dashboards - State</h4>
                   ) : (
                     <h4>State HRIS Dashboards - District</h4>
@@ -345,7 +345,7 @@ class StateHRISDashboards extends Component {
                           </Col>
                           <Col>
                             <Radio.Group
-                             disabled={role==="admin_role"?true:false}
+                             disabled={role=="admin_role"?true:false}
                               onChange={(e) =>
                                 this.setState({
                                   obj: {
@@ -363,7 +363,7 @@ class StateHRISDashboards extends Component {
                             <span
                               className="invalid-feedback"
                               style={{
-                                display: errors.typeofApproval === "" ? "none" : "block",
+                                display: errors.typeofApproval == "" ? "none" : "block",
                               }}
                             >
                               {errors.typeofApproval}
@@ -386,7 +386,7 @@ class StateHRISDashboards extends Component {
                               onChange={(e) =>
                                 this.setState({ sanctionOfPosition: e })
                               }
-                              disabled={obj.hris === 2 && role==="state_role" ? false : true}
+                              disabled={obj.hris == 2 && role=="state_role" ? false : true}
                               value={this.state.sanctionOfPosition || ""}
                             />
                           </Col>
@@ -405,7 +405,7 @@ class StateHRISDashboards extends Component {
                             <Select
                               id="listId"
                               name="listId"
-                              disabled={role==="admin_role"?true:false}
+                              disabled={role=="admin_role"?true:false}
                               placeholder="Select Multiple"
                               onChange={this.updateSelect}
                               value={this.state.defaultValue}
@@ -428,11 +428,11 @@ class StateHRISDashboards extends Component {
                               id="form"
                               name="submission"
                               type="date"
-                              disabled={role==="admin_role"?true:false}
+                              disabled={role=="admin_role"?true:false}
                               placeholder="Date"
                               onChange={this.handleChange}
                               value={
-                                obj.submission === ""
+                                obj.submission == ""
                                   ? obj.submission || ""
                                   : obj.submission.split("T")[0] || ''
                               }
@@ -455,7 +455,7 @@ class StateHRISDashboards extends Component {
                             <CInput
                               placeholder="Enter"
                               type="number"
-                              disabled={role==="admin_role"?true:false}
+                              disabled={role=="admin_role"?true:false}
                               onChange={(e) =>
                                 this.setState({ sanctionOfPosition: e })
                               }
@@ -475,7 +475,7 @@ class StateHRISDashboards extends Component {
                             <CInput
                               placeholder="Enter"
                               type="number"
-                              disabled={role==="admin_role"?true:false}
+                              disabled={role=="admin_role"?true:false}
                               onChange={(e) =>
                                 this.setState({ sanctionOfPosition: e })
                               }
@@ -497,7 +497,7 @@ class StateHRISDashboards extends Component {
                             <CInput
                               placeholder="Enter"
                               type="number"
-                              disabled={role==="admin_role"?true:false}
+                              disabled={role=="admin_role"?true:false}
                               onChange={(e) =>
                                 this.setState({ sanctionOfPosition: e })
                               }
@@ -507,7 +507,7 @@ class StateHRISDashboards extends Component {
                         </CFormGroup>
                       </Col>
                     </Row>
-                  {role==="admin_role"?
+                  {role=="admin_role"?
                     <Row gutter={20}>
                       <Col span={12}>
                         <CFormGroup>
@@ -535,7 +535,7 @@ class StateHRISDashboards extends Component {
                             <span
                               className="invalid-feedback"
                               style={{
-                                display: errors.typeofApproval === "" ? "none" : "block",
+                                display: errors.typeofApproval == "" ? "none" : "block",
                               }}
                             >
                               {errors.typeofApproval}
@@ -558,7 +558,7 @@ class StateHRISDashboards extends Component {
                               onChange={(e) =>
                                 this.setState({ sanctionOfPosition: e })
                               }
-                              disabled={obj.hris === 2 ? false : true}
+                              disabled={obj.hris == 2 ? false : true}
                               value={this.state.sanctionOfPosition || ""}
                             />
                           </Col>

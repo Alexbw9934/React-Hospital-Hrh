@@ -98,9 +98,9 @@ class UserForm extends React.Component {
     let pass =
     /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z0-9!@#$%^&*()~¥=_+}{":;'?/>.<,`\-\|\[\]]{6,20}$/;
     let errors = {};
-    if (value.name === "") errors.name = "This field is required.";
-    if (value.email === "") errors.email = "This field is required.";
-    if (value.password === "") errors.password = "This field is required.";
+    if (value.name == "") errors.name = "This field is required.";
+    if (value.email == "") errors.email = "This field is required.";
+    if (value.password == "") errors.password = "This field is required.";
     else if (!pass.test(value.password))
       errors.password =
         "Password must contain at least 6 characters long, one lowercase, one uppercase, one number , one special character and no whitespaces";
@@ -109,12 +109,12 @@ class UserForm extends React.Component {
   submitData = (e) => {
     e.preventDefault();
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.stateList.map((data) => {
-        if (this.state.value.name === data.name) return false;
+        if (this.state.value.name == data.name) return false;
       });
       // if (check.includes(false)) {
       //   this.setState({
@@ -134,10 +134,10 @@ class UserForm extends React.Component {
         body: JSON.stringify(this.state.value),
       })
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status == 201) {
             console.log("SUCCESSS");
             return response.json();
-          } else if (response.status === 404) {
+          } else if (response.status == 404) {
             console.log("error", response);
             // throw new Error(`Error! status: ${response.status}`);
           }
@@ -295,7 +295,7 @@ class UserForm extends React.Component {
                         <CSelect
                           id="stateId"
                           name="stateId"
-                          disabled={this.state.value.roleId === 1 ? true : false}
+                          disabled={this.state.value.roleId == 1 ? true : false}
                           placeholder="Select"
                           onChange={this.handleChange}
                           value={this.state.value.stateId || ""}
@@ -320,7 +320,7 @@ class UserForm extends React.Component {
                       </CCol>
                       <CCol xs="12" sm="12">
                         <CSelect
-                          disabled={this.state.value.roleId === 3 ? false : true}
+                          disabled={this.state.value.roleId == 3 ? false : true}
                           id="divisionId"
                           name="divisionId"
                           placeholder="Select"
@@ -350,7 +350,7 @@ class UserForm extends React.Component {
                       <CCol xs="12" sm="12">
                         <CSelect
                           id="districtId"
-                          disabled={this.state.value.roleId === 4 ? false : true}
+                          disabled={this.state.value.roleId == 4 ? false : true}
                           name="districtId"
                           placeholder="Select"
                           onChange={this.handleChange}

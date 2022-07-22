@@ -85,11 +85,11 @@ class PopulationNorms extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.population === "")
+    if (value.population == "")
       errors.population = "Please enter the population.";
-    if (value.typeofFacilityId === 0)
+    if (value.typeofFacilityId == 0)
       errors.typeofFacilityId = "Please Select the type of Facility.";
-    if (value.placeofFacilityId === 0)
+    if (value.placeofFacilityId == 0)
       errors.placeofFacilityId = "Please Select the place of Facility.";
     return errors;
   };
@@ -98,12 +98,12 @@ class PopulationNorms extends React.Component {
     const value = this.state;
     const errors = this.validate();
     console.log("########", value.value);
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.populationNormsList.map((data) => {
-        if (value.value.population === data.population) return false;
+        if (value.value.population == data.population) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -158,18 +158,18 @@ class PopulationNorms extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.population === "")
+    if (this.state.editValue.population == "")
       errors.population = "Please enter the name.";
-    if (this.state.editValue.typeofFacilityId === 0)
+    if (this.state.editValue.typeofFacilityId == 0)
       errors.typeofFacilityId = "Please Select the type of Facility.";
-    if (this.state.editValue.placeofFacilityId === 0)
+    if (this.state.editValue.placeofFacilityId == 0)
       errors.placeofFacilityId = "Please Select the place of Facility.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -231,7 +231,7 @@ class PopulationNorms extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -248,7 +248,7 @@ class PopulationNorms extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/PopulationNorms/${id}`, {
@@ -259,7 +259,7 @@ class PopulationNorms extends React.Component {
       },
       body: JSON.stringify(operation),
     }).then((resp) => {
-      if (resp.status === 200) {
+      if (resp.status == 200) {
         this.setState({
           checkingMsg: false,
         });
@@ -563,7 +563,7 @@ class PopulationNorms extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.typeFacilityList
-                            .filter((data) => data.id === user.typeofFacilityId)
+                            .filter((data) => data.id == user.typeofFacilityId)
                             .map((id) => {
                               return id.facilityType;
                             })}
@@ -577,7 +577,7 @@ class PopulationNorms extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.placeOfFacilityList
-                            .filter((data) => data.id === user.placeofFacilityId)
+                            .filter((data) => data.id == user.placeofFacilityId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -589,7 +589,7 @@ class PopulationNorms extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -604,7 +604,7 @@ class PopulationNorms extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

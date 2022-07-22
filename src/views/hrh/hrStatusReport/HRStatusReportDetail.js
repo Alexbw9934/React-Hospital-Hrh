@@ -63,7 +63,7 @@ export class HRStatusReportDetail extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -79,7 +79,7 @@ export class HRStatusReportDetail extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -91,13 +91,13 @@ export class HRStatusReportDetail extends Component {
           dataIndex: "districtStatus",
           key: "districtStatus",
           render: (text) =>
-          text === 0 ? (
+          text == 0 ? (
             <a>Draft</a>
-          ) : text === 1 ? (
+          ) : text == 1 ? (
             <a>Pending Approval</a>
-          ) : text === 4 ? (
+          ) : text == 4 ? (
             <a>Approved</a>
-          ) : text === 5 ? (
+          ) : text == 5 ? (
             <a>Canceled</a>
           ) : (
             <a>Rejected</a>
@@ -135,7 +135,7 @@ export class HRStatusReportDetail extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -149,13 +149,13 @@ export class HRStatusReportDetail extends Component {
           dataIndex: "districtStatus",
           key: "districtStatus",
           render: (text) =>
-          text === 0 ? (
+          text == 0 ? (
             <a>Draft</a>
-          ) : text === 1 ? (
+          ) : text == 1 ? (
             <a>Pending Approval</a>
-          ) : text === 4 ? (
+          ) : text == 4 ? (
             <a>Approved</a>
-          ) : text === 5 ? (
+          ) : text == 5 ? (
             <a>Canceled</a>
           ) : (
             <a>Rejected</a>
@@ -193,7 +193,7 @@ export class HRStatusReportDetail extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -209,7 +209,7 @@ export class HRStatusReportDetail extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -223,7 +223,7 @@ export class HRStatusReportDetail extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -235,13 +235,13 @@ export class HRStatusReportDetail extends Component {
           dataIndex: "districtStatus",
           key: "districtStatus",
           render: (text) =>
-            text === 0 ? (
+            text == 0 ? (
               <a>Draft</a>
-            ) : text === 1 ? (
+            ) : text == 1 ? (
               <a>Pending Approval</a>
-            ) : text === 4 ? (
+            ) : text == 4 ? (
               <a>Approved</a>
-            ) : text === 5 ? (
+            ) : text == 5 ? (
               <a>Canceled</a>
             ) : (
               <a>Rejected</a>
@@ -263,11 +263,11 @@ export class HRStatusReportDetail extends Component {
     };
   }
   StoreCollector = (e,id) => {
-    if (this.state.role === "admin_role") {
+    if (this.state.role == "admin_role") {
         this.props.history.push({
           pathname: "/hrh/HRStatusReportDetails/HRStatusReport",
         });
-      } else if (this.state.role === "state_role") {
+      } else if (this.state.role == "state_role") {
         this.props.history.push({
           pathname: "/hrh/HRStatusReportDetails/state",
         });
@@ -292,7 +292,7 @@ export class HRStatusReportDetail extends Component {
     }).then((response) => {
       this.setState({ states: response.data });
     });
-    if (this.state.role === "district_role") {
+    if (this.state.role == "district_role") {
       axios({
         url: `${process.env.REACT_APP_API_URL}HRStatusReportDistricts`,
         method: "GET",
@@ -300,7 +300,7 @@ export class HRStatusReportDetail extends Component {
         this.setState({ userDistrict: response.data });
       });
     }
-    if (this.state.role === "state_role") {
+    if (this.state.role == "state_role") {
       axios({
         url: `${process.env.REACT_APP_API_URL}HRStatusReportStates`,
         method: "GET",
@@ -310,12 +310,12 @@ export class HRStatusReportDetail extends Component {
     }
   }
   newCollector = () => {
-    if(this.state.role==="admin_role"){
+    if(this.state.role=="admin_role"){
       this.props.history.push({
         pathname: "/hrh/HRStatusReportDetails/HRStatusReport",
       });
     }
-    else if(this.state.role==="state_role"){
+    else if(this.state.role=="state_role"){
       this.props.history.push({
         pathname: "/hrh/HRStatusReportDetails/state",
       });
@@ -341,9 +341,9 @@ export class HRStatusReportDetail extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Status Report - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Status Report - State Details</h4>
                   ) : (
                     <h4>Human Resource Status Report - District</h4>
@@ -352,7 +352,7 @@ export class HRStatusReportDetail extends Component {
               </CCardHeader>
               <CCard>
                 <CCardBody>
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <Table
                       dataSource={this.state.users.sort((a, b) =>
                         a.id < b.id ? 1 : -1
@@ -360,7 +360,7 @@ export class HRStatusReportDetail extends Component {
                       rowKey={"id"}
                       columns={this.state.columnsNational}
                     />
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <Table
                       dataSource={this.state.userState.sort((a, b) =>
                         a.id < b.id ? 1 : -1

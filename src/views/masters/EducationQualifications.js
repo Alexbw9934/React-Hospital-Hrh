@@ -83,20 +83,20 @@ class EducationQualifications extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.name === "") errors.name = "Please enter the name.";
-    if (value.educationqualicode === 0)
+    if (value.name == "") errors.name = "Please enter the name.";
+    if (value.educationqualicode == 0)
       errors.educationqualicode = "Select the Education Category.";
     return errors;
   };
   submitData = (e) => {
     e.preventDefault();
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.educationQualificationList.map((data) => {
-        if (this.state.value.name === data.name) return false;
+        if (this.state.value.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -150,15 +150,15 @@ class EducationQualifications extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "") errors.name = "Please enter the name.";
-    if (this.state.editValue.educationqualicode === 0)
+    if (this.state.editValue.name == "") errors.name = "Please enter the name.";
+    if (this.state.editValue.educationqualicode == 0)
       errors.educationqualicode = "Select the Education Category.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -213,7 +213,7 @@ class EducationQualifications extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -230,7 +230,7 @@ class EducationQualifications extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/EducationQualifications/${id}`, {
@@ -525,7 +525,7 @@ class EducationQualifications extends React.Component {
                           {this.props.positionList &&
                             this.props.positionList
                               .filter(
-                                (data) => data.id === user.educationqualicode
+                                (data) => data.id == user.educationqualicode
                               )
                               .map((id) => {
                                 return id.name;
@@ -538,7 +538,7 @@ class EducationQualifications extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -553,7 +553,7 @@ class EducationQualifications extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

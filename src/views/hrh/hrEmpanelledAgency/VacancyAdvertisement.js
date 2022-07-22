@@ -100,10 +100,10 @@ class VacancyAdvertisement extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -185,51 +185,51 @@ class VacancyAdvertisement extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.nameHrEmpanelledAgency === "")
+    if (obj.nameHrEmpanelledAgency == "")
       errors.nameHrEmpanelledAgency =
         "Please enter name of HR empanelled agency.";
-    if (obj.addressOfHrAgency === "")
+    if (obj.addressOfHrAgency == "")
       errors.addressOfHrAgency = "Please enter the adress of HR agency.";
-    if (obj.contactNoHrAgency === 0)
+    if (obj.contactNoHrAgency == 0)
       errors.contactNoHrAgency = "Please enter the contact no of HR agency.";
-    if (obj.landlineNo === 0)
+    if (obj.landlineNo == 0)
       errors.landlineNo = "Please enter the Landline number.";
-    if (obj.faxNo === 0) errors.faxNo = "Please enter fax number.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.typeofVacancyAdvertisementId === 0)
+    if (obj.faxNo == 0) errors.faxNo = "Please enter fax number.";
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.typeofVacancyAdvertisementId == 0)
       errors.typeofVacancyAdvertisementId =
         "Please select type of vacancy advertisement.";
-    if (obj.typeofPostId === 0)
+    if (obj.typeofPostId == 0)
       errors.typeofPostId = "Please select type of post.";
     if (
-      obj.totalNoVacancy === 0 ||
+      obj.totalNoVacancy == 0 ||
       obj.totalNoVacancy < 0 ||
       obj.totalNoVacancy.length > 10
     )
       errors.totalNoVacancy = "Please enter total number of vacancy.";
-    if (obj.linkAdvertisement === "")
+    if (obj.linkAdvertisement == "")
       errors.linkAdvertisement = "Please enter URL.";
-    if (obj.titleAdvertisement === "")
+    if (obj.titleAdvertisement == "")
       errors.titleAdvertisement = "Please enter title adverstisement.";
-    // if (obj.upload1 === "") errors.upload1 = "Please upload the file.";
-    if (obj.openDate === "") errors.openDate = "Please pick open date.";
-    if (obj.closeDate === 0) errors.closeDate = "Please pick close date.";
-    if (obj.changeClosingAdver === "")
+    // if (obj.upload1 == "") errors.upload1 = "Please upload the file.";
+    if (obj.openDate == "") errors.openDate = "Please pick open date.";
+    if (obj.closeDate == 0) errors.closeDate = "Please pick close date.";
+    if (obj.changeClosingAdver == "")
       errors.changeClosingAdver = "Please enter change closing advertisement.";
-    // if (obj.upload2 === "") errors.upload2 = "Please upload file.";
-    if (obj.dateIssue === "") errors.dateIssue = "Please enter date issue.";
+    // if (obj.upload2 == "") errors.upload2 = "Please upload file.";
+    if (obj.dateIssue == "") errors.dateIssue = "Please enter date issue.";
     if (
-      obj.corrigendum === 0 ||
+      obj.corrigendum == 0 ||
       obj.corrigendum < 0 ||
       obj.corrigendum.length > 10
     )
       errors.corrigendum = "Please enter corrigendum.";
-    if ((obj.howmanyTime === 0 && obj.corrigendum === 1) || obj.howmanyTime < 0)
+    if ((obj.howmanyTime == 0 && obj.corrigendum == 1) || obj.howmanyTime < 0)
       errors.howmanyTime = "Please enter how many times.";
-    if (obj.reasonIssue === "")
+    if (obj.reasonIssue == "")
       errors.reasonIssue = "Please enter reason issue.";
-    // if (obj.upload3 === "") errors.upload3 = "Please upload file.";
-    if (obj.statusofVacancyAdvertisementId === 0)
+    // if (obj.upload3 == "") errors.upload3 = "Please upload file.";
+    if (obj.statusofVacancyAdvertisementId == 0)
       errors.statusofVacancyAdvertisementId =
         "Please select status of vacancy advertisement.";
     return errors;
@@ -274,7 +274,7 @@ class VacancyAdvertisement extends Component {
     );
     const errors = this.validateNational();
     // console.log(errors, "errors");
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -771,7 +771,7 @@ class VacancyAdvertisement extends Component {
                             <span
                               className="invalid-feedback"
                               style={{
-                                display: errors.upload1 === 0 ? "none" : "block",
+                                display: errors.upload1 == 0 ? "none" : "block",
                               }}
                             >
                               {errors.upload1}
@@ -795,7 +795,7 @@ class VacancyAdvertisement extends Component {
                               <Col>
                                 <CInput
                                   value={
-                                    obj.openDate === ""
+                                    obj.openDate == ""
                                       ? obj.openDate
                                       : obj.openDate.split("T")[0] || ""
                                   }
@@ -815,7 +815,7 @@ class VacancyAdvertisement extends Component {
                               <Col>
                                 <CInput
                                   value={
-                                    obj.closeDate === ""
+                                    obj.closeDate == ""
                                       ? obj.closeDate
                                       : obj.closeDate.split("T")[0] || ""
                                   }
@@ -848,7 +848,7 @@ class VacancyAdvertisement extends Component {
                                 })
                               }
                               value={
-                                obj.changeClosingAdver === 0
+                                obj.changeClosingAdver == 0
                                   ? obj.changeClosingAdver
                                   : obj.changeClosingAdver.toString() || ""
                               }
@@ -860,7 +860,7 @@ class VacancyAdvertisement extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.changeClosingAdver === 0
+                                  errors.changeClosingAdver == 0
                                     ? "none"
                                     : "block",
                               }}
@@ -888,7 +888,7 @@ class VacancyAdvertisement extends Component {
                               name="illustrateReason"
                               onChange={this.handleChange}
                               disabled={
-                                obj.changeClosingAdver === 1 ? false : true
+                                obj.changeClosingAdver == 1 ? false : true
                               }
                               invalid={errors.illustrateReason ? true : false}
                             />
@@ -919,7 +919,7 @@ class VacancyAdvertisement extends Component {
                             <span
                               className="invalid-feedback"
                               style={{
-                                display: errors.upload2 === 0 ? "none" : "block",
+                                display: errors.upload2 == 0 ? "none" : "block",
                               }}
                             >
                               {errors.upload2}
@@ -950,7 +950,7 @@ class VacancyAdvertisement extends Component {
                                 })
                               }
                               value={
-                                obj.corrigendum === 0
+                                obj.corrigendum == 0
                                   ? obj.corrigendum
                                   : obj.corrigendum.toString() || ""
                               }
@@ -962,7 +962,7 @@ class VacancyAdvertisement extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.corrigendum === 0 ? "none" : "block",
+                                  errors.corrigendum == 0 ? "none" : "block",
                               }}
                             >
                               {errors.corrigendum}
@@ -982,7 +982,7 @@ class VacancyAdvertisement extends Component {
                               value={obj.howmanyTime || ""}
                               type="number"
                               name="howmanyTime"
-                              disabled={obj.corrigendum === 1 ? false : true}
+                              disabled={obj.corrigendum == 1 ? false : true}
                               onChange={this.handleChange}
                               invalid={errors.howmanyTime ? true : false}
                             />
@@ -1002,7 +1002,7 @@ class VacancyAdvertisement extends Component {
                           <Col>
                             <CInput
                               value={
-                                obj.dateIssue === ""
+                                obj.dateIssue == ""
                                   ? obj.dateIssue
                                   : obj.dateIssue.split("T")[0] || ""
                               }
@@ -1048,7 +1048,7 @@ class VacancyAdvertisement extends Component {
                             <span
                               className="invalid-feedback"
                               style={{
-                                display: errors.upload2 === 0 ? "none" : "block",
+                                display: errors.upload2 == 0 ? "none" : "block",
                               }}
                             >
                               {errors.upload3}

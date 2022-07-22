@@ -63,7 +63,7 @@ export class StateDraft extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(ob.fromDate).getFullYear()}-${new Date(
                     ob.toDate
@@ -79,7 +79,7 @@ export class StateDraft extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -119,7 +119,7 @@ export class StateDraft extends Component {
     }).then((response) => {
       console.log(response.data, "response");
       let arr = response.data.filter(
-        (data) => data.formStatus === 4 && data.stateStatus === 0
+        (data) => data.formStatus == 4 && data.stateStatus == 0
       );
       console.log(arr, "response array");
       this.setState({ users: arr });

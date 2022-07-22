@@ -58,7 +58,7 @@ export class SDNHMDetails extends Component {
           render: (text, object) => (
             <a>
               {this.state.placeOfPosition
-                .filter((data) => data.id === object.placeofPostId)
+                .filter((data) => data.id == object.placeofPostId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -72,7 +72,7 @@ export class SDNHMDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -86,7 +86,7 @@ export class SDNHMDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -100,7 +100,7 @@ export class SDNHMDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -114,7 +114,7 @@ export class SDNHMDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.typeFacilityList
-                .filter((data) => data.id === obj.typeofFacilityOfficeId)
+                .filter((data) => data.id == obj.typeofFacilityOfficeId)
                 .map((id) => {
                   return id.facilityType;
                 })}
@@ -155,7 +155,7 @@ export class SDNHMDetails extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYearId)
+                .filter((item) => item.id == object.financialYearId)
                 .map((ob) => {
                   return ob.name;
                 })}
@@ -169,7 +169,7 @@ export class SDNHMDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -188,7 +188,7 @@ export class SDNHMDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.placeOfPostList
-                .filter((data) => data.id === obj.placeOfPostId)
+                .filter((data) => data.id == obj.placeOfPostId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -249,7 +249,7 @@ export class SDNHMDetails extends Component {
     });
   };
   newCollector = () => {
-      if(this.state.role==="district_role")
+      if(this.state.role=="district_role")
    { this.props.history.push({
       pathname: "/hrh/humanResourceProposalReports/SDNHM",
     });}
@@ -274,9 +274,9 @@ export class SDNHMDetails extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Service Delivery - NHM-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Service Delivery - NHM - State Details</h4>
                   ) : (
                     <h4>Service Delivery - NHM - District</h4>

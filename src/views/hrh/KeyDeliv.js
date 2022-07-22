@@ -184,7 +184,7 @@ class KeyDeliv extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.keyDeliverableId === paramId
+          (data) => data.keyDeliverableId == paramId
         );
         console.log(arr, "response from table view");
         this.setState({ keydeil: arr });
@@ -274,7 +274,7 @@ class KeyDeliv extends Component {
             body: JSON.stringify(data),
           }
         ).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -659,7 +659,7 @@ class KeyDeliv extends Component {
                       </CFormGroup>
                     </CForm>
                   )}
-                  {csvOrmanually === 2 ? (
+                  {csvOrmanually == 2 ? (
                     <KeyCsv
                       objId={propState.hId}
                       kId={propState.kId}
@@ -811,9 +811,9 @@ class KeyDeliv extends Component {
                                         }
                                         value={data.divisionId || ""}
                                         disabled={
-                                          data.placeofPostId === 1
+                                          data.placeofPostId == 1
                                             ? true
-                                            : data.placeofPostId === 2
+                                            : data.placeofPostId == 2
                                             ? true
                                             : propState.data
                                             ? true
@@ -854,9 +854,9 @@ class KeyDeliv extends Component {
                                           errors.districtId ? true : false
                                         }
                                         disabled={
-                                          data.placeofPostId === 1
+                                          data.placeofPostId == 1
                                             ? true
-                                            : data.placeofPostId === 3
+                                            : data.placeofPostId == 3
                                             ? true
                                             : propState.data
                                             ? true
@@ -1068,7 +1068,7 @@ class KeyDeliv extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i===0 ||propState.data ? null : (
+                                  {i==0 ||propState.data ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"

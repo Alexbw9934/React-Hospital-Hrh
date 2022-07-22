@@ -76,7 +76,7 @@ class EditPosition extends React.Component {
       },
     })
       .then((response) => {
-        if (response && response.status === 204) {
+        if (response && response.status == 204) {
           this.setState({
             submitting: false,
           });

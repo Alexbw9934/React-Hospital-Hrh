@@ -62,7 +62,7 @@ export class AgencyRegistrationDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -122,7 +122,7 @@ export class AgencyRegistrationDetails extends Component {
           render: (text, obj) => (
             <a>
             {this.state.users
-              .filter((data) => data.id === obj.agencyRegistrationId)
+              .filter((data) => data.id == obj.agencyRegistrationId)
               .map((id) => {
                 return id.nameHrAgency;
               })}
@@ -136,7 +136,7 @@ export class AgencyRegistrationDetails extends Component {
           render: (text, obj) => (
             <a>
             {this.props.stateList
-              .filter((data) => data.id === obj.stateId)
+              .filter((data) => data.id == obj.stateId)
               .map((id) => {
                 return id.name;
               })}
@@ -216,9 +216,9 @@ export class AgencyRegistrationDetails extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Agency Registration-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Agency Registration- State Details</h4>
                   ) : (
                     <h4>Agency Registration - District</h4>

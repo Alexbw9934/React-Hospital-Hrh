@@ -102,10 +102,10 @@ class AdvertisementReport extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -176,34 +176,34 @@ class AdvertisementReport extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.submissionDate === "")
+    if (obj.submissionDate == "")
       errors.submissionDate = "Please pick date of submission.";
-    if (obj.financialYearId === 0)
+    if (obj.financialYearId == 0)
       errors.financialYearId = "Please enter the financial year.";
-    if (obj.reporting === "") errors.reporting = "Please enter reporting priod.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.districtId === 0) errors.districtId = "Please select District.";
-    if (obj.typeOfServiceAssoc === 0)
+    if (obj.reporting == "") errors.reporting = "Please enter reporting priod.";
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.districtId == 0) errors.districtId = "Please select District.";
+    if (obj.typeOfServiceAssoc == 0)
       errors.typeOfServiceAssoc = "Please select Type of Service Association.";
-    if (obj.placeOfPostId === 0)
+    if (obj.placeOfPostId == 0)
       errors.placeOfPostId = "Please select place of post.";
-    if (obj.typeOfFacilityOfficeId === 0)
+    if (obj.typeOfFacilityOfficeId == 0)
       errors.typeOfFacilityOfficeId = "Please select type of facility.";
-    if (obj.categoryofPostionId === 0)
+    if (obj.categoryofPostionId == 0)
       errors.categoryofPostionId = "Please select type of facility.";
-    if (obj.namePost === "") errors.namePost = "Please enter name of post.";
-    if (obj.totalNoPosSanc === 0)
+    if (obj.namePost == "") errors.namePost = "Please enter name of post.";
+    if (obj.totalNoPosSanc == 0)
       errors.totalNoPosSanc = "Please enter number of post sanction.";
     if (obj.totalNoPosSanc < 0)
       errors.totalNoPosSanc = "Please enter a valid number.";
-    if (obj.totalNoPerPlac === 0 || obj.totalNoPerPlac < 0)
+    if (obj.totalNoPerPlac == 0 || obj.totalNoPerPlac < 0)
       errors.totalNoPerPlac = "Please enter Total Number of person in place.";
-    if (obj.numberofOldSanc === 0 || obj.numberofOldSanc < 0)
+    if (obj.numberofOldSanc == 0 || obj.numberofOldSanc < 0)
       errors.numberofOldSanc = "Please enter number of old sanction.";
-    if (obj.totalNumberofVactPos === 0 || obj.totalNumberofVactPos < 0)
+    if (obj.totalNumberofVactPos == 0 || obj.totalNumberofVactPos < 0)
       errors.totalNumberofVactPos =
         "Please enter total number of old position approve.";
-    if (obj.numberofPosRecutUnder === 0 || obj.numberofPosRecutUnder < 0)
+    if (obj.numberofPosRecutUnder == 0 || obj.numberofPosRecutUnder < 0)
       errors.numberofPosRecutUnder = "Please enter number of post vacant.";
     return errors;
   };
@@ -211,7 +211,7 @@ class AdvertisementReport extends Component {
     e.preventDefault();
     const errors = this.validateNational();
     console.log(errors, "errors");
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -357,7 +357,7 @@ class AdvertisementReport extends Component {
                                 <CInput
                                   type="date"
                                   value={
-                                    obj.reportingFrom === ""
+                                    obj.reportingFrom == ""
                                       ? obj.reportingFrom || ""
                                       : obj.reportingFrom.split("T")[0] || ""
                                   }
@@ -372,7 +372,7 @@ class AdvertisementReport extends Component {
                                 <CInput
                                   type="date"
                                   value={
-                                    obj.reportingTo === ""
+                                    obj.reportingTo == ""
                                       ? obj.reportingFrom || ""
                                       : obj.reportingFrom.split("T")[0] || ""
                                   }
@@ -403,7 +403,7 @@ class AdvertisementReport extends Component {
                               placeholder="Date"
                               onChange={this.handleChange}
                               value={
-                                obj.submissionDate === ""
+                                obj.submissionDate == ""
                                   ? obj.submissionDate || ""
                                   : obj.submissionDate.split("T")[0] || ""
                               }
@@ -754,7 +754,7 @@ class AdvertisementReport extends Component {
                               }
                             >
                               <option value="0">-Select-</option>
-                              {this.state.typeFacility && obj.typeOfPostId === 2
+                              {this.state.typeFacility && obj.typeOfPostId == 2
                                 ? this.state.typeFacility.map((item, i) => (
                                     <option key={item.id} value={item.id}>
                                       {item.name}

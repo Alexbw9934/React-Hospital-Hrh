@@ -147,7 +147,7 @@ class AddPerformanceAppraisal extends React.Component {
                 <h4>Add Performance Appraisal</h4>
               </CCardHeader>
               <CCardBody>
-                {role === "district_role" ? (
+                {role == "district_role" ? (
                   <CForm onSubmit={this.handleSubmit}>
                     <CFormGroup row>
                       <CCol>

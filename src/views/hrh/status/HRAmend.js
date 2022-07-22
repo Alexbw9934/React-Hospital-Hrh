@@ -58,7 +58,7 @@ export class HRAmend extends Component {
           render: (text, object) => (
             <a>
               {this.state.placeOfPosition
-                .filter((data) => data.id === object.placeofPostId)
+                .filter((data) => data.id == object.placeofPostId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -72,7 +72,7 @@ export class HRAmend extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -86,7 +86,7 @@ export class HRAmend extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -100,7 +100,7 @@ export class HRAmend extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -114,7 +114,7 @@ export class HRAmend extends Component {
           render: (text, obj) => (
             <a>
               {this.props.typeFacilityList
-                .filter((data) => data.id === obj.typeofFacilityOfficeId)
+                .filter((data) => data.id == obj.typeofFacilityOfficeId)
                 .map((id) => {
                   return id.facilityType;
                 })}
@@ -160,7 +160,7 @@ export class HRAmend extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return `${new Date(
                     ob.fromDate
@@ -177,7 +177,7 @@ export class HRAmend extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -220,7 +220,7 @@ export class HRAmend extends Component {
       method: "GET",
     }).then((response) => {
       console.log(response.data);
-      let arr=response.data.filter(data=>data.formStatus===5)
+      let arr=response.data.filter(data=>data.formStatus==5)
       this.setState({ users: arr });
     });
     axios({
@@ -239,17 +239,17 @@ export class HRAmend extends Component {
     });
   };
   newCollector = () => {
-    if(this.state.role==="admin_role"){
+    if(this.state.role=="admin_role"){
       this.props.history.push({
         pathname: "/hrh/HumanResourceProposalDetails/HumanResourceProposalNational",
       });
     }
-    else if(this.state.role==="state_role"){
+    else if(this.state.role=="state_role"){
       this.props.history.push({
         pathname: "/hrh/HumanResourceProposalDetails/HumanResourceProposalState",
       });
     }
-    else if(this.state.role==="district_role"){
+    else if(this.state.role=="district_role"){
     this.props.history.push({
       pathname: "/hrh/HumanResourceProposalDetails/HRProposalDistrict",
     });
@@ -270,9 +270,9 @@ export class HRAmend extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Proposal - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Proposal - State Details</h4>
                   ) : (
                     <h4>Human Resource Proposal - District</h4>
@@ -281,7 +281,7 @@ export class HRAmend extends Component {
               </CCardHeader>
               <CCard>
                 <CCardBody>
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <Table
                       dataSource={this.state.users.sort((a, b) =>
                         a.id < b.id ? 1 : -1
@@ -289,7 +289,7 @@ export class HRAmend extends Component {
                       rowKey={"id"}
                       columns={this.state.columnsNational}
                     />
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <Table
                       dataSource={this.state.userState.sort((a, b) =>
                         a.id < b.id ? 1 : -1

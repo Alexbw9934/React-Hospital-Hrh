@@ -95,11 +95,11 @@ class TypeofFacility extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    // if (value.placeofPostId === 0)
+    // if (value.placeofPostId == 0)
     //   errors.placeofPostId = "Select the Place of post.";
-    if (value.facilityType === "")
+    if (value.facilityType == "")
       errors.facilityType = "Please enter Facility Type.";
-    if (value.typeofPostId === 0)
+    if (value.typeofPostId == 0)
       errors.typeofPostId = "Please enter Type of Post.";
     return errors;
   };
@@ -107,13 +107,13 @@ class TypeofFacility extends React.Component {
     e.preventDefault();
     const value = this.state;
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       console.log("########", value.value);
       let check = this.props.typeFacilityList.map((data) => {
-        if (value.value.facilityType === data.facilityType) return false;
+        if (value.value.facilityType == data.facilityType) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -170,20 +170,20 @@ class TypeofFacility extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.facilityType === "")
+    if (this.state.editValue.facilityType == "")
       errors.facilityType = "Please enter the name.";
-    if (this.state.editValue.programTypeId === 0)
+    if (this.state.editValue.programTypeId == 0)
       errors.programTypeId = "Select the Program Type.";
-    if (this.state.editValue.placeofPostId === 0)
+    if (this.state.editValue.placeofPostId == 0)
       errors.placeofPostId = "Select the Program Type.";
-    if (this.state.editValue.typeofPostId === 0)
+    if (this.state.editValue.typeofPostId == 0)
       errors.typeofPostId = "Please enter Type of Post.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -246,7 +246,7 @@ class TypeofFacility extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -263,7 +263,7 @@ class TypeofFacility extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/TypeofFacilityOffices/${id}`, {
@@ -399,11 +399,11 @@ class TypeofFacility extends React.Component {
                           id="programTypeId"
                           name="programTypeId"
                           placeholder="Select"
-                          disabled={editValue.typeofPostId === 2 ? false : true}
+                          disabled={editValue.typeofPostId == 2 ? false : true}
                           onChange={this.updateChange}
                           value={editValue.programTypeId || ""}
                           invalid={
-                            this.state.value.typeofPostId === 2 &&
+                            this.state.value.typeofPostId == 2 &&
                             errors.programTypeId
                               ? true
                               : false
@@ -550,16 +550,16 @@ class TypeofFacility extends React.Component {
                           name="programTypeId"
                           placeholder="Select"
                           disabled={
-                            this.state.value.typeofPostId === 2 ? false : true
+                            this.state.value.typeofPostId == 2 ? false : true
                           }
                           onChange={(e) =>
-                            this.state.value.typeofPostId === 2
+                            this.state.value.typeofPostId == 2
                               ? this.handleChange(e)
                               : ""
                           }
                           value={this.state.value.programTypeId || ""}
                           invalid={
-                            this.state.value.typeofPostId === 2 &&
+                            this.state.value.typeofPostId == 2 &&
                             errors.programTypeId
                               ? true
                               : false
@@ -688,7 +688,7 @@ class TypeofFacility extends React.Component {
                         render={(text, user) => (
                           <>
                             {this.props.postList
-                              .filter((data) => data.id === user.typeofPostId)
+                              .filter((data) => data.id == user.typeofPostId)
                               .map((id) => {
                                 return id.name;
                               })}
@@ -703,7 +703,7 @@ class TypeofFacility extends React.Component {
                           <>
                             {" "}
                             {this.props.programTypeList
-                              .filter((data) => data.id === user.programTypeId)
+                              .filter((data) => data.id == user.programTypeId)
                               .map((id) => {
                                 return id.name;
                               })}
@@ -715,7 +715,7 @@ class TypeofFacility extends React.Component {
                         dataIndex="status"
                         key="status"
                         render={(status) => (
-                          <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                          <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                         )}
                       ></Table.Column>
                       <Table.Column
@@ -730,7 +730,7 @@ class TypeofFacility extends React.Component {
                             >
                               Edit
                             </CButton>
-                            {user.status.toString() === 1 ? (
+                            {user.status.toString() == 1 ? (
                               <CButton
                                 color="danger"
                                 style={{ backgroundColor: "red" }}

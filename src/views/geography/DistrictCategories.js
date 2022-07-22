@@ -69,7 +69,7 @@ class DistrictCategory extends React.Component {
   };
   validate = () => {
     let errors = {};
-    if (this.state.name === "") errors.name = "Please enter the name.";
+    if (this.state.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   submitData = (e) => {
@@ -78,9 +78,9 @@ class DistrictCategory extends React.Component {
     const name = this.state;
     console.log(name.name);
     let check = this.props.districtCategoryList.map((data) => {
-      if (name.name === data.name) return false;
+      if (name.name == data.name) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {
           name: "",
@@ -135,16 +135,16 @@ class DistrictCategory extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "") errors.name = "Please enter the name.";
+    if (this.state.editValue.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   updateData = (e, id) => {
     e.preventDefault();
     const errors = this.updateValidate();
     let check = this.props.districtCategoryList.map((data) => {
-      if (this.state.editValue.name === data.name) return false;
+      if (this.state.editValue.name == data.name) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {
           name: "",
@@ -204,7 +204,7 @@ class DistrictCategory extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -221,7 +221,7 @@ class DistrictCategory extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/DistrictCategories/${id}`, {
@@ -434,7 +434,7 @@ class DistrictCategory extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -449,7 +449,7 @@ class DistrictCategory extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

@@ -190,13 +190,13 @@ class HumanResourceProposalNational extends Component {
       // title:"",
       content: "Are you Sure?",
       onOk: () => {
-        return status === 1
+        return status == 1
           ? this.changeStatus(value)
-          : status === 4
+          : status == 4
           ? this.approv(value)
-          : status === 6
+          : status == 6
           ? this.cancel(value)
-          : status === 5
+          : status == 5
           ? this.need(value)
           : console.log("none");
       },
@@ -222,23 +222,22 @@ class HumanResourceProposalNational extends Component {
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.stateId === stateId
+          (data) => data.stateId == stateId
         );
         this.setState({ numberTableRows: arr });
-        console.log("++++++++", arr);
       });
       axios({
         url: `${process.env.REACT_APP_API_URL}FinancialStatus`,
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         console.log(arr, "checking array");
         let obj = {};
         const r = arr.map((data) => {
           let val = this.props.financialStatusList
-            .filter((y) => y.id === data.budget)
+            .filter((y) => y.id == data.budget)
             .map((x) => x.name);
           obj = {
             ...obj,
@@ -259,7 +258,7 @@ class HumanResourceProposalNational extends Component {
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         this.setState({ tableRows: arr });
       });
@@ -268,7 +267,7 @@ class HumanResourceProposalNational extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         this.setState({ amendList: arr });
       });
@@ -343,7 +342,7 @@ class HumanResourceProposalNational extends Component {
   handleTablePlace = (e, i) => {
     const { name, value } = e.target;
     let numberTableRows = [...this.state.numberTableRows];
-    if (name === "categoryofPostId") {
+    if (name == "categoryofPostId") {
       fetch(`${process.env.REACT_APP_API_URL}Posts/PostIdList?id=${value}`, {
         method: "GET",
         headers: {
@@ -372,45 +371,45 @@ class HumanResourceProposalNational extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.submission === "")
+    if (obj.submission == "")
       errors.submission = "Please pick date of submission.";
-    if (obj.financialYear === 0)
+    if (obj.financialYear == 0)
       errors.financialYear = "Please enter the financial year.";
-    if (obj.typeofApproval === "")
+    if (obj.typeofApproval == "")
       errors.typeofApproval = "Please select Type of Approval.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.numberOfDivDist === "")
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.numberOfDivDist == "")
       errors.numberOfDivDist = "Please enter Division.";
-    // if (obj.districtCategoryId === 0)
+    // if (obj.districtCategoryId == 0)
     //   errors.districtCategoryId = "Please select District.";
-    if (obj.divsionId === "") errors.divsionId = "Please select Division.";
-    if (obj.programType === 0)
+    if (obj.divsionId == "") errors.divsionId = "Please select Division.";
+    if (obj.programType == 0)
       errors.programType = "Please select programe type.";
-    if (obj.typeofPost === 0) errors.typeofPost = "Please select type of post.";
-    if (obj.categoryofPostion === 0)
+    if (obj.typeofPost == 0) errors.typeofPost = "Please select type of post.";
+    if (obj.categoryofPostion == 0)
       errors.categoryofPostion = "Please select category of post.";
-    if (obj.fmr === 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
-    if (obj.numberofPostSanc === 0)
+    if (obj.fmr == 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
+    if (obj.numberofPostSanc == 0)
       errors.numberofPostSanc = "Please enter number of post sanction.";
     if (obj.numberofPostSanc < 0)
       errors.numberofPostSanc = "Please enter a valid number.";
-    if (obj.numberofNewPost === 0 || obj.numberofNewPost < 0)
+    if (obj.numberofNewPost == 0 || obj.numberofNewPost < 0)
       errors.numberofNewPost = "Please enter number of new post.";
-    if (obj.numberofOldSanc === 0 || obj.numberofOldSanc < 0)
+    if (obj.numberofOldSanc == 0 || obj.numberofOldSanc < 0)
       errors.numberofOldSanc = "Please enter number of old sanction.";
-    if (obj.totalNoPostionApprov === 0 || obj.totalNoPostionApprov < 0)
+    if (obj.totalNoPostionApprov == 0 || obj.totalNoPostionApprov < 0)
       errors.totalNoPostionApprov =
         "Please enter total number of old position approve.";
-    if (obj.numberofPostVaccant === 0 || obj.numberofPostVaccant < 0)
+    if (obj.numberofPostVaccant == 0 || obj.numberofPostVaccant < 0)
       errors.numberofPostVaccant = "Please enter number of post vacant.";
-    if (obj.nameofPost === "") errors.nameofPost = "Please enter name of post.";
+    if (obj.nameofPost == "") errors.nameofPost = "Please enter name of post.";
     if (
-      obj.totalBudgetAprrINR === 0 ||
+      obj.totalBudgetAprrINR == 0 ||
       obj.totalBudgetAprrINR < 0 ||
       obj.totalBudgetAprrINR.length > 10
     )
       errors.totalBudgetAprrINR = "Please enter total budget INR.";
-    if (obj.numberofNewPostion === 0 || obj.numberofNewPostion < 0)
+    if (obj.numberofNewPostion == 0 || obj.numberofNewPostion < 0)
       errors.numberofNewPostion = "Please enter number of new position.";
     return errors;
   };
@@ -461,7 +460,7 @@ class HumanResourceProposalNational extends Component {
               },
               body: JSON.stringify(data),
             }).then((resp) => {
-              if (resp.status === 404) {
+              if (resp.status == 404) {
                 this.setState({
                   errorMsg: true,
                 });
@@ -529,7 +528,7 @@ class HumanResourceProposalNational extends Component {
                 },
                 body: JSON.stringify(item),
               }).then((resp) => {
-                if (resp.status === 404) {
+                if (resp.status == 404) {
                   this.setState({
                     errorMsg: true,
                   });
@@ -578,7 +577,7 @@ class HumanResourceProposalNational extends Component {
               },
               body: JSON.stringify(data),
             }).then((resp) => {
-              if (resp.status === 404) {
+              if (resp.status == 404) {
                 this.setState({
                   errorMsg: true,
                 });
@@ -645,10 +644,10 @@ class HumanResourceProposalNational extends Component {
         body: JSON.stringify(this.state.obj),
       })
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status == 201) {
             console.log("SUCCESSS");
             return response.json();
-          } else if (response.status === 404) {
+          } else if (response.status == 404) {
             throw new Error(`Error! status: ${response.status}`);
           }
         })
@@ -670,7 +669,7 @@ class HumanResourceProposalNational extends Component {
                 },
                 body: JSON.stringify(data),
               }).then((resp) => {
-                if (resp.status === 404) {
+                if (resp.status == 404) {
                   this.setState({
                     errorMsg: true,
                   });
@@ -725,7 +724,7 @@ class HumanResourceProposalNational extends Component {
                   },
                   body: JSON.stringify(item),
                 }).then((resp) => {
-                  if (resp.status === 404) {
+                  if (resp.status == 404) {
                     this.setState({
                       errorMsg: true,
                     });
@@ -761,7 +760,7 @@ class HumanResourceProposalNational extends Component {
                 },
                 body: JSON.stringify(data),
               }).then((resp) => {
-                if (resp.status === 404) {
+                if (resp.status == 404) {
                   this.setState({
                     errorMsg: true,
                   });
@@ -845,7 +844,7 @@ class HumanResourceProposalNational extends Component {
       },
     });
     console.log(this.props.financialStatusList, "arra");
-    if (e.target.checked === true) {
+    if (e.target.checked == true) {
       let ob = {};
       let arr = this.props.programTypeList.map((val, i) => {
         return this.props.financialStatusList.map((item) => {
@@ -862,10 +861,10 @@ class HumanResourceProposalNational extends Component {
         programList: arr,
       });
     }
-    if (e.target.name === "programType") {
+    if (e.target.name == "programType") {
       let ob = {};
       let arr = this.props.programTypeList
-        .filter((data) => data.id === e.target.value)
+        .filter((data) => data.id == e.target.value)
         .map((val, i) => {
           return this.props.financialStatusList.map((item) => {
             ob = {
@@ -889,7 +888,7 @@ class HumanResourceProposalNational extends Component {
       ...tableRows[i],
       [name]: value,
     };
-    if (name === "categoryofPostId") {
+    if (name == "categoryofPostId") {
       fetch(`${process.env.REACT_APP_API_URL}Posts/PostIdList?id=${value}`, {
         method: "GET",
         headers: {
@@ -937,7 +936,7 @@ class HumanResourceProposalNational extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           message.success("Changed Successfully!");
           console.log("SUCCESSS");
           this.setState({ statusMsg: true });
@@ -946,7 +945,7 @@ class HumanResourceProposalNational extends Component {
           }, 10000);
           this.getObject();
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -965,10 +964,10 @@ class HumanResourceProposalNational extends Component {
         }
       )
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status == 201) {
             console.log("SUCCESSS");
             return response.json();
-          } else if (response.status === 404) {
+          } else if (response.status == 404) {
             throw new Error(`Error! status: ${response.status}`);
           }
         })
@@ -987,7 +986,7 @@ class HumanResourceProposalNational extends Component {
                 },
                 body: JSON.stringify(data),
               }).then((resp) => {
-                if (resp.status === 404) {
+                if (resp.status == 404) {
                   this.setState({
                     errorMsg: true,
                   });
@@ -1039,7 +1038,7 @@ class HumanResourceProposalNational extends Component {
                   },
                   body: JSON.stringify(item),
                 }).then((resp) => {
-                  if (resp.status === 404) {
+                  if (resp.status == 404) {
                     this.setState({
                       errorMsg: true,
                     });
@@ -1072,7 +1071,7 @@ class HumanResourceProposalNational extends Component {
                 },
                 body: JSON.stringify(data),
               }).then((resp) => {
-                if (resp.status === 404) {
+                if (resp.status == 404) {
                   this.setState({
                     errorMsg: true,
                   });
@@ -1157,7 +1156,7 @@ class HumanResourceProposalNational extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -1166,7 +1165,7 @@ class HumanResourceProposalNational extends Component {
           }, 5000);
           this.getObject();
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -1193,7 +1192,7 @@ class HumanResourceProposalNational extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           message.success("Canceled Successfully!");
           console.log("SUCCESSS");
           this.setState({ statusMsg: true });
@@ -1202,7 +1201,7 @@ class HumanResourceProposalNational extends Component {
           }, 5000);
           return response.json();
           this.getObject();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -1229,7 +1228,7 @@ class HumanResourceProposalNational extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Approved Successfully!");
           this.setState({ statusMsg: true });
@@ -1238,7 +1237,7 @@ class HumanResourceProposalNational extends Component {
           }, 5000);
           this.getObject();
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -1269,7 +1268,7 @@ class HumanResourceProposalNational extends Component {
           body: JSON.stringify(obj),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           let operation = [
             {
@@ -1290,14 +1289,14 @@ class HumanResourceProposalNational extends Component {
               body: JSON.stringify(operation),
             }
           ).then((response) => {
-            if (response.status === 201) {
+            if (response.status == 201) {
               console.log("SUCCESSS");
               this.setState({ statusMsg: true });
               setTimeout(() => {
                 this.setState({ statusMsg: false });
               }, 5000);
               return response.json();
-            } else if (response.status === 404) {
+            } else if (response.status == 404) {
               throw new Error(`Error! status: ${response.status}`);
             }
           });
@@ -1310,7 +1309,7 @@ class HumanResourceProposalNational extends Component {
 
           this.getObject();
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -1332,9 +1331,9 @@ class HumanResourceProposalNational extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Proposal - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Proposal - State</h4>
                   ) : (
                     <h4>Human Resource Proposal - District</h4>
@@ -1390,7 +1389,7 @@ class HumanResourceProposalNational extends Component {
                                   ? obj.submission.split("T")[0] || ""
                                   : obj.submission || ""
                               }
-                              // disabled={role === "admin_role" ? false : true}
+                              // disabled={role == "admin_role" ? false : true}
                               invalid={errors.submission ? true : false}
                             />
                             <FormFeedback>{errors.submission}</FormFeedback>
@@ -1453,7 +1452,7 @@ class HumanResourceProposalNational extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofApproval === ""
+                                  errors.typeofApproval == ""
                                     ? "none"
                                     : "block",
                               }}
@@ -1478,7 +1477,7 @@ class HumanResourceProposalNational extends Component {
                               name="number"
                               value={obj.number || ""}
                               disabled={
-                                obj.typeofApprovalId === 2 ? false : true
+                                obj.typeofApprovalId == 2 ? false : true
                               }
                             >
                               <option value="0">-Select-</option>
@@ -1725,7 +1724,7 @@ class HumanResourceProposalNational extends Component {
                                         {this.props.postList
                                           .filter(
                                             (val) =>
-                                              val.programTypeId ===
+                                              val.programTypeId ==
                                               data.programTypeId
                                           )
                                           .map((user) => {
@@ -1759,7 +1758,7 @@ class HumanResourceProposalNational extends Component {
                                         {this.props.subTypeofPostList
                                           .filter(
                                             (val) =>
-                                              val.typeofPostId ===
+                                              val.typeofPostId ==
                                               data.typeofPostId
                                           )
                                           .map((user) => (
@@ -1788,7 +1787,7 @@ class HumanResourceProposalNational extends Component {
                                         {this.state.fmrList
                                           .filter(
                                             (val) =>
-                                              val.subTypeofPost ===
+                                              val.subTypeofPost ==
                                               data.subTypeofPostId
                                           )
                                           .map((user) => (
@@ -1822,7 +1821,7 @@ class HumanResourceProposalNational extends Component {
                                         <option value="0">-Select-</option>
                                         {this.state.catPos
                                           .filter(
-                                            (val) => val.fmrId === data.fmrCodeId
+                                            (val) => val.fmrId == data.fmrCodeId
                                           )
                                           .map((user) => (
                                             <option
@@ -1851,7 +1850,7 @@ class HumanResourceProposalNational extends Component {
                                         invalid={errors.postId ? true : false}
                                       >
                                         <option value="0">-Select-</option>
-                                        {this.state.nameOfPostList.filter(d=>d.categoryofPostionId===data.categoryofPostId).map(
+                                        {this.state.nameOfPostList.filter(d=>d.categoryofPostionId==data.categoryofPostId).map(
                                           (user) => (
                                             <option
                                               key={user.id}
@@ -1892,7 +1891,7 @@ class HumanResourceProposalNational extends Component {
                                       <CInput
                                        style={{ width: "150px" }}
                                         type={
-                                          data.approvalTypeId === 1
+                                          data.approvalTypeId == 1
                                             ? "number"
                                             : "text"
                                         }
@@ -2031,9 +2030,9 @@ class HumanResourceProposalNational extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 ||obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7 ? null : (
+                                  {i == 0 ||obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7 ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"
@@ -2047,9 +2046,9 @@ class HumanResourceProposalNational extends Component {
                                 </tr>
                               );
                             })}
-                            {obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7 ? null : (
+                            {obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7 ? null : (
                               <tr>
                                 <td colSpan={15}>
                                   <CButton
@@ -2100,7 +2099,7 @@ class HumanResourceProposalNational extends Component {
                               <Col>
                                 <Checkbox
                                   checked={
-                                    obj.programCheck === true ? true : false
+                                    obj.programCheck == true ? true : false
                                   }
                                   onChange={(e) => this.handleFinance(e)}
                                 />
@@ -2126,7 +2125,7 @@ class HumanResourceProposalNational extends Component {
                                   value={obj.programType || ""}
                                   invalid={errors.programType ? true : false}
                                   disabled={
-                                    obj.programCheck === true ? true : false
+                                    obj.programCheck == true ? true : false
                                   }
                                 >
                                   <option value="0">-Select-</option>
@@ -2400,7 +2399,7 @@ class HumanResourceProposalNational extends Component {
                                         {this.state.nameOfPostList
                                           .filter(
                                             (d) =>
-                                              d.categoryofPostionId ===
+                                              d.categoryofPostionId ==
                                               data.categoryofPostId
                                           )
                                           .map((item, index) => {
@@ -2568,9 +2567,9 @@ class HumanResourceProposalNational extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 ||obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7  ? null : (
+                                  {i == 0 ||obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7  ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"
@@ -2586,9 +2585,9 @@ class HumanResourceProposalNational extends Component {
                             })}
                           </tbody>
                         </table>
-                        {obj.formStatus === 4 ||
-                        obj.formStatus === 6 ||
-                        obj.formStatus === 7 ? null : (
+                        {obj.formStatus == 4 ||
+                        obj.formStatus == 6 ||
+                        obj.formStatus == 7 ? null : (
                           <Row>
                             <CButton
                               color="primary"
@@ -2812,9 +2811,9 @@ class HumanResourceProposalNational extends Component {
                       </TabPane>
                     </Tabs>
                     <Space size="middle" style={{ paddingTop: "5px" }}>
-                      {obj.formStatus === 4 ||
-                      obj.formStatus === 6 ||
-                      obj.formStatus === 7 ? null : (
+                      {obj.formStatus == 4 ||
+                      obj.formStatus == 6 ||
+                      obj.formStatus == 7 ? null : (
                         <CButton
                           disabled={this.state.disableSub}
                           color="primary"
@@ -2823,9 +2822,9 @@ class HumanResourceProposalNational extends Component {
                           {this.state.paramId ? "Update" : "Submit"}
                         </CButton>
                       )}
-                      {obj.formStatus === 4 ||
-                      obj.formStatus === 6 ||
-                      obj.formStatus === 7 ? null : (
+                      {obj.formStatus == 4 ||
+                      obj.formStatus == 6 ||
+                      obj.formStatus == 7 ? null : (
                         <CButton
                           color="light"
                           onClick={(e) => {
@@ -2844,7 +2843,7 @@ class HumanResourceProposalNational extends Component {
                       >
                         Download
                       </CButton>
-                      {obj.formStatus === 0 || obj.formStatus === 5 ? (
+                      {obj.formStatus == 0 || obj.formStatus == 5 ? (
                         <CButton
                           color="info"
                           onClick={() => {
@@ -2855,7 +2854,7 @@ class HumanResourceProposalNational extends Component {
                         </CButton>
                       ) : null}
 
-                      {obj.formStatus === 1 ? (
+                      {obj.formStatus == 1 ? (
                         <CButton
                           color="success"
                           onClick={() => this.showConfirm(obj.id, 4)}
@@ -2863,7 +2862,7 @@ class HumanResourceProposalNational extends Component {
                           Approve
                         </CButton>
                       ) : null}
-                      {obj.formStatus === 1 ? (
+                      {obj.formStatus == 1 ? (
                         <CButton
                           color="secondary"
                           onClick={() => this.handleAmend()}
@@ -2871,7 +2870,7 @@ class HumanResourceProposalNational extends Component {
                           Send for Amendment
                         </CButton>
                       ) : null}
-                      {obj.formStatus === 0 || obj.formStatus === 1 ? (
+                      {obj.formStatus == 0 || obj.formStatus == 1 ? (
                         <CButton
                           color="danger"
                           onClick={() => this.showConfirm(obj.id, 6)}

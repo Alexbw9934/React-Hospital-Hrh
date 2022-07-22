@@ -65,6 +65,7 @@ class HRApprovalDetail extends Component {
   constructor() {
     super();
     this.state = {
+      utflag: false,
       editValue: {
         id: 0,
         finacialYearId: "",
@@ -135,6 +136,9 @@ class HRApprovalDetail extends Component {
       isModalVisible: false,
       tabdata: {},
       programList: [],
+      users: [],
+      userState: [],
+      userDistrict: [],
     };
   }
   showConfirm = (value, status) => {
@@ -142,15 +146,15 @@ class HRApprovalDetail extends Component {
       // title:"",
       content: "Are you Sure?",
       onOk: () => {
-        return status === 1
+        return status == 1
           ? this.changeStatus(value)
-          : status === 4
+          : status == 4
           ? this.approv(value)
-          : status === 6
+          : status == 6
           ? this.cancel(value)
-          : status === 7
+          : status == 7
           ? this.reject(value)
-          : status === 5
+          : status == 5
           ? this.need(value)
           : console.log("none");
       },
@@ -174,7 +178,7 @@ class HRApprovalDetail extends Component {
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
 
         this.setState({ numberTableRows: arr });
@@ -184,13 +188,13 @@ class HRApprovalDetail extends Component {
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         console.log(arr, "checking array");
         let obj = {};
         const r = arr.map((data) => {
           let val = this.props.financialStatusList
-            .filter((y) => y.id === data.budget)
+            .filter((y) => y.id == data.budget)
             .map((x) => x.name);
           obj = {
             ...obj,
@@ -211,7 +215,7 @@ class HRApprovalDetail extends Component {
         method: "GET",
       }).then((response) => {
         const arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         this.setState({ tableRows: arr });
       });
@@ -220,7 +224,7 @@ class HRApprovalDetail extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.humanResourceProposalNationalId === paramId
+          (data) => data.humanResourceProposalNationalId == paramId
         );
         this.setState({ amendList: arr });
       });
@@ -235,6 +239,7 @@ class HRApprovalDetail extends Component {
     this.props.retrievePlaceOfPost();
     this.props.retrieveTypeOfAssociation();
     this.props.retrieveTypeOfPositions();
+    
     axios({
       url: `${process.env.REACT_APP_API_URL}Posts`,
       method: "GET",
@@ -299,8 +304,8 @@ class HRApprovalDetail extends Component {
         }).then((response) => {
           let arr = response.data.filter(
             (data) =>
-              data.stateId === obj.stateId &&
-              data.reportingPeriodId === obj.reportingPeriodId
+              data.stateId == obj.stateId &&
+              data.reportingPeriodId == obj.reportingPeriodId
           );
           this.setState({ numberTableRows: arr });
         });
@@ -310,8 +315,8 @@ class HRApprovalDetail extends Component {
         }).then((response) => {
           let arr = response.data.filter(
             (data) => (data) =>
-              data.stateId === obj.stateId &&
-              data.reportingPeriodId === obj.reportingPeriodId
+              data.stateId == obj.stateId &&
+              data.reportingPeriodId == obj.reportingPeriodId
           );
           this.setState({ tableRows: arr });
         });
@@ -321,14 +326,14 @@ class HRApprovalDetail extends Component {
         }).then((response) => {
           const arr = response.data.filter(
             (data) => (data) =>
-              data.stateId === obj.stateId &&
-              data.reportingPeriodId === obj.reportingPeriodId
+              data.stateId == obj.stateId &&
+              data.reportingPeriodId == obj.reportingPeriodId
           );
           console.log(arr, "checking array");
           let obj = {};
           const r = arr.map((data) => {
             let val = this.props.financialStatusList
-              .filter((y) => y.id === data.budget)
+              .filter((y) => y.id == data.budget)
               .map((x) => x.name);
             obj = {
               ...obj,
@@ -348,7 +353,25 @@ class HRApprovalDetail extends Component {
     }
   }
   handleChange = (e) => {
-    console.log(e.target.value);
+    let stateId = e.target.value;
+    if(stateId != 0) {
+      this.setState({utflag: true});
+    } else {
+      this.setState({utflag: false, numberTableRows: [{}]});
+    }
+    axios({
+      url: `${process.env.REACT_APP_API_URL}PhysicalStatus`,
+      method: "GET",
+    }).then((response) => {
+      let arr = response.data.filter(
+        (data) => data.stateId == stateId
+      );
+      let uniqueArr = [
+        ...new Map(arr.map((item) => [item["postId"], item])).values(),
+      ];
+      console.log("9999999", uniqueArr);
+      this.setState({ numberTableRows: uniqueArr })
+    });
     const { obj } = this.state;
     this.setState({
       obj: {
@@ -362,11 +385,29 @@ class HRApprovalDetail extends Component {
     });
   };
   handleReport = async (e) => {
+    if(this.state.utflag == false) {
+      axios({
+        url: `${process.env.REACT_APP_API_URL}PhysicalStatus`,
+        method: "GET",
+      }).then((response) => {
+        const arr = response.data.filter(
+          (data) => data.financialYearId == e.target.value
+        );
+  
+        let uniqueArr = [
+          ...new Map(arr.map((item) => [item["postId"], item])).values(),
+        ];
+        this.setState({ numberTableRows: uniqueArr })
+      });
+    } else {
+      const arr = this.state.numberTableRows.filter((data) => data.financialYearId == e.target.value);
+      this.setState({ numberTableRows: arr })
+    }
+    
     axios({
       url: `${process.env.REACT_APP_API_URL}ReportingPeriods/${e.target.value}`,
       method: "GET"
     }).then((res) => {
-      console.log("@!!!!!!!!!!!!!!!!!!!", res);
       let si = [];
       let obj ={};
       let arr = res.data.finacialYearId.split(",");
@@ -403,35 +444,35 @@ class HRApprovalDetail extends Component {
     }).then((response) => {
         hrArr = response.data.filter(
         (data) =>
-          data.stateId === obj.stateId &&
-          data.reportingPeriodId === e.target.value &&
-          data.districtStatus===4
+          data.stateId == obj.stateId &&
+          data.reportingPeriodId == e.target.value &&
+          data.districtStatus==4
       );
     });
     let value = Array.from(hrArr, (option) => option.id);
-      axios({
-        url: `${process.env.REACT_APP_API_URL}DistrictContractualReports`,
-        method: "GET",
-      }).then((response) => {
-        let arr = response.data.filter(
-          (data) =>
-            value.includes(data.hrStatusReportDistrictId)
-        )
-        this.setState({ numberTableRows: arr })
-        let val = {};
-        if(arr.length>0){
-        let rowsAllocate = arr.reduce((prev, cur,i,arr) => {
-          if (cur.namePost===prev.namePost) {
-            val = {
-              ...val,
-              noApprPostTotal:cur.noApprPostTotal+prev.noApprPostTotal
-            }  
-          }
-          return val;
-        });
-        console.log(rowsAllocate)
-      }  
-      });
+    //   axios({
+    //     url: `${process.env.REACT_APP_API_URL}DistrictContractualReports`,
+    //     method: "GET",
+    //   }).then((response) => {
+    //     let arr = response.data.filter(
+    //       (data) =>
+    //         value.includes(data.hrStatusReportDistrictId)
+    //     )
+    //     this.setState({ numberTableRows: arr })
+    //     let val = {};
+    //     if(arr.length>0){
+    //     let rowsAllocate = arr.reduce((prev, cur,i,arr) => {
+    //       if (cur.namePost==prev.namePost) {
+    //         val = {
+    //           ...val,
+    //           noApprPostTotal:cur.noApprPostTotal+prev.noApprPostTotal
+    //         }  
+    //       }
+    //       return val;
+    //     });
+    //     console.log(rowsAllocate)
+    //   }  
+    //   });
       axios({
         url: `${process.env.REACT_APP_API_URL}DistrictRegularCadreReports`,
         method: "GET",
@@ -482,7 +523,7 @@ class HRApprovalDetail extends Component {
       },
       body: JSON.stringify(this.state.obj),
     }).then((resp) => {
-      if (resp.status === 404) {
+      if (resp.status == 404) {
         this.setState({
           errorMsg: true,
         });
@@ -535,7 +576,7 @@ class HRApprovalDetail extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -543,7 +584,7 @@ class HRApprovalDetail extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -567,7 +608,7 @@ class HRApprovalDetail extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -575,7 +616,7 @@ class HRApprovalDetail extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -599,7 +640,7 @@ class HRApprovalDetail extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           message.success("Canceled Successfully!");
           console.log("SUCCESSS");
           this.setState({ statusMsg: true });
@@ -607,7 +648,7 @@ class HRApprovalDetail extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -631,7 +672,7 @@ class HRApprovalDetail extends Component {
         },
         body: JSON.stringify(operation),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Approved Successfully!");
           this.setState({ statusMsg: true });
@@ -639,7 +680,7 @@ class HRApprovalDetail extends Component {
             this.setState({ statusMsg: false });
           }, 10000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -669,7 +710,7 @@ class HRApprovalDetail extends Component {
           body: JSON.stringify(obj),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           let operation = [
             {
@@ -690,14 +731,14 @@ class HRApprovalDetail extends Component {
               body: JSON.stringify(operation),
             }
           ).then((response) => {
-            if (response.status === 201) {
+            if (response.status == 201) {
               console.log("SUCCESSS");
               this.setState({ statusMsg: true });
               setTimeout(() => {
                 this.setState({ statusMsg: false });
               }, 5000);
               return response.json();
-            } else if (response.status === 404) {
+            } else if (response.status == 404) {
               throw new Error(`Error! status: ${response.status}`);
             }
           });
@@ -710,7 +751,7 @@ class HRApprovalDetail extends Component {
 
           this.getObject();
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -859,7 +900,7 @@ class HRApprovalDetail extends Component {
                               onChange={this.handleChange}
                               name="selectNumber"
                               value={obj.selectNumber || ""}
-                              disabled={obj.typeofApproval === 1 ? true : false}
+                              disabled={obj.typeofApproval == 1 ? true : false}
                             >
                               <option value="0">-Select-</option>
                               <option value="1">1</option>
@@ -927,7 +968,7 @@ class HRApprovalDetail extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofApproval === ""
+                                  errors.typeofApproval == ""
                                     ? "none"
                                     : "block",
                               }}
@@ -1144,7 +1185,7 @@ class HRApprovalDetail extends Component {
                                         {this.props.postList
                                           .filter(
                                             (val) =>
-                                              val.programTypeId ===
+                                              val.programTypeId ==
                                               data.programTypeId
                                           )
                                           .map((user) => {
@@ -1178,7 +1219,7 @@ class HRApprovalDetail extends Component {
                                         {this.props.subTypeofPostList
                                           .filter(
                                             (val) =>
-                                              val.typeofPostId ===
+                                              val.typeofPostId ==
                                               data.typeofPostId
                                           )
                                           .map((user) => (
@@ -1207,7 +1248,7 @@ class HRApprovalDetail extends Component {
                                         {this.state.fmrList
                                           .filter(
                                             (val) =>
-                                              val.subTypeofPost ===
+                                              val.subTypeofPost ==
                                               data.subTypeofPostId
                                           )
                                           .map((user) => (
@@ -1241,7 +1282,7 @@ class HRApprovalDetail extends Component {
                                         <option value="0">-Select-</option>
                                         {this.state.catPos
                                           .filter(
-                                            (val) => val.fmrId === data.fmrCodeId
+                                            (val) => val.fmrId == data.fmrCodeId
                                           )
                                           .map((user) => (
                                             <option
@@ -1270,7 +1311,7 @@ class HRApprovalDetail extends Component {
                                         invalid={errors.postId ? true : false}
                                       >
                                         <option value="0">-Select-</option>
-                                        {this.state.nameOfPostList.filter(d=>d.categoryofPostionId===data.categoryofPostId).map(
+                                        {this.state.nameOfPostList.filter(d=>d.categoryofPostionId==data.categoryofPostId).map(
                                           (user) => (
                                             <option
                                               key={user.id}
@@ -1311,7 +1352,7 @@ class HRApprovalDetail extends Component {
                                       <CInput
                                        style={{ width: "150px" }}
                                         type={
-                                          data.approvalTypeId === 1
+                                          data.approvalTypeId == 1
                                             ? "number"
                                             : "text"
                                         }
@@ -1450,9 +1491,9 @@ class HRApprovalDetail extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 ||obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7 ? null : (
+                                  {i == 0 ||obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7 ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"
@@ -1466,9 +1507,9 @@ class HRApprovalDetail extends Component {
                                 </tr>
                               );
                             })}
-                            {obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7 ? null : (
+                            {obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7 ? null : (
                               <tr>
                                 <td colSpan={15}>
                                   <CButton
@@ -2281,7 +2322,7 @@ class HRApprovalDetail extends Component {
                                     <b>
                                       {this.props.programTypeList
                                         .filter(
-                                          (data) => data.id === val.programTypeId
+                                          (data) => data.id == val.programTypeId
                                         )
                                         .map((id) => {
                                           return id.name;
@@ -2291,7 +2332,7 @@ class HRApprovalDetail extends Component {
                                   <td>
                                     <b>
                                       {this.props.financialStatusList
-                                        .filter((data) => data.id === val.budget)
+                                        .filter((data) => data.id == val.budget)
                                         .map((id) => {
                                           return id.name;
                                         })}
@@ -2300,7 +2341,7 @@ class HRApprovalDetail extends Component {
                                   <td>
                                     {this.props.financialYearList
                                       .filter(
-                                        (data) => data.id === val.finacialYearId
+                                        (data) => data.id == val.finacialYearId
                                       )
                                       .map((id) => {
                                         return `${new Date(
@@ -2557,7 +2598,7 @@ class HRApprovalDetail extends Component {
                                         {this.props.postList
                                           .filter(
                                             (val) =>
-                                              val.programTypeId ===
+                                              val.programTypeId ==
                                               data.programTypeId
                                           )
                                           .map((user) => {
@@ -2591,7 +2632,7 @@ class HRApprovalDetail extends Component {
                                         {this.props.subTypeofPostList
                                           .filter(
                                             (val) =>
-                                              val.typeofPostId ===
+                                              val.typeofPostId ==
                                               data.typeofPostId
                                           )
                                           .map((user) => (
@@ -2620,7 +2661,7 @@ class HRApprovalDetail extends Component {
                                         {this.state.fmrList
                                           .filter(
                                             (val) =>
-                                              val.subTypeofPost ===
+                                              val.subTypeofPost ==
                                               data.subTypeofPostId
                                           )
                                           .map((user) => (
@@ -2654,7 +2695,7 @@ class HRApprovalDetail extends Component {
                                         <option value="0">-Select-</option>
                                         {this.state.catPos
                                           .filter(
-                                            (val) => val.fmrId === data.fmrCodeId
+                                            (val) => val.fmrId == data.fmrCodeId
                                           )
                                           .map((user) => (
                                             <option
@@ -2683,7 +2724,7 @@ class HRApprovalDetail extends Component {
                                         invalid={errors.postId ? true : false}
                                       >
                                         <option value="0">-Select-</option>
-                                        {this.state.nameOfPostList.filter(d=>d.categoryofPostionId===data.categoryofPostId).map(
+                                        {this.state.nameOfPostList.filter(d=>d.categoryofPostionId==data.categoryofPostId).map(
                                           (user) => (
                                             <option
                                               key={user.id}
@@ -2724,7 +2765,7 @@ class HRApprovalDetail extends Component {
                                       <CInput
                                        style={{ width: "150px" }}
                                         type={
-                                          data.approvalTypeId === 1
+                                          data.approvalTypeId == 1
                                             ? "number"
                                             : "text"
                                         }
@@ -2863,9 +2904,9 @@ class HRApprovalDetail extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 ||obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7 ? null : (
+                                  {i == 0 ||obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7 ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"
@@ -2879,9 +2920,9 @@ class HRApprovalDetail extends Component {
                                 </tr>
                               );
                             })}
-                            {obj.formStatus === 4 ||
-                            obj.formStatus === 6 ||
-                            obj.formStatus === 7 ? null : (
+                            {obj.formStatus == 4 ||
+                            obj.formStatus == 6 ||
+                            obj.formStatus == 7 ? null : (
                               <tr>
                                 <td colSpan={15}>
                                   <CButton
@@ -4765,7 +4806,7 @@ class HRApprovalDetail extends Component {
                                     <b>
                                       {this.props.programTypeList
                                         .filter(
-                                          (data) => data.id === val.programTypeId
+                                          (data) => data.id == val.programTypeId
                                         )
                                         .map((id) => {
                                           return id.name;
@@ -4775,7 +4816,7 @@ class HRApprovalDetail extends Component {
                                   <td>
                                     <b>
                                       {this.props.financialStatusList
-                                        .filter((data) => data.id === val.budget)
+                                        .filter((data) => data.id == val.budget)
                                         .map((id) => {
                                           return id.name;
                                         })}
@@ -4784,7 +4825,7 @@ class HRApprovalDetail extends Component {
                                   <td>
                                     {this.props.financialYearList
                                       .filter(
-                                        (data) => data.id === val.finacialYearId
+                                        (data) => data.id == val.finacialYearId
                                       )
                                       .map((id) => {
                                         return `${new Date(
@@ -4828,9 +4869,9 @@ class HRApprovalDetail extends Component {
                       </TabPane>
                     </Tabs>
                     <Space size="middle" style={{ paddingTop: "5px" }}>
-                      {obj.stateStatus === 4 ||
-                      obj.stateStatus === 6 ||
-                      obj.stateStatus === 7 ? null : (
+                      {obj.stateStatus == 4 ||
+                      obj.stateStatus == 6 ||
+                      obj.stateStatus == 7 ? null : (
                         <CButton
                           disabled={this.state.disableSub}
                           color="primary"
@@ -4845,7 +4886,7 @@ class HRApprovalDetail extends Component {
                       >
                         Download
                       </CButton>
-                      {obj.stateStatus === 0 || obj.stateStatus === 5 ? (
+                      {obj.stateStatus == 0 || obj.stateStatus == 5 ? (
                         <CButton
                           color="info"
                           onClick={() => {
@@ -4855,7 +4896,7 @@ class HRApprovalDetail extends Component {
                           Submit for Approval
                         </CButton>
                       ) : null}
-                      {obj.districtStatus === 1 ? (
+                      {obj.districtStatus == 1 ? (
                         <CButton
                           color="secondary"
                           onClick={() => this.handleAmend()}
@@ -4863,7 +4904,7 @@ class HRApprovalDetail extends Component {
                           Send for Amendment
                         </CButton>
                       ) : null}
-                      {obj.stateStatus === 1 ? (
+                      {obj.stateStatus == 1 ? (
                         <CButton
                           color="success"
                           onClick={() => this.showConfirm(obj.id, 4)}
@@ -4871,7 +4912,7 @@ class HRApprovalDetail extends Component {
                           Approve
                         </CButton>
                       ) : null}
-                      {obj.stateStatus === 1 ? (
+                      {obj.stateStatus == 1 ? (
                         <CButton
                           color="warning"
                           onClick={() => this.showConfirm(obj.id, 7)}
@@ -4879,7 +4920,7 @@ class HRApprovalDetail extends Component {
                           Reject
                         </CButton>
                       ) : null}
-                      {obj.stateStatus === 0 || obj.stateStatus === 1 ? (
+                      {obj.stateStatus == 0 || obj.stateStatus == 1 ? (
                         <CButton
                           color="danger"
                           onClick={() => this.showConfirm(obj.id, 6)}
@@ -4901,6 +4942,7 @@ class HRApprovalDetail extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    stateList: state.apiadd.stateList,
     typeFacilityList: state.apiadd.typeFacilityList,
     financialYearList: state.apiadd.financialYearList,
     districtList: state.apiadd.districtsList,

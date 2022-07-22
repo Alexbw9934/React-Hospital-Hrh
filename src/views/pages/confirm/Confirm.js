@@ -53,12 +53,12 @@ class Confirm extends React.Component {
     const { data } = this.state;
     let errors = {};
 
-    //    if (data.firstName === '') errors.firstName = 'First Name can not be blank.';
-    if (data.userName === "") errors.userName = "User Name can not be blank.";
+    //    if (data.firstName == '') errors.firstName = 'First Name can not be blank.';
+    if (data.userName == "") errors.userName = "User Name can not be blank.";
     if (!isEmail(data.email)) errors.email = "Email must be valid.";
-    if (data.email === "") errors.email = "Email can not be blank.";
-    if (data.password === "") errors.password = "Password must be valid.";
-    if (data.newPassword==="") errors.newPassword = "Passwords must match.";
+    if (data.email == "") errors.email = "Email can not be blank.";
+    if (data.password == "") errors.password = "Password must be valid.";
+    if (data.newPassword=="") errors.newPassword = "Passwords must match.";
 
     return errors;
   };
@@ -71,7 +71,7 @@ class Confirm extends React.Component {
 
     const errors = this.validate();
 
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       console.log(data);
       //Call an api here
       fetch("http://5.9.111.198:13880/api/Users/change-password", {

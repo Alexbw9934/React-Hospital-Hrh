@@ -72,7 +72,7 @@ class UrbanArea extends React.Component {
   };
   validate = () => {
     let errors = {};
-    if (this.state.value.name === "") errors.name = "Please enter the name.";
+    if (this.state.value.name == "") errors.name = "Please enter the name.";
     return errors;
   };
   submitData = (e) => {
@@ -80,14 +80,14 @@ class UrbanArea extends React.Component {
     const value = this.state;
     console.log(value);
     const errors = this.validate();
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {
           name: "",
         },
       });
       let check = this.props.urbanList.map((data) => {
-        if (this.state.value.name === data.name) return false;
+        if (this.state.value.name == data.name) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -138,7 +138,7 @@ class UrbanArea extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.name === "")
+    if (this.state.editValue.name == "")
       errors.name = "Please enter the name.";
     return errors;
   };
@@ -146,9 +146,9 @@ class UrbanArea extends React.Component {
     e.preventDefault();
     const errors = this.updateValidate();
     let check = this.props.urbanList.map((data) => {
-      if (this.state.editValue.name === data.name) return false;
+      if (this.state.editValue.name == data.name) return false;
     });
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {
           name: "",
@@ -207,7 +207,7 @@ class UrbanArea extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -224,7 +224,7 @@ class UrbanArea extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status === 0 ? "1" : "0",
+        value: status == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/UrbanAreas/${id}`, {
@@ -443,7 +443,7 @@ class UrbanArea extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -458,7 +458,7 @@ class UrbanArea extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

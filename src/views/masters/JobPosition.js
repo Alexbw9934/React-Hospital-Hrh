@@ -98,13 +98,13 @@ class JobPosition extends React.Component {
   validate = () => {
     const { value } = this.state;
     let errors = {};
-    if (value.categoryNameId === 0)
+    if (value.categoryNameId == 0)
       errors.categoryNameId = "Select the Category name.";
-    if (value.programTypeId === 0)
+    if (value.programTypeId == 0)
       errors.programTypeId = "Select the Program Type.";
-    if (value.positionName === "")
+    if (value.positionName == "")
       errors.positionName = "Please enter the Position name.";
-    if (value.facilityTypeId === 0)
+    if (value.facilityTypeId == 0)
       errors.facilityTypeId = "Select the place of post.";
     return errors;
   };
@@ -113,12 +113,12 @@ class JobPosition extends React.Component {
     const value = this.state;
     const errors = this.validate();
     console.log("########", value.value);
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
       let check = this.props.jobPositionList.map((data) => {
-        if (value.value.positionName === data.positionName) return false;
+        if (value.value.positionName == data.positionName) return false;
       });
       if (check.includes(false)) {
         this.setState({
@@ -173,13 +173,13 @@ class JobPosition extends React.Component {
   };
   updateValidate = () => {
     let errors = {};
-    if (this.state.editValue.categoryNameId === 0)
+    if (this.state.editValue.categoryNameId == 0)
       errors.categoryNameId = "Select the Category name.";
-    if (this.state.editValue.programTypeId === 0)
+    if (this.state.editValue.programTypeId == 0)
       errors.programTypeId = "Select the Type of Position.";
-    if (this.state.editValue.facilityTypeId === 0)
+    if (this.state.editValue.facilityTypeId == 0)
       errors.facilityTypeId = "Select the Place of Post.";
-    if (this.state.editValue.positionName === "")
+    if (this.state.editValue.positionName == "")
       errors.positionName = "Please enter Position Name.";
     return errors;
   };
@@ -188,7 +188,7 @@ class JobPosition extends React.Component {
     const errors = this.updateValidate();
     console.log(this.state.editValue);
     // return
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length == 0) {
       this.setState({
         errors: {},
       });
@@ -257,7 +257,7 @@ class JobPosition extends React.Component {
   showConfirm = (value, status) => {
     confirm({
       title:
-        status.toString() === 0
+        status.toString() == 0
           ? "Do you want to Activate ?"
           : "Do you want to Inactivate ?",
       content: "Are you Sure",
@@ -274,7 +274,7 @@ class JobPosition extends React.Component {
       {
         op: "replace",
         path: "/status",
-        value: status.toString() === 0 ? "1" : "0",
+        value: status.toString() == 0 ? "1" : "0",
       },
     ];
     fetch(`http://5.9.111.198:13880/api/JobPositions/${id}`, {
@@ -674,7 +674,7 @@ class JobPosition extends React.Component {
                         <>
                           {" "}
                           {this.props.programTypeList
-                            .filter((data) => data.id === user.programTypeId)
+                            .filter((data) => data.id == user.programTypeId)
                             .map((id) => {
                               return id.name;
                             })}
@@ -688,7 +688,7 @@ class JobPosition extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.typeOfPositionList
-                            .filter((data) => data.id === user.typeofPosition)
+                            .filter((data) => data.id == user.typeofPosition)
                             .map((id) => {
                               return id.name;
                             })}
@@ -702,7 +702,7 @@ class JobPosition extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.categoryOfPOsitionList
-                            .filter((data) => data.id === user.categoryNameId)
+                            .filter((data) => data.id == user.categoryNameId)
                             .map((id) => {
                               return id.categoryName;
                             })}
@@ -716,7 +716,7 @@ class JobPosition extends React.Component {
                       render={(text, user) => (
                         <>
                           {this.props.typeFacilityList
-                            .filter((data) => data.id === user.facilityTypeId)
+                            .filter((data) => data.id == user.facilityTypeId)
                             .map((id) => {
                               return id.facilityType;
                             })}
@@ -728,7 +728,7 @@ class JobPosition extends React.Component {
                       dataIndex="status"
                       key="status"
                       render={(status) => (
-                        <>{status.toString() === 0 ? "Inactive" : "Active"}</>
+                        <>{status.toString() == 0 ? "Inactive" : "Active"}</>
                       )}
                     ></Table.Column>
                     <Table.Column
@@ -743,7 +743,7 @@ class JobPosition extends React.Component {
                           >
                             Edit
                           </CButton>
-                          {user.status.toString() === 1 ? (
+                          {user.status.toString() == 1 ? (
                             <CButton
                               color="danger"
                               style={{ backgroundColor: "red" }}

@@ -198,7 +198,7 @@ class KeyDelivDistrict extends Component {
         method: "GET",
       }).then((response) => {
         let arr = response.data.filter(
-          (data) => data.keyDeliverableId === paramId
+          (data) => data.keyDeliverableId == paramId
         );
         this.setState({ keydeil: arr });
       });
@@ -296,7 +296,7 @@ class KeyDelivDistrict extends Component {
             body: JSON.stringify(data),
           }
         ).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -677,7 +677,7 @@ class KeyDelivDistrict extends Component {
                       </CFormGroup>
                     </CForm>
                   )}
-                  {csvOrmanually === 2 ? (
+                  {csvOrmanually == 2 ? (
                     <KeyCsvDistrict
                       objId={propState.hId}
                       kId={propState.kId}
@@ -832,9 +832,9 @@ class KeyDelivDistrict extends Component {
                                         }
                                         value={data.blockId || ""}
                                         disabled={
-                                          data.selectedValue === 1
+                                          data.selectedValue == 1
                                             ? true
-                                            : data.selectedValue === 2
+                                            : data.selectedValue == 2
                                             ? true
                                             : propState.fId
                                             ? true
@@ -873,9 +873,9 @@ class KeyDelivDistrict extends Component {
                                           errors.districtId ? true : false
                                         }
                                         disabled={
-                                          data.selectedValue === 1
+                                          data.selectedValue == 1
                                             ? true
-                                            : data.selectedValue === 3
+                                            : data.selectedValue == 3
                                             ? true
                                             : propState.fId
                                             ? true
@@ -1085,7 +1085,7 @@ class KeyDelivDistrict extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {i === 0 || propState.data ? null : (
+                                  {i == 0 || propState.data ? null : (
                                     <td>
                                       <CIcon
                                         name="cilXCircle"

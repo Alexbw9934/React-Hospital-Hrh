@@ -57,7 +57,7 @@ export class ContractualStaffDetails extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYearId)
+                .filter((item) => item.id == object.financialYearId)
                 .map((ob) => {
                   return ob.name;
                 })}
@@ -71,7 +71,7 @@ export class ContractualStaffDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -160,9 +160,9 @@ export class ContractualStaffDetails extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Contractual Staff-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Contractual Staff - State Details</h4>
                   ) : (
                     <h4>Contractual Staff - District</h4>

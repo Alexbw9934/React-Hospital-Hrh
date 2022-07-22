@@ -58,7 +58,7 @@ class PerformanceMonitoringDetails extends Component {
           render: (text, object) => (
             <a>
               {this.props.financialYearList
-                .filter((item) => item.id === object.financialYear)
+                .filter((item) => item.id == object.financialYear)
                 .map((ob) => {
                   return moment(ob.fromDate).format("MMM D, YYYY");
                 })}
@@ -72,7 +72,7 @@ class PerformanceMonitoringDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.stateList
-                .filter((data) => data.id === obj.stateId)
+                .filter((data) => data.id == obj.stateId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -86,7 +86,7 @@ class PerformanceMonitoringDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -100,7 +100,7 @@ class PerformanceMonitoringDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.districtsList
-                .filter((data) => data.id === obj.districtId)
+                .filter((data) => data.id == obj.districtId)
                 .map((id) => {
                   return id.name;
                 })}
@@ -114,7 +114,7 @@ class PerformanceMonitoringDetails extends Component {
           render: (text, obj) => (
             <a>
               {this.props.typeFacilityList
-                .filter((data) => data.id === obj.typeofFacilityOfficeId)
+                .filter((data) => data.id == obj.typeofFacilityOfficeId)
                 .map((id) => {
                   return id.facilityType;
                 })}
@@ -174,7 +174,7 @@ class PerformanceMonitoringDetails extends Component {
     });
   };
   newCollector = () => {
-    if (this.state.role === "state_role") {
+    if (this.state.role == "state_role") {
       this.props.history.push({
         pathname: "/hrh/performanceMonitoring/StatePerformanceMonitoring",
       });
@@ -199,9 +199,9 @@ class PerformanceMonitoringDetails extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Performance Monitoring-National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Performance Monitoring- State Details</h4>
                   ) : (
                     <h4>Performance Monitoring - District</h4>

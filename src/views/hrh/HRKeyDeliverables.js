@@ -175,10 +175,10 @@ class HRKeyDeliverables extends Component {
   showConfirm(value) {
     confirm({
       title:
-        value === "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
+        value == "submit" ? "Do you Want to Submit?" : "Do you Want to Print?",
       content: "Are you Sure",
       onOk() {
-        value === "print" ? window.print() : console.log("ok");
+        value == "print" ? window.print() : console.log("ok");
       },
       onCancel() {
         console.log("Cancel");
@@ -187,8 +187,8 @@ class HRKeyDeliverables extends Component {
   }
   checkingparse = (data) => {
     if (!data) return {};
-    if (typeof data === "object") return data;
-    if (typeof data === "string") return JSON.parse(data);
+    if (typeof data == "object") return data;
+    if (typeof data == "string") return JSON.parse(data);
 
     return {};
   };
@@ -245,7 +245,7 @@ class HRKeyDeliverables extends Component {
       url: `${process.env.REACT_APP_API_URL}humanResourceProposals`,
       method: "GET",
     }).then((response) => {
-      if (this.state.role === "state_role") {
+      if (this.state.role == "state_role") {
         let lastId = response.data.length;
         const valueArray = response.data;
         const obj = { ...valueArray[lastId - 1] };
@@ -267,7 +267,7 @@ class HRKeyDeliverables extends Component {
     if (this.props.history.location.state) {
       let paramId = this.props.history.location.state.data;
       this.setState({ paramId: paramId });
-      if (this.state.role === "admin_role") {
+      if (this.state.role == "admin_role") {
         axios({
           url: `${process.env.REACT_APP_API_URL}humanResourceProposals/${paramId}`,
           method: "GET",
@@ -275,7 +275,7 @@ class HRKeyDeliverables extends Component {
           this.setState({ obj: response.data });
         });
       }
-      if (this.state.role === "district_role") {
+      if (this.state.role == "district_role") {
         axios({
           url: `${process.env.REACT_APP_API_URL}Human_Resource_Proposal_District/${paramId}`,
           method: "GET",
@@ -338,57 +338,57 @@ class HRKeyDeliverables extends Component {
   validateNational = () => {
     const { obj } = this.state;
     let errors = {};
-    if (obj.submission === "")
+    if (obj.submission == "")
       errors.submission = "Please pick date of submission.";
-    if (obj.financialYear === 0)
+    if (obj.financialYear == 0)
       errors.financialYear = "Please enter the financial year.";
-    if (obj.typeofApproval === "")
+    if (obj.typeofApproval == "")
       errors.typeofApproval = "Please select Type of Approval.";
-    if (obj.stateId === 0) errors.stateId = "Please select State.";
-    if (obj.numberOfDivDist === "")
+    if (obj.stateId == 0) errors.stateId = "Please select State.";
+    if (obj.numberOfDivDist == "")
       errors.numberOfDivDist = "Please enter Division.";
-    // if (obj.districtCategoryId === 0)
+    // if (obj.districtCategoryId == 0)
     //   errors.districtCategoryId = "Please select District.";
-    if (obj.divsionId === "") errors.divsionId = "Please select Division.";
-    if (obj.programType === 0)
+    if (obj.divsionId == "") errors.divsionId = "Please select Division.";
+    if (obj.programType == 0)
       errors.programType = "Please select programe type.";
-    if (obj.typeofPost === 0) errors.typeofPost = "Please select type of post.";
-    if (obj.categoryofPostion === 0)
+    if (obj.typeofPost == 0) errors.typeofPost = "Please select type of post.";
+    if (obj.categoryofPostion == 0)
       errors.categoryofPostion = "Please select category of post.";
-    if (obj.fmr === 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
-    if (obj.numberofPostSanc === 0)
+    if (obj.fmr == 0 || obj.fmr < 0) errors.fmr = "Please enter FMR number.";
+    if (obj.numberofPostSanc == 0)
       errors.numberofPostSanc = "Please enter number of post sanction.";
     if (obj.numberofPostSanc < 0)
       errors.numberofPostSanc = "Please enter a valid number.";
-    if (obj.numberofNewPost === 0 || obj.numberofNewPost < 0)
+    if (obj.numberofNewPost == 0 || obj.numberofNewPost < 0)
       errors.numberofNewPost = "Please enter number of new post.";
-    if (obj.numberofOldSanc === 0 || obj.numberofOldSanc < 0)
+    if (obj.numberofOldSanc == 0 || obj.numberofOldSanc < 0)
       errors.numberofOldSanc = "Please enter number of old sanction.";
-    if (obj.totalNoPostionApprov === 0 || obj.totalNoPostionApprov < 0)
+    if (obj.totalNoPostionApprov == 0 || obj.totalNoPostionApprov < 0)
       errors.totalNoPostionApprov =
         "Please enter total number of old position approve.";
-    if (obj.numberofPostVaccant === 0 || obj.numberofPostVaccant < 0)
+    if (obj.numberofPostVaccant == 0 || obj.numberofPostVaccant < 0)
       errors.numberofPostVaccant = "Please enter number of post vacant.";
-    if (obj.nameofPost === "") errors.nameofPost = "Please enter name of post.";
+    if (obj.nameofPost == "") errors.nameofPost = "Please enter name of post.";
     if (
-      obj.totalBudgetAprrINR === 0 ||
+      obj.totalBudgetAprrINR == 0 ||
       obj.totalBudgetAprrINR < 0 ||
       obj.totalBudgetAprrINR.length > 10
     )
       errors.totalBudgetAprrINR = "Please enter total budget INR.";
-    if (obj.numberofNewPostion === 0 || obj.numberofNewPostion < 0)
+    if (obj.numberofNewPostion == 0 || obj.numberofNewPostion < 0)
       errors.numberofNewPostion = "Please enter number of new position.";
     return errors;
   };
   handleSubmit = (e) => {
     e.preventDefault();
     return
-    if (this.state.role === "admin_role") {
+    if (this.state.role == "admin_role") {
       localStorage.removeItem("object");
       // const errors = this.validateNational();
       const errors = {};
       console.log(errors, "errors");
-      if (Object.keys(errors).length === 0) {
+      if (Object.keys(errors).length == 0) {
         this.setState({
           errors: {},
         });
@@ -476,7 +476,7 @@ class HRKeyDeliverables extends Component {
                     body: JSON.stringify(data),
                   }
                 ).then((resp) => {
-                  if (resp.status === 404) {
+                  if (resp.status == 404) {
                     this.setState({
                       errorMsg: true,
                     });
@@ -575,9 +575,9 @@ class HRKeyDeliverables extends Component {
                     justifyContent: "space-between",
                   }}
                 >
-                  {role === "admin_role" ? (
+                  {role == "admin_role" ? (
                     <h4>Human Resource Proposal - National</h4>
-                  ) : role === "state_role" ? (
+                  ) : role == "state_role" ? (
                     <h4>Human Resource Proposal - State</h4>
                   ) : (
                     <h4>Human Resource Proposal - District</h4>
@@ -622,7 +622,7 @@ class HRKeyDeliverables extends Component {
                                   ? obj.submission.split("T")[0] || ""
                                   : obj.submission || ""
                               }
-                              // disabled={role === "admin_role" ? false : true}
+                              // disabled={role == "admin_role" ? false : true}
                               invalid={errors.submission ? true : false}
                             />
                             <FormFeedback>{errors.submission}</FormFeedback>
@@ -677,7 +677,7 @@ class HRKeyDeliverables extends Component {
                                 })
                               }
                               value={obj.typeofApproval || ""}
-                              // disabled={role === "admin_role" ? false : true}
+                              // disabled={role == "admin_role" ? false : true}
                               // invalid={errors.typeofApproval ? true : false}
                             >
                               <Radio value="1">Annual RoP</Radio>
@@ -687,7 +687,7 @@ class HRKeyDeliverables extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofApproval === ""
+                                  errors.typeofApproval == ""
                                     ? "none"
                                     : "block",
                               }}
@@ -748,7 +748,7 @@ class HRKeyDeliverables extends Component {
                               onChange={this.handleChange}
                               name="number"
                               value={obj.number || ""}
-                              disabled={obj.typeofApproval === 2 ? false : true}
+                              disabled={obj.typeofApproval == 2 ? false : true}
                             >
                               <option value="0">-Select-</option>
                               <option value="1">1</option>
@@ -1136,7 +1136,7 @@ class HRKeyDeliverables extends Component {
                         <div>Data save Successfully</div>
                       </CAlert>
                     ) : null}
-                    {role === "district_role" ? null : (
+                    {role == "district_role" ? null : (
                       <Tabs>
                         <TabPane tab="State Details" key="1">
                           {/* <Table dataSource={this.state.tableRows} columns={this.state.stateColumn} /> */}
@@ -1194,7 +1194,7 @@ class HRKeyDeliverables extends Component {
                                           }
                                           value={data.placeofPostId || ""}
                                           disabled={
-                                            role === "state_role" ? false : true
+                                            role == "state_role" ? false : true
                                           }
                                           invalid={
                                             errors.placeofPostId ? true : false
@@ -1255,7 +1255,7 @@ class HRKeyDeliverables extends Component {
                                             errors.divisionId ? true : false
                                           }
                                           disabled={
-                                            role === "state_role" ? false : true
+                                            role == "state_role" ? false : true
                                           }
                                         >
                                           <option value="0">-Select-</option>
@@ -1289,7 +1289,7 @@ class HRKeyDeliverables extends Component {
                                             errors.districtId ? true : false
                                           }
                                           disabled={
-                                            role === "state_role" ? false : true
+                                            role == "state_role" ? false : true
                                           }
                                         >
                                           <option value="0">-Select-</option>
@@ -1327,7 +1327,7 @@ class HRKeyDeliverables extends Component {
                                               : false
                                           }
                                           disabled={
-                                            role === "state_role" ? false : true
+                                            role == "state_role" ? false : true
                                           }
                                         >
                                           <option value="0">-Select-</option>
@@ -1358,7 +1358,7 @@ class HRKeyDeliverables extends Component {
                                             this.handleTablePlace(e, i)
                                           }
                                           disabled={
-                                            role === "state_role" ? false : true
+                                            role == "state_role" ? false : true
                                           }
                                           invalid={
                                             errors.sacnctionPost ? true : false
@@ -1370,7 +1370,7 @@ class HRKeyDeliverables extends Component {
                                       </CFormGroup>
                                     </td>
                                     <td>
-                                      {i === 0 ? null : (
+                                      {i == 0 ? null : (
                                         <CIcon
                                           name="cilXCircle"
                                           className="flex-shrink-0 me-2"
@@ -1383,7 +1383,7 @@ class HRKeyDeliverables extends Component {
                                   </tr>
                                 );
                               })}
-                              {role === "state_role" ? (
+                              {role == "state_role" ? (
                                 <Button
                                   color="primary"
                                   onClick={() =>
@@ -1468,7 +1468,7 @@ class HRKeyDeliverables extends Component {
                                         <Select
                                           placeholder="Select"
                                           disabled={
-                                            role === "district_role"
+                                            role == "district_role"
                                               ? false
                                               : true
                                           }
@@ -1536,7 +1536,7 @@ class HRKeyDeliverables extends Component {
                                         <Select
                                           placeholder="Select"
                                           disabled={
-                                            role === "district_role"
+                                            role == "district_role"
                                               ? false
                                               : true
                                           }
@@ -1568,7 +1568,7 @@ class HRKeyDeliverables extends Component {
                                         <Input
                                           type="number"
                                           disabled={
-                                            role === "district_role"
+                                            role == "district_role"
                                               ? false
                                               : true
                                           }
@@ -1578,7 +1578,7 @@ class HRKeyDeliverables extends Component {
                                   </tr>
                                 );
                               })}
-                              {role === "district_role" ? (
+                              {role == "district_role" ? (
                                 <Button
                                   color="primary"
                                   onClick={() =>
@@ -1618,12 +1618,12 @@ class HRKeyDeliverables extends Component {
                       </Button>
                       <Button type="secondary">Edit</Button>
                       <Button>Download</Button>
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
                             display:
-                              obj.statuss === 1 || obj.statuss === 3
+                              obj.statuss == 1 || obj.statuss == 3
                                 ? "block"
                                 : "none",
                           }}
@@ -1631,31 +1631,31 @@ class HRKeyDeliverables extends Component {
                           Send for Approval
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           // style={{
-                          //   display: obj.statuss === 2 ? "block" : "none",
+                          //   display: obj.statuss == 2 ? "block" : "none",
                           // }}
                         >
                           Approved
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
-                            display: obj.statuss === 2 ? "block" : "none",
+                            display: obj.statuss == 2 ? "block" : "none",
                           }}
                         >
                           Reject
                         </Button>
                       ) : null}
-                      {role === "admin_role" ? (
+                      {role == "admin_role" ? (
                         <Button
                           color="primary"
                           style={{
-                            display: obj.statuss === 2 ? "block" : "none",
+                            display: obj.statuss == 2 ? "block" : "none",
                           }}
                         >
                           Need Clarification

@@ -180,8 +180,8 @@ class HumanResourceProposalState extends Component {
   }
   checkingparse = (data) => {
     if (!data) return {};
-    if (typeof data === "object") return data;
-    if (typeof data === "string") return JSON.parse(data);
+    if (typeof data == "object") return data;
+    if (typeof data == "string") return JSON.parse(data);
 
     return {};
   };
@@ -277,7 +277,7 @@ class HumanResourceProposalState extends Component {
           method: "GET",
         }).then((response) => {
           const arr = response.data.filter(
-            (data) => data.humanResourceProposalNationalId === obj.id
+            (data) => data.humanResourceProposalNationalId == obj.id
           );
           console.log(obj.id, "YYYYYYYYYYYYYYYYYYYYYYYY");
           this.setState({ numberTableRows: arr });
@@ -287,7 +287,7 @@ class HumanResourceProposalState extends Component {
           method: "GET",
         }).then((response) => {
           const arr = response.data.filter(
-            (data) => data.humanResourceProposalNationalId === obj.id
+            (data) => data.humanResourceProposalNationalId == obj.id
           );
           this.setState({ tableRows: arr });
         });
@@ -296,7 +296,7 @@ class HumanResourceProposalState extends Component {
           method: "GET",
         }).then((response) => {
           const arr = response.data.filter(
-            (data) => data.humanResourceProposalNationalId === obj.id
+            (data) => data.humanResourceProposalNationalId == obj.id
           );
           console.log(arr, "key de");
           this.setState({ keydeil: arr });
@@ -359,7 +359,7 @@ class HumanResourceProposalState extends Component {
           },
           body: JSON.stringify(data),
         }).then((resp) => {
-          if (resp.status === 404) {
+          if (resp.status == 404) {
             this.setState({
               errorMsg: true,
             });
@@ -502,7 +502,7 @@ class HumanResourceProposalState extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -510,7 +510,7 @@ class HumanResourceProposalState extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -537,7 +537,7 @@ class HumanResourceProposalState extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Changed Successfully!");
           this.setState({ statusMsg: true });
@@ -545,7 +545,7 @@ class HumanResourceProposalState extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -572,7 +572,7 @@ class HumanResourceProposalState extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           message.success("Canceled Successfully!");
           console.log("SUCCESSS");
           this.setState({ statusMsg: true });
@@ -580,7 +580,7 @@ class HumanResourceProposalState extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -607,7 +607,7 @@ class HumanResourceProposalState extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Approved Successfully!");
           this.setState({ statusMsg: true });
@@ -615,7 +615,7 @@ class HumanResourceProposalState extends Component {
             this.setState({ statusMsg: false });
           }, 10000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -642,7 +642,7 @@ class HumanResourceProposalState extends Component {
           body: JSON.stringify(operation),
         }
       ).then((response) => {
-        if (response.status === 201) {
+        if (response.status == 201) {
           console.log("SUCCESSS");
           message.success("Rejected Successfully!");
           this.setState({ statusMsg: true });
@@ -650,7 +650,7 @@ class HumanResourceProposalState extends Component {
             this.setState({ statusMsg: false });
           }, 5000);
           return response.json();
-        } else if (response.status === 404) {
+        } else if (response.status == 404) {
           throw new Error(`Error! status: ${response.status}`);
         }
       });
@@ -661,15 +661,15 @@ class HumanResourceProposalState extends Component {
       // title:"",
       content: "Are you Sure?",
       onOk: () => {
-        return status === 1
+        return status == 1
           ? this.changeStatus(value)
-          : status === 4
+          : status == 4
           ? this.approv(value)
-          : status === 6
+          : status == 6
           ? this.cancel(value)
-          : status === 7
+          : status == 7
           ? this.reject(value)
-          : status === 5
+          : status == 5
           ? this.need(value)
           : console.log("none");
       },
@@ -812,7 +812,7 @@ class HumanResourceProposalState extends Component {
                               className="invalid-feedback"
                               style={{
                                 display:
-                                  errors.typeofApproval === ""
+                                  errors.typeofApproval == ""
                                     ? "none"
                                     : "block",
                               }}
@@ -837,7 +837,7 @@ class HumanResourceProposalState extends Component {
                               name="number"
                               value={obj.number || ""}
                               disabled={
-                                role === "state_role" || obj.typeofApproval === 1
+                                role == "state_role" || obj.typeofApproval == 1
                                   ? true
                                   : false
                               }
@@ -1424,10 +1424,10 @@ class HumanResourceProposalState extends Component {
                                       />
                                     </CFormGroup>
                                   </td>
-                                  {obj.stateStatus === 4 ||obj.stateStatus === 6||obj.stateStatus === 7 ? null: (
+                                  {obj.stateStatus == 4 ||obj.stateStatus == 6||obj.stateStatus == 7 ? null: (
                                     <td>
                                       {this.state.physical.filter(
-                                        (d) => d.physicalStatusId === data.id
+                                        (d) => d.physicalStatusId == data.id
                                       ).length > 0 ? (
                                         <CButton
                                           color="primary"
@@ -1485,7 +1485,7 @@ class HumanResourceProposalState extends Component {
                                     <b>
                                       {this.props.programTypeList
                                         .filter(
-                                          (data) => data.id === val.programTypeId
+                                          (data) => data.id == val.programTypeId
                                         )
                                         .map((id) => {
                                           return id.name;
@@ -1495,7 +1495,7 @@ class HumanResourceProposalState extends Component {
                                   <td>
                                     <b>
                                       {this.props.financialStatusList
-                                        .filter((data) => data.id === val.budget)
+                                        .filter((data) => data.id == val.budget)
                                         .map((id) => {
                                           return id.name;
                                         })}
@@ -1504,7 +1504,7 @@ class HumanResourceProposalState extends Component {
                                   <td>
                                     {this.props.financialYearList
                                       .filter(
-                                        (data) => data.id === val.finacialYearId
+                                        (data) => data.id == val.finacialYearId
                                       )
                                       .map((id) => {
                                         return `${new Date(
@@ -1515,11 +1515,11 @@ class HumanResourceProposalState extends Component {
                                       })}
                                   </td>
                                   <td>{val.amount}</td>
-                                 {obj.stateStatus===4 ||obj.stateStatus === 6||obj.stateStatus === 7? null:
+                                 {obj.stateStatus==4 ||obj.stateStatus == 6||obj.stateStatus == 7? null:
                                   <td>
                                     {" "}
                                     {this.state.distribute.filter(
-                                      (data) => data.financialStatusId === val.id
+                                      (data) => data.financialStatusId == val.id
                                     ).length > 0 ? (
                                       <CButton
                                         color="primary"
@@ -1838,7 +1838,7 @@ class HumanResourceProposalState extends Component {
                                     {" "}
                                     {this.state.key.filter(
                                       (d) =>
-                                        d.keyDeliverableId === data.id
+                                        d.keyDeliverableId == data.id
                                     ).length > 0 ? (
                                       <CButton
                                         color="primary"
@@ -2031,7 +2031,7 @@ class HumanResourceProposalState extends Component {
                       >
                         Download
                       </CButton>
-                      {obj.stateStatus === 0 || obj.stateStatus === 5 ? (
+                      {obj.stateStatus == 0 || obj.stateStatus == 5 ? (
                         <CButton
                           color="info"
                           onClick={() => {
@@ -2041,7 +2041,7 @@ class HumanResourceProposalState extends Component {
                           Submit for Approval
                         </CButton>
                       ) : null}
-                      {obj.formStatus === 1 ? (
+                      {obj.formStatus == 1 ? (
                         <CButton
                           color="secondary"
                           // onClick={() => this.handleAmend()}
@@ -2049,7 +2049,7 @@ class HumanResourceProposalState extends Component {
                           Send for Amendment
                         </CButton>
                       ) : null}
-                      {obj.stateStatus === 1 ? (
+                      {obj.stateStatus == 1 ? (
                         <CButton
                           color="success"
                           onClick={() => this.showConfirm(obj.id, 4)}
@@ -2057,7 +2057,7 @@ class HumanResourceProposalState extends Component {
                           Approve
                         </CButton>
                       ) : null}
-                      {obj.stateStatus === 1 ? (
+                      {obj.stateStatus == 1 ? (
                         <CButton
                           color="warning"
                           onClick={() => this.showConfirm(obj.id, 7)}
@@ -2065,7 +2065,7 @@ class HumanResourceProposalState extends Component {
                           Reject
                         </CButton>
                       ) : null}
-                      {obj.stateStatus === 0 || obj.stateStatus === 1 ? (
+                      {obj.stateStatus == 0 || obj.stateStatus == 1 ? (
                         <CButton
                           color="danger"
                           onClick={() => this.showConfirm(obj.id, 6)}
